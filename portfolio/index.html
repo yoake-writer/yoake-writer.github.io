@@ -128,6 +128,9 @@
   .timeline { list-style: none; margin: 0 0 28px; padding: 0; }
   .timeline li { display: grid; grid-template-columns: 8.5em 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .timeline .y { color: var(--red); }
+  .timeline .path { display: block; margin-top: 4px; font-size: 13px; font-style: normal; color: var(--muted); }
+  /* 折り返しても「→」が行頭に落ちないように、各ステップと矢印をひとかたまりにする */
+  .timeline .path span { white-space: nowrap; }
   .tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
   .tools span { font-size: 12px; border: 1px solid var(--line); background: var(--card); padding: 4px 12px; }
   .quote {
@@ -355,7 +358,7 @@
     <div class="profile-grid">
       <div>
         <ul class="timeline">
-          <li><span class="y mono">2012 –</span><span>看護師として病棟勤務（12年間、現在も現役）</span></li>
+          <li><span class="y mono">2012 –</span><span>看護師として臨床勤務（12年間、現在も現役）<i class="path"><span>小児科病棟 →</span> <span>成人病棟 →</span> <span>手術室 →</span> 現在は訪問看護に従事</i></span></li>
           <li><span class="y mono">2023.11 –</span><span>フリーランス動画エディターとして活動開始</span></li>
           <li><span class="y mono">資格</span><span>看護師免許／FP（ファイナンシャルプランナー）3級</span></li>
         </ul>
