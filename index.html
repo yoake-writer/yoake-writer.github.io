@@ -147,6 +147,8 @@
   .product .tag.soon { background: var(--muted); }
   .product h3 { margin: 4px 0 8px; font-size: 17px; line-height: 1.6; font-weight: 700; }
   .product p { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
+  a.product { display: block; text-decoration: none; color: inherit; }
+  .product .read { font-size: 13.5px; font-weight: 700; color: var(--teal-dark); }
   .product .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .price { font-size: 20px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
   .price small { font-size: 12px; color: var(--muted); font-weight: 500; }
@@ -290,21 +292,19 @@
 <section id="products">
   <div class="col">
     <span class="sec-label">note</span>
-    <h2>こんなテーマを<br>noteで書いています</h2>
-    <p class="lead">現場ですぐ使える手順を、記事にまとめています。<br>気になるテーマからのぞいてみてください。</p>
+    <h2>noteで公開中の記事</h2>
+    <p class="lead">現場ですぐ使えることから書いています。<br>気になるほうからのぞいてみてください。</p>
     <div class="products">
-      <div class="product featured">
-        <h3>看護師のためのAI活用術<br>〜委員会資料・マニュアルづくり編〜</h3>
-        <p>そのまま使える質問テンプレート付き。<br>次の委員会資料から、時間の使い方が変わります。</p>
-      </div>
-      <div class="product">
-        <h3>勉強会・看護研究×AI<br>〜構成づくりから資料化まで〜</h3>
-        <p>テーマ決め・要点整理・スライド構成をAIと進める手順。<br>発表準備の負担が変わります。</p>
-      </div>
-      <div class="product">
-        <h3>夜勤ナースのための<br>お金の土台づくり〜新NISA入門〜</h3>
-        <p>忙しくても続く「貯まる仕組み」を<br>FP3級×現場目線で解説します。</p>
-      </div>
+      <a class="product featured" href="https://note.com/yoake_kango_fp/n/n814ba654c8b3" target="_blank" rel="noopener">
+        <h3>看護師がAIを使い始めるなら、<br>まずこの3つを聞いてみて</h3>
+        <p>特別な知識は要りません。いちばんハードルの低い「3つの入口」を、職場で実際に聞かれたことをまとめる形で紹介します。</p>
+        <span class="read">noteで読む →</span>
+      </a>
+      <a class="product" href="https://note.com/yoake_kango_fp/n/nf9aa38ffd17a" target="_blank" rel="noopener">
+        <h3>はじめまして。「看護 × AI × お金」を書くナースエディターです</h3>
+        <p>看護師12年目、いまは訪問看護の現場で働いています。なぜAIとお金のことを書き始めたのか、自己紹介をかねた最初の記事です。</p>
+        <span class="read">noteで読む →</span>
+      </a>
     </div>
     <a class="cta cta-note" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">noteを読む<small>note.com/yoake_kango_fp</small></a>
   </div>
