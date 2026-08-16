@@ -18,6 +18,10 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  /* 日本語の改行対策:文節単位で折り返す(非対応ブラウザでは従来どおり) */
+  html { line-break: strict; word-break: auto-phrase; overflow-wrap: break-word; }
+  p, li { text-wrap: pretty; }
+  .w { display: inline-block; } /* 文節のかたまり。全ブラウザで改行位置を固定する */
   body {
     margin: 0;
     background: var(--paper);
@@ -218,7 +222,7 @@
 <div class="hero">
   <div class="col">
     <p class="kicker mono">PORTFOLIO — WRITER / VIDEO EDITOR</p>
-    <h1>現場を知る人間が、<br><em>書く。</em></h1>
+    <h1><span class="w">現場を知る</span><span class="w">人間が、</span><br><em>書く。</em></h1>
     <p class="sub">医療・金融分野の記事ライティングと、YouTube動画編集。<b>看護師12年の臨床経験とFP3級の知識</b>——「現場を知っているから書ける」専門性と説得力をお届けします。</p>
     <div class="cta-row">
       <a class="btn solid" href="#works">執筆実績を見る</a>
@@ -256,7 +260,7 @@
       <span class="vf tl" aria-hidden="true"></span><span class="vf tr" aria-hidden="true"></span><span class="vf bl" aria-hidden="true"></span><span class="vf br" aria-hidden="true"></span>
       <span class="rec mono" aria-hidden="true"><i></i>REC</span>
       <span class="play" aria-hidden="true"></span>
-      <h3>ポートフォリオリール（動画編集サンプル）</h3>
+      <h3><span class="w">ポートフォリオリール</span><span class="w">（動画編集サンプル）</span></h3>
       <p>YouTubeで再生 ↗　カット編集・テロップ・演出の実例をまとめています</p>
     </a>
     <div class="works-grid">

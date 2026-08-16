@@ -22,6 +22,10 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  /* 日本語の改行対策:文節単位で折り返す(非対応ブラウザでは従来どおり) */
+  html { line-break: strict; word-break: auto-phrase; overflow-wrap: break-word; }
+  p, li { text-wrap: pretty; }
+  .w { display: inline-block; } /* 文節のかたまり。全ブラウザで改行位置を固定する */
   body {
     margin: 0;
     background: var(--bg);
@@ -247,7 +251,7 @@
     <span class="sec-label">Problem</span>
     <h2>こんな毎日に、心当たりない？</h2>
     <ul class="pains">
-      <li>記録が終わらず、定時で帰れた日を思い出せない</li>
+      <li>記録が終わらず、定時で帰れた日を<span class="w">思い出せない</span></li>
       <li>委員会・係の資料づくりが、いつも家に持ち帰りになる</li>
       <li>AIが便利らしいけど、看護業務のどこで使えばいいのかピンとこない</li>
       <li>夜勤手当もボーナスも、給料に混ざって消えていく。<br>お金を考える体力は、もう残っていない</li>
@@ -264,15 +268,15 @@
     <div class="ba">
       <div class="ba-item">
         <h3>委員会・係の資料づくり</h3>
-        <div class="ba-row"><span class="before">家に持ち帰って週末が消える</span><span class="arrow">→</span><span class="after">構成と叩き台をAIと作って1時間</span></div>
+        <div class="ba-row"><span class="before">家に持ち帰って週末が消える</span><span class="arrow">→</span><span class="after"><span class="w">構成と叩き台を</span><span class="w">AIと作って</span><span class="w">1時間</span></span></div>
       </div>
       <div class="ba-item">
         <h3>勉強会・マニュアル作成</h3>
-        <div class="ba-row"><span class="before">白紙とにらめっこで進まない</span><span class="arrow">→</span><span class="after">要点整理から資料化まで対話で進む</span></div>
+        <div class="ba-row"><span class="before">白紙とにらめっこで進まない</span><span class="arrow">→</span><span class="after"><span class="w">要点整理から</span><span class="w">資料化まで</span><span class="w">対話で進む</span></span></div>
       </div>
       <div class="ba-item">
         <h3>記録・文章の言い回し</h3>
-        <div class="ba-row"><span class="before">表現に迷って手が止まる</span><span class="arrow">→</span><span class="after">型を持っておけば迷わない</span></div>
+        <div class="ba-row"><span class="before">表現に迷って手が止まる</span><span class="arrow">→</span><span class="after"><span class="w">型を持っておけば</span><span class="w">迷わない</span></span></div>
       </div>
     </div>
     <p class="note-safety">⚠️ 患者さんの個人情報は入力しない、院内の規定を確認する。<br>この「安全な使い方」から丁寧にお伝えします。現場で信頼されるAI活用の第一歩です。</p>
