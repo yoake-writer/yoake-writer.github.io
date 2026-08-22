@@ -205,15 +205,6 @@
   .video-card .rec { position: absolute; top: 20px; right: 44px; font-size: 11px; letter-spacing: 0.2em; color: rgba(247, 246, 242, 0.8); display: flex; align-items: center; gap: 7px; }
   .video-card .rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--red); animation: blink 1.2s steps(2, start) infinite; }
 
-  /* ═══ AIギャラリー ═══ */
-  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  @media (max-width: 720px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
-  .gallery figure { margin: 0; }
-  .gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; border: 1px solid var(--line); background: var(--card); transition: transform 0.25s ease; }
-  .gallery figure:hover img { transform: scale(1.02); }
-  @media (prefers-reduced-motion: reduce) { .gallery img { transition: none; } .gallery figure:hover img { transform: none; } }
-  .gallery figcaption { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); margin-top: 9px; }
-
   /* ═══ 執筆実績カード ═══ */
   .articles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; border-top: 1px solid var(--ink); padding-top: 20px; }
   @media (max-width: 720px) { .articles { grid-template-columns: 1fr; } }
@@ -360,21 +351,6 @@
   </div>
 </section>
 
-<!-- ═══ 動画素材（Midjourney/にじJourneyで用意するオリジナル画像） ═══ -->
-<section id="gallery">
-  <div class="col">
-    <p class="sec-label mono">VIDEO ASSETS</p>
-    <h2>動画素材のオリジナル画像</h2>
-    <p class="lead">フリー素材では見つからないカットは、MidjourneyとにじJourneyで用意します。動画の挿絵・サムネイル・ロゴなど、世界観を揃えたい場面で使う制作用の素材です。</p>
-    <div class="gallery">
-      <figure><img src="../assets/gallery-01-fantasy.jpg" alt="AI生成イラスト: 光る泡が浮かぶ幻想的な森に立つ少女" loading="lazy"><figcaption class="mono">01 — 幻想風景イラスト</figcaption></figure>
-      <figure><img src="../assets/gallery-02-character.jpg" alt="AI生成イラスト: 光に包まれた白髪のキャラクターイラスト" loading="lazy"><figcaption class="mono">02 — キャラクターイラスト</figcaption></figure>
-      <figure><img src="../assets/gallery-03-cityscape.jpg" alt="AI生成イラスト: 月夜のゴシック様式の街並み" loading="lazy"><figcaption class="mono">03 — 背景美術</figcaption></figure>
-      <figure><img src="../assets/gallery-04-logo.jpg" alt="AI生成ロゴ: 湯気の立つコーヒーカップのロゴデザイン" loading="lazy"><figcaption class="mono">04 — ロゴデザイン</figcaption></figure>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ LP・Webサイト制作実績 ═══ -->
 <section id="web">
   <div class="col">
@@ -476,7 +452,7 @@
         <h3><span class="mono">—</span>AIの使い方について</h3>
         <p>リサーチの下調べや構成の壁打ちにはAIを使います。制作のスピードは、そのぶん上がります。</p>
         <p><b>ただし、事実確認と本文は人間が書きます。</b>医療と金融は、間違えたときに読者が実際に損をする分野だからです。数字・制度・用語は一次情報にあたって確認しています。</p>
-        <p>「AIに書かせただけの原稿は困る」という前提でご依頼いただいて大丈夫です。生成物をそのまま納品することはありません。</p>
+        <p>「AIに書かせただけの原稿は困る」という前提でご依頼いただいて大丈夫です。原稿を生成物のまま納品することはありません。（画像素材の生成は別途、用途をご相談のうえ対応します）</p>
       </div>
     </div>
   </div>
@@ -502,7 +478,7 @@
 (function () {
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!('IntersectionObserver' in window)) return;
-  var groups = ['.articles .article', '.works-grid .cell', '.gallery figure'];
+  var groups = ['.articles .article', '.works-grid .cell', '.samples .sample'];
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('rv-in'); io.unobserve(e.target); }
