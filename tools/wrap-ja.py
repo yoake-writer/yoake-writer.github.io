@@ -17,7 +17,7 @@ try:
 except ImportError:
     sys.exit("budoux が必要です:  pip install budoux")
 
-TARGETS = ['index.html', 'portfolio/index.html']
+TARGETS = ['index.html', 'kango/index.html']
 SKIP_TAGS = {'script', 'style', 'title', 'textarea', 'code', 'pre'}
 VOID_TAGS = {'br', 'wbr', 'img', 'meta', 'link', 'input', 'hr', 'source', 'area', 'base', 'col'}
 # class="w" は「ここで切らせない」ための既存の仕組みなので、中には改行位置を入れない
