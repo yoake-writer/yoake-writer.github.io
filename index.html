@@ -126,23 +126,7 @@
   h2 { font-size: clamp(24px, 4vw, 34px); line-height: 1.4; margin: 0 0 14px; font-weight: 700; text-wrap: balance; }
   .lead { color: var(--muted); font-size: 15px; max-width: 40em; margin: 0 0 40px; }
 
-  /* ═══ Works（動画・実績） ═══ */
-  .video-card {
-    display: block; text-decoration: none; background: var(--ink); color: var(--paper);
-    padding: clamp(32px, 6vw, 64px); margin-bottom: 4px; position: relative;
-  }
-  .video-card .play {
-    width: 64px; height: 64px; border: 2px solid var(--paper); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
-  }
-  .video-card .play::after {
-    content: ""; border-style: solid; border-width: 10px 0 10px 16px;
-    border-color: transparent transparent transparent var(--paper); margin-left: 4px;
-  }
-  .video-card h3 { margin: 0 0 8px; font-size: 20px; }
-  .video-card p { margin: 0; font-size: 13px; color: rgba(247,246,242,0.7); }
-  .video-card:hover .play, .video-card:focus-visible .play { border-color: var(--red); }
-  .video-card:hover .play::after, .video-card:focus-visible .play::after { border-left-color: var(--red); }
+  /* ═══ Works（実績グリッド） ═══ */
   .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
   .works-grid .cell { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 22px 18px 26px; }
   .works-grid .cell:nth-child(3n) { border-right: 0; }
@@ -204,20 +188,6 @@
   .contact .sns a { color: var(--ink); font-weight: 700; }
   footer { padding: 28px 0 44px; font-size: 12px; color: var(--muted); }
 
-  @keyframes blink { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) {
-    .video-card .rec i { animation: none; }
-  }
-
-  /* ═══ 装飾: ビューファインダー（動画カードの四隅＋REC） ═══ */
-  .video-card .vf { position: absolute; width: 20px; height: 20px; border: 2px solid rgba(247, 246, 242, 0.55); }
-  .video-card .vf.tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
-  .video-card .vf.tr { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
-  .video-card .vf.bl { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
-  .video-card .vf.br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
-  .video-card .rec { position: absolute; top: 20px; right: 44px; font-size: 11px; letter-spacing: 0.2em; color: rgba(247, 246, 242, 0.8); display: flex; align-items: center; gap: 7px; }
-  .video-card .rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--red); animation: blink 1.2s steps(2, start) infinite; }
-
   /* ═══ 執筆実績カード ═══ */
   .articles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; border-top: 1px solid var(--ink); padding-top: 20px; }
   @media (max-width: 720px) { .articles { grid-template-columns: 1fr; } }
@@ -230,6 +200,12 @@
   .article .alink { margin-top: 14px; }
   .article .alink a { color: var(--red); font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-decoration: none; }
   .article .alink a:hover, .article .alink a:focus-visible { text-decoration: underline; }
+
+  /* 動画サンプルは個別送付である旨の一文 */
+  .onreq {
+    background: var(--card); border: 1px solid var(--line);
+    padding: 20px 22px; margin: 0 0 4px; font-size: 13.5px; color: var(--muted); line-height: 2;
+  }
 
   /* ═══ 強調（進め方リード） ═══ */
   .em-red { color: var(--red); }
@@ -360,16 +336,10 @@
     <p class="sec-label mono">VIDEO</p>
     <h2>動画編集</h2>
     <p class="lead">テンポを<wbr>意識した<wbr>カット編集・テロップ・<wbr>サムネイル<wbr>制作まで<wbr>一貫して<wbr>対応。<wbr>情報まとめ系・解説系コンテンツを<wbr>中心に<wbr>担当してきました。</p>
-    <a class="video-card" href="https://youtu.be/SOYdZVNipHw" target="_blank" rel="noopener">
-      <span class="vf tl" aria-hidden="true"></span><span class="vf tr" aria-hidden="true"></span><span class="vf bl" aria-hidden="true"></span><span class="vf br" aria-hidden="true"></span>
-      <span class="rec mono" aria-hidden="true"><i></i>REC</span>
-      <span class="play" aria-hidden="true"></span>
-      <h3><span class="w">ポートフォリオリール</span><span class="w">（動画編集サンプル）</span></h3>
-      <p>YouTubeで<wbr>再生 ↗　カット編集・テロップ・<wbr>演出の<wbr>実例を<wbr>まとめています</p>
-    </a>
+    <p class="onreq">動画の<wbr>サンプルは、<wbr>ご依頼・<wbr>ご相談の<wbr>際に<wbr>個別に<wbr>お送りします。<wbr>ご希望の<wbr>ジャンルに<wbr>近い<wbr>ものを<wbr>選んで<wbr>お渡しします。</p>
     <div class="works-grid">
-      <div class="cell"><b>YouTube動画編集</b><p>情報まとめ系・解説系を<wbr>中心に<wbr>10本以上を<wbr>担当。<br>視聴者が<wbr>離脱しに<wbr>くいテンポ重視の<wbr>カット編集。</p></div>
-      <div class="cell"><b>院内説明動画の<wbr>制作</b><p>患者さん<wbr>向け説<wbr>明動画の<wbr>制作を<wbr>病院の<wbr>業務と<wbr>して<wbr>正式に<wbr>担当。<br>分かりやすさが<wbr>求められる<wbr>題材が<wbr>得意。</p></div>
+      <div class="cell"><b>YouTube動画編集</b><p>情報まとめ系・解説系を<wbr>中心に<wbr>10本以上を<wbr>担当。<br>視聴者が<wbr>離脱しにくいテンポ重視の<wbr>カット編集。</p></div>
+      <div class="cell"><b>院内説明動画の<wbr>制作</b><p>患者さん<wbr>向け説明動画の<wbr>制作を<wbr>病院の<wbr>業務と<wbr>して<wbr>正式に<wbr>担当。<br>分かりやすさが<wbr>求められる<wbr>題材が<wbr>得意。</p></div>
       <div class="cell"><b>サムネイル<wbr>制作</b><p>Photoshopでの<wbr>サムネイル<wbr>制作も<wbr>あわせて<wbr>対応。<br>クリックされる<wbr>入口まで<wbr>セットで<wbr>設計。</p></div>
     </div>
   </div>
