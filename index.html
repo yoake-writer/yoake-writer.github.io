@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>看護師のためのAI活用室｜記録・資料づくり・お金の味方</title>
 <meta name="description" content="看護記録・委員会資料・勉強会資料をAIで時短。夜勤続きでも続く資産形成まで、看護師12年目×FP3級の現場目線で発信しています。">
+<link rel="canonical" href="https://yoake-writer.github.io/">
+<link rel="icon" href="assets/favicon-lp.svg" type="image/svg+xml">
+<meta name="theme-color" content="#178F7D">
+
+<!-- OGP / Twitter Card（Xやnoteで共有されたときのカード表示） -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="看護×AI活用室">
+<meta property="og:title" content="その残業、記録と資料のせいならAIで減らせます｜看護×AI活用室">
+<meta property="og:description" content="看護記録・委員会資料・勉強会資料をAIで時短。夜勤1回分から始めるお金の話まで、看護師12年目×FP3級の現場目線で発信しています。">
+<meta property="og:url" content="https://yoake-writer.github.io/">
+<meta property="og:image" content="https://yoake-writer.github.io/assets/ogp-lp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@yoake_kango_fp">
+<meta name="twitter:creator" content="@yoake_kango_fp">
 <style>
   /* ═══ 配色はここだけで一括変更できます ═══ */
   :root {
@@ -51,10 +68,13 @@
   }
   .brand { font-weight: 700; font-size: 15px; letter-spacing: 0.02em; }
   .brand span { color: var(--teal); }
+  /* ヘッダーCTAは控えめに。ヒーローの赤ボタンと競合させないため */
   .header-cta {
-    font-size: 13px; font-weight: 700; color: #fff; background: var(--coral);
-    padding: 8px 16px; border-radius: 999px; text-decoration: none; white-space: nowrap;
+    font-size: 13px; font-weight: 700; color: var(--teal-dark); background: transparent;
+    border: 1.5px solid var(--mint-deep);
+    padding: 7px 15px; border-radius: 999px; text-decoration: none; white-space: nowrap;
   }
+  .header-cta:hover, .header-cta:focus-visible { border-color: var(--teal); }
 
   /* hero */
   .hero { background: linear-gradient(180deg, var(--mint) 0%, var(--bg) 100%); padding: 52px 0 44px; }
@@ -86,6 +106,7 @@
 
   /* sections */
   section { padding: 56px 0; }
+  section[id] { scroll-margin-top: 72px; } /* 固定ヘッダーに見出しが隠れないように */
   section.tint { background: var(--mint); }
   .sec-label {
     display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.16em;
@@ -124,10 +145,18 @@
     background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;
   }
   .ba-item h3 { margin: 0 0 10px; font-size: 15.5px; font-weight: 700; }
-  .ba-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; font-size: 13px; }
+  .ba-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px 12px; align-items: center; font-size: 13px; }
   .ba-row .before { color: var(--muted); }
   .ba-row .after { color: var(--teal-dark); font-weight: 700; }
   .ba-row .arrow { color: var(--teal); font-weight: 700; }
+  .ba-row .lbl { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; margin-bottom: 3px; }
+  .ba-row .before .lbl { color: #93A5A1; }
+  .ba-row .after .lbl { color: var(--teal); }
+  /* 狭い画面では左右2カラムだと両方折り返して対比が読めないので縦に積む */
+  @media (max-width: 430px) {
+    .ba-row { grid-template-columns: 1fr; }
+    .ba-row .arrow { justify-self: start; transform: rotate(90deg); }
+  }
   .note-safety {
     margin-top: 18px; font-size: 12.5px; color: var(--muted);
     background: var(--mint); border-radius: 12px; padding: 12px 16px;
@@ -164,8 +193,14 @@
   }
   .avatar {
     width: 72px; height: 72px; border-radius: 50%;
-    background: var(--mint-deep); display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
+    background: var(--teal); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 700; letter-spacing: 0.04em; line-height: 1;
+  }
+  /* スマホでは本文が1行10文字前後まで潰れるので、アバターを上に出して全幅で読ませる */
+  @media (max-width: 480px) {
+    .profile { grid-template-columns: 1fr; gap: 14px; }
+    .avatar { width: 60px; height: 60px; font-size: 22px; }
   }
   .profile h3 { margin: 0 0 6px; font-size: 16px; }
   .profile p { margin: 0; font-size: 13.5px; color: var(--muted); }
@@ -239,11 +274,11 @@
 <div class="hero">
   <div class="col">
     <span class="eyebrow">忙しい現役ナースのための</span>
-    <h1>記録と委員会資料で<br>今日も残業<br>その時間<br><em><b>AI</b>で取り戻そう</em></h1>
-    <p class="sub">記録も資料づくりも、AIで時短できます。<br>取り戻した時間と、夜勤1回分から始めるお金の話を、現場目線で発信中。</p>
-    <a class="cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">Xで発信を見る<small>@yoake_kango_fp｜noteでも発信中</small></a>
+    <h1><span class="w">その残業、</span><br><span class="w">記録と資料のせいなら</span><br><em><b>AI</b>で減らせます。</em></h1>
+    <p class="sub">委員会の資料も、勉強会の準備も、家に持ち帰らなくてよくなります。<br>浮いた時間と、夜勤1回分から始めるお金の話を、現場目線で発信中。</p>
+    <a class="cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">記録・資料づくりのAI活用をXで見る<small>@yoake_kango_fp｜看護師12年目が毎日発信中</small></a>
     <ul class="badges">
-      <li>現役ナース12年目の目線</li>
+      <li>現役ナース12年目</li>
       <li>スマホだけでOK</li>
       <li>FP3級</li>
     </ul>
@@ -273,15 +308,15 @@
     <div class="ba">
       <div class="ba-item">
         <h3>委員会・係の資料づくり</h3>
-        <div class="ba-row"><span class="before">家に持ち帰って週末が消える</span><span class="arrow">→</span><span class="after"><span class="w">構成と叩き台を</span><span class="w">AIと作って</span><span class="w">1時間</span></span></div>
+        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>家に持ち帰って週末が消える</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">構成と叩き台を</span><span class="w">AIと作って</span><span class="w">1時間</span></span></div>
       </div>
       <div class="ba-item">
         <h3>勉強会・マニュアル作成</h3>
-        <div class="ba-row"><span class="before">白紙とにらめっこで進まない</span><span class="arrow">→</span><span class="after"><span class="w">要点整理から</span><span class="w">資料化まで</span><span class="w">対話で進む</span></span></div>
+        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>白紙とにらめっこで進まない</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">要点整理から</span><span class="w">資料化まで</span><span class="w">対話で進む</span></span></div>
       </div>
       <div class="ba-item">
         <h3>記録・文章の言い回し</h3>
-        <div class="ba-row"><span class="before">表現に迷って手が止まる</span><span class="arrow">→</span><span class="after"><span class="w">型を持っておけば</span><span class="w">迷わない</span></span></div>
+        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>表現に迷って手が止まる</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">型を持っておけば</span><span class="w">迷わない</span></span></div>
       </div>
     </div>
     <p class="note-safety">⚠️ 患者さんの個人情報は入力しない、院内の規定を確認する。<br>この「安全な使い方」から丁寧にお伝えします。現場で信頼されるAI活用の第一歩です。</p>
@@ -343,7 +378,7 @@
     <span class="sec-label">About</span>
     <h2>書いている人</h2>
     <div class="profile">
-      <div class="avatar" aria-hidden="true">🩺</div>
+      <div class="avatar" aria-hidden="true">ヨ</div>
       <div>
         <h3>ヨアケ｜現役看護師12年目・FP3級</h3>
         <p class="career"><b>経歴：</b><span>小児科病棟 →</span> <span>成人病棟 →</span> <span>手術室 →</span> 現在は訪問看護に従事</p>
@@ -392,7 +427,7 @@
   <div class="col">
     <p>※ 資産形成に関する内容は一般的な情報提供であり、特定の金融商品の勧誘ではありません。投資判断はご自身の責任でお願いします。<br>
     ※ AIの利用にあたっては、所属する学校・病院の規定および個人情報の取り扱いに十分ご注意ください。</p>
-    <p>© 2026 ヨアケ（看護×AI活用室）　<a href="#">プライバシーポリシー</a>　<a href="#">特定商取引法に基づく表記</a></p>
+    <p>© 2026 ヨアケ（看護×AI活用室）　<a href="portfolio/">運営者の制作実績（ライティング・Web制作）</a></p>
   </div>
 </footer>
 
