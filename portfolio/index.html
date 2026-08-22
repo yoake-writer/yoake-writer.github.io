@@ -101,6 +101,12 @@
   .btn.solid { background: var(--ink); color: var(--paper); }
   .btn:hover, .btn:focus-visible { border-color: var(--red); color: var(--red); }
   .btn.solid:hover, .btn.solid:focus-visible { background: var(--red); color: #fff; border-color: var(--red); }
+  /* 実績で惹きつける方針のため、取引条件はヒーローでは控えめに1行だけ置く */
+  .hero-terms { font-size: 12.5px; color: var(--muted); margin: 20px 0 0; line-height: 1.9; }
+  .hero-terms b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .hero-terms .sep { margin: 0 8px; color: var(--line); }
+  .hero-terms a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .hero-terms a:hover, .hero-terms a:focus-visible { color: var(--red); }
   .hero-facts { display: flex; gap: 36px; flex-wrap: wrap; margin-top: 48px; }
   /* 3項目が2+1に折れると据わりが悪いので、狭い画面では3カラムで揃える */
   @media (max-width: 620px) { .hero-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; } .fact b { font-size: 19px; } .fact span { font-size: 10.5px; } }
@@ -295,8 +301,9 @@
         <a class="btn solid" href="#works">執筆実績を見る</a>
         <a class="btn" href="#contact">依頼の相談をする</a>
       </div>
+      <p class="hero-terms">文字単価 <b class="mono">2円</b><span class="sep">/</span>初稿まで <b class="mono">3日</b><span class="sep">/</span>月 <b class="mono">10本</b> まで<br>内容・分量により変動します。<a href="#process">条件の詳細を見る</a></p>
       <div class="hero-facts">
-        <div class="fact"><b class="mono">12年</b><span>看護師として現場経験</span></div>
+        <div class="fact"><b class="mono">12年</b><span>臨床での現場経験</span></div>
         <div class="fact"><b class="mono">FP3級</b><span>金融系の専門知識</span></div>
         <div class="fact"><b class="mono">10+</b><span>YouTube編集実績</span></div>
       </div>
