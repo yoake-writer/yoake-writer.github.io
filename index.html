@@ -39,8 +39,15 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  /* 日本語の改行対策:文節単位で折り返す(非対応ブラウザでは従来どおり) */
-  html { line-break: strict; word-break: auto-phrase; overflow-wrap: break-word; }
+  /* 日本語の改行対策:文節の境目にだけ改行を許す
+     keep-all で「勝手に折り返さない」状態にし、改行可能位置は
+     tools/wrap-ja.py が埋め込んだ wbr 要素だけに限定する。
+     Chrome の word-break: auto-phrase と違い Safari でも効く。
+     anywhere は、1文節が1行に収まらないときだけ働く保険。
+     break-word ではなく anywhere を使うのは、こちらは要素の最小幅にも
+     反映され、狭い画面でグリッドがはみ出すのを防げるため。 */
+  html { line-break: strict; word-break: keep-all; overflow-wrap: anywhere; }
+  wbr { display: inline; }
   p, li { text-wrap: pretty; }
   .w { display: inline-block; } /* 文節のかたまり。全ブラウザで改行位置を固定する */
   body {
@@ -266,20 +273,20 @@
 <header>
   <div class="header-in">
     <div class="brand">看護<span>×</span>AI 活用室</div>
-    <a class="header-cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">Xを見る</a>
+    <a class="header-cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">Xを<wbr>見る</a>
   </div>
 </header>
 
 <!-- ═══ ファーストビュー（名指しキャッチコピー・メインCTA・安心バッジ） ═══ -->
 <div class="hero">
   <div class="col">
-    <span class="eyebrow">忙しい現役ナースのための</span>
-    <h1><span class="w">その残業、</span><br><span class="w">記録と資料のせいなら</span><br><em><b>AI</b>で減らせます。</em></h1>
-    <p class="sub">委員会の資料も、勉強会の準備も、家に持ち帰らなくてよくなります。<br>浮いた時間と、夜勤1回分から始めるお金の話を、現場目線で発信中。</p>
-    <a class="cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">記録・資料づくりのAI活用をXで見る<small>@yoake_kango_fp｜看護師12年目が毎日発信中</small></a>
+    <span class="eyebrow">忙しい<wbr>現役ナースの<wbr>ための</span>
+    <h1><span class="w">その残業、</span><br><span class="w">記録と資料のせいなら</span><br><em><b>AI</b>で<wbr>減らせます。</em></h1>
+    <p class="sub">委員会の<wbr>資料も、<wbr>勉強会の<wbr>準備も、<wbr>家に<wbr>持ち帰らなくて<wbr>よくなります。<br>浮いた<wbr>時間と、<wbr>夜勤1回分から<wbr>始める<wbr>お金の<wbr>話を、<wbr>現場目線で<wbr>発信中。</p>
+    <a class="cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">記録・資料づくりの<wbr>AI活用を<wbr>Xで<wbr>見る<small>@yoake_kango_fp｜看護師12年目が<wbr>毎日<wbr>発信中</small></a>
     <ul class="badges">
       <li>現役ナース12年目</li>
-      <li>スマホだけでOK</li>
+      <li>スマホだけで<wbr>OK</li>
       <li>FP3級</li>
     </ul>
   </div>
@@ -289,14 +296,14 @@
 <section>
   <div class="col">
     <span class="sec-label">Problem</span>
-    <h2>こんな毎日に、心当たりない？</h2>
+    <h2>こんな<wbr>毎日に、<wbr>心当たりない？</h2>
     <ul class="pains">
-      <li>記録が終わらず、定時で帰れた日を<span class="w">思い出せない</span></li>
-      <li>委員会・係の資料づくりが、いつも家に持ち帰りになる</li>
-      <li>AIが便利らしいけど、看護業務のどこで使えばいいのかピンとこない</li>
-      <li>夜勤手当もボーナスも、給料に混ざって消えていく。<br>お金を考える体力は、もう残っていない</li>
+      <li>記録が<wbr>終わらず、<wbr>定時で<wbr>帰れた<wbr>日を<span class="w">思い出せない</span></li>
+      <li>委員会・係の<wbr>資料づくりが、<wbr>いつも<wbr>家に<wbr>持ち帰りに<wbr>なる</li>
+      <li>AIが<wbr>便利らしいけど、<wbr>看護業務の<wbr>どこで<wbr>使えばいいのかピンと<wbr>こない</li>
+      <li>夜勤<wbr>手当も<wbr>ボーナスも、<wbr>給料に<wbr>混ざって<wbr>消えていく。<br>お金を<wbr>考える<wbr>体力は、<wbr>もう<wbr>残っていない</li>
     </ul>
-    <p class="empathy"><strong>私も、同じ12年を現場で過ごしてきました。</strong><br>残業して、持ち帰って、疲れて眠るだけの毎日。<br><br>AIで資料を作るようになって、時間の使い方が変わりました。<br>特別なスキルは要りません。現場で本当に使える方法だけを発信しています。</p>
+    <p class="empathy"><strong>私も、<wbr>同じ<wbr>12年を<wbr>現場で<wbr>過ごしてきました。</strong><br>残業して、<wbr>持ち帰って、<wbr>疲れて<wbr>眠るだけの<wbr>毎日。<br><br>AIで<wbr>資料を<wbr>作るようになって、<wbr>時間の<wbr>使い方が<wbr>変わりました。<br>特別な<wbr>スキルは<wbr>要りません。<wbr>現場で<wbr>本当に<wbr>使える<wbr>方法だけを<wbr>発信しています。</p>
   </div>
 </section>
 
@@ -304,22 +311,22 @@
 <section class="tint">
   <div class="col">
     <span class="sec-label">Solution</span>
-    <h2>AIを「正しく」使うと<br>ナースの毎日はこう変わる</h2>
+    <h2>AIを<wbr>「正しく」<wbr>使うと<br>ナースの<wbr>毎日は<wbr>こう<wbr>変わる</h2>
     <div class="ba">
       <div class="ba-item">
-        <h3>委員会・係の資料づくり</h3>
-        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>家に持ち帰って週末が消える</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">構成と叩き台を</span><span class="w">AIと作って</span><span class="w">1時間</span></span></div>
+        <h3>委員会・係の<wbr>資料づくり</h3>
+        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>家に<wbr>持ち帰って<wbr>週末が<wbr>消える</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">構成と叩き台を</span><span class="w">AIと作って</span><span class="w">1時間</span></span></div>
       </div>
       <div class="ba-item">
         <h3>勉強会・マニュアル作成</h3>
-        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>白紙とにらめっこで進まない</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">要点整理から</span><span class="w">資料化まで</span><span class="w">対話で進む</span></span></div>
+        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>白紙とにらめっこで<wbr>進まない</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">要点整理から</span><span class="w">資料化まで</span><span class="w">対話で進む</span></span></div>
       </div>
       <div class="ba-item">
-        <h3>記録・文章の言い回し</h3>
-        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>表現に迷って手が止まる</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">型を持っておけば</span><span class="w">迷わない</span></span></div>
+        <h3>記録・文章の<wbr>言い回し</h3>
+        <div class="ba-row"><span class="before"><span class="lbl">BEFORE</span>表現に<wbr>迷って<wbr>手が<wbr>止まる</span><span class="arrow">→</span><span class="after"><span class="lbl">AFTER</span><span class="w">型を持っておけば</span><span class="w">迷わない</span></span></div>
       </div>
     </div>
-    <p class="note-safety">⚠️ 患者さんの個人情報は入力しない、院内の規定を確認する。<br>この「安全な使い方」から丁寧にお伝えします。現場で信頼されるAI活用の第一歩です。</p>
+    <p class="note-safety">⚠️ 患者さんの<wbr>個人情報は<wbr>入力しない、<wbr>院内の<wbr>規定を<wbr>確認する。<br>この<wbr>「安全な<wbr>使い方」から<wbr>丁寧に<wbr>お伝えします。<wbr>現場で<wbr>信頼される<wbr>AI活用の<wbr>第一歩です。</p>
   </div>
 </section>
 
@@ -327,21 +334,21 @@
 <section id="products">
   <div class="col">
     <span class="sec-label">note</span>
-    <h2>noteで公開中の記事</h2>
-    <p class="lead">現場ですぐ使えることから書いています。<br>気になるほうからのぞいてみてください。</p>
+    <h2>noteで<wbr>公開中の<wbr>記事</h2>
+    <p class="lead">現場ですぐ<wbr>使える<wbr>ことから<wbr>書いています。<br>気に<wbr>なる<wbr>ほうからの<wbr>ぞいてみてください。</p>
     <div class="products">
       <a class="product featured" href="https://note.com/yoake_kango_fp/n/n814ba654c8b3" target="_blank" rel="noopener">
-        <h3>看護師がAIを使い始めるなら、<br>まずこの3つを聞いてみて</h3>
-        <p>特別な知識は要りません。いちばんハードルの低い「3つの入口」を、職場で実際に聞かれたことをまとめる形で紹介します。</p>
-        <span class="read">noteで読む →</span>
+        <h3>看護師が<wbr>AIを<wbr>使い<wbr>始めるなら、<br>まず<wbr>この<wbr>3つを<wbr>聞いてみて</h3>
+        <p>特別な<wbr>知識は<wbr>要りません。<wbr>いちばんハードルの<wbr>低い<wbr>「3つの<wbr>入口」を、<wbr>職場で<wbr>実際に<wbr>聞かれた<wbr>ことを<wbr>まとめる<wbr>形で<wbr>紹介します。</p>
+        <span class="read">noteで<wbr>読む →</span>
       </a>
       <a class="product" href="https://note.com/yoake_kango_fp/n/nf9aa38ffd17a" target="_blank" rel="noopener">
-        <h3>はじめまして。「看護 × AI × お金」を書くナースエディターです</h3>
-        <p>看護師12年目、いまは訪問看護の現場で働いています。なぜAIとお金のことを書き始めたのか、自己紹介をかねた最初の記事です。</p>
-        <span class="read">noteで読む →</span>
+        <h3>はじめまして。<wbr>「看護 × AI × お金」を<wbr>書く<wbr>ナースエディターです</h3>
+        <p>看護師12年目、<wbr>いまは<wbr>訪問看護の<wbr>現場で<wbr>働いています。<wbr>なぜAIとお金の<wbr>ことを<wbr>書き始めたのか、<wbr>自己紹介を<wbr>かねた<wbr>最初の<wbr>記事です。</p>
+        <span class="read">noteで<wbr>読む →</span>
       </a>
     </div>
-    <a class="cta cta-note" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">noteを読む<small>note.com/yoake_kango_fp</small></a>
+    <a class="cta cta-note" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">noteを<wbr>読む<small>note.com/yoake_kango_fp</small></a>
   </div>
 </section>
 
@@ -349,12 +356,12 @@
 <section class="tint">
   <div class="col">
     <span class="sec-label">Money</span>
-    <h2>お金の習慣は<br>何年目からでも作り直せる</h2>
-    <p class="lead">収入が安定した看護師は、実は資産形成と相性のいい仕事。<br>ただ夜勤手当は給料に混ざるから、意識しないと頑張った分ごと消えます。<br><br>だからこそ「先に分ける仕組み」が要る。最初はこの3つだけです。</p>
+    <h2>お金の<wbr>習慣は<br>何年目から<wbr>でも<wbr>作り直せる</h2>
+    <p class="lead">収入が<wbr>安定した<wbr>看護師は、<wbr>実は<wbr>資産形成と<wbr>相性の<wbr>いい仕事。<br>ただ夜勤<wbr>手当は<wbr>給料に<wbr>混ざるから、<wbr>意識しないと<wbr>頑張った<wbr>分ごと<wbr>消えます。<br><br>だから<wbr>こそ<wbr>「先に<wbr>分ける<wbr>仕組み」が<wbr>要る。<wbr>最初は<wbr>この<wbr>3つだけです。</p>
     <ol class="money-steps">
-      <li><b>固定費をひとつ見直す</b><span>スマホ代・サブスク。夜勤1回分が毎月浮きます</span></li>
-      <li><b>先取り貯金を自動にする</b><span>給料日に自動で別口座へ。夜勤明けの意思の力に頼らない</span></li>
-      <li><b>少額から積立に慣れる</b><span>金額より「続く仕組み」を先に作る</span></li>
+      <li><b>固定費を<wbr>ひとつ<wbr>見直す</b><span>スマホ代・<wbr>サブスク。<wbr>夜勤1回分が<wbr>毎月<wbr>浮きます</span></li>
+      <li><b>先取り貯金を<wbr>自動に<wbr>する</b><span>給料日に<wbr>自動で<wbr>別口座へ。<wbr>夜勤明けの<wbr>意思の<wbr>力に<wbr>頼らない</span></li>
+      <li><b>少額から<wbr>積立に<wbr>慣れる</b><span>金額より<wbr>「続く<wbr>仕組み」を<wbr>先に<wbr>作る</span></li>
     </ol>
   </div>
 </section>
@@ -363,11 +370,11 @@
 <section>
   <div class="col">
     <span class="sec-label">For Students</span>
-    <h2>看護学生のあなたへ</h2>
-    <p class="lead">実習記録も国試対策も、AIは使えます。<br>学生向けのコツは、ぜんぶ無料で発信しています。<br><br>お金をかけるのは働き始めてからで十分です。</p>
+    <h2>看護学生の<wbr>あなたへ</h2>
+    <p class="lead">実習記録も<wbr>国試対策も、<wbr>AIは<wbr>使えます。<br>学生向けの<wbr>コツは、<wbr>ぜんぶ無料で<wbr>発信しています。<br><br>お金を<wbr>かけるのは<wbr>働き始めてからで<wbr>十分です。</p>
     <ul class="pains">
-      <li>実習記録・看護過程の下書きをAIと整理するコツ</li>
-      <li>国試の苦手分野を「自分の言葉」にする勉強法</li>
+      <li>実習記録・看護過程の<wbr>下書きを<wbr>AIと<wbr>整理する<wbr>コツ</li>
+      <li>国試の<wbr>苦手分野を<wbr>「自分の<wbr>言葉」に<wbr>する<wbr>勉強法</li>
     </ul>
   </div>
 </section>
@@ -376,13 +383,13 @@
 <section>
   <div class="col">
     <span class="sec-label">About</span>
-    <h2>書いている人</h2>
+    <h2>書いている<wbr>人</h2>
     <div class="profile">
       <div class="avatar" aria-hidden="true">ヨ</div>
       <div>
         <h3>ヨアケ｜現役看護師12年目・FP3級</h3>
-        <p class="career"><b>経歴：</b><span>小児科病棟 →</span> <span>成人病棟 →</span> <span>手術室 →</span> 現在は訪問看護に従事</p>
-        <p>臨床で12年働きながら、副業で動画編集とライティングをしています。ChatGPTでの業務マニュアル作成や、患者さん向け院内説明動画の制作など、AIとデジタルを現場業務に取り入れてきました。書いているのは、現場でのAI活用と、夜勤1回分から始めるお金の話。看護とお金とAIの交差点です。同じ遠回りをしてほしくなくて発信しています。</p>
+        <p class="career"><b>経歴：</b><span>小児科病棟 →</span> <span>成人病棟 →</span> <span>手術室 →</span> 現在は<wbr>訪問看護に<wbr>従事</p>
+        <p>臨床で<wbr>12年<wbr>働きながら、<wbr>副業で<wbr>動画編集と<wbr>ライティングを<wbr>しています。<wbr>ChatGPTでの<wbr>業務マニュアル作成や、<wbr>患者さん<wbr>向け院内説明動画の<wbr>制作など、<wbr>AIと<wbr>デジタルを<wbr>現場業務に<wbr>取り入れてきました。<wbr>書いているのは、<wbr>現場での<wbr>AI活用と、<wbr>夜勤1回分から<wbr>始める<wbr>お金の<wbr>話。<wbr>看護とお金と<wbr>AIの<wbr>交差点です。<wbr>同じ<wbr>遠回りを<wbr>してほしくなくて<wbr>発信しています。</p>
         <div class="sns">
           <a href="https://x.com/yoake_kango_fp">X @yoake_kango_fp</a>
           <a href="mailto:yoake.kango@gmail.com">Mail</a>
@@ -397,18 +404,18 @@
 <section class="tint">
   <div class="col">
     <span class="sec-label">FAQ</span>
-    <h2>よくある質問</h2>
+    <h2>よく<wbr>ある<wbr>質問</h2>
     <details>
-      <summary>AIを使ったことがなくても大丈夫？</summary>
-      <p>大丈夫です。アプリを入れるところから順番に書いています。むずかしい設定や専門用語は使いません。私自身、使い始めたのは看護師になってから10年以上たってからです。</p>
+      <summary>AIを<wbr>使った<wbr>ことがなくても<wbr>大丈夫？</summary>
+      <p>大丈夫です。<wbr>アプリを<wbr>入れる<wbr>ところから<wbr>順番に<wbr>書いています。<wbr>むずかしい<wbr>設定や<wbr>専門用語は<wbr>使いません。<wbr>私自身、<wbr>使い<wbr>始めたのは<wbr>看護師に<wbr>なってから<wbr>10年以上<wbr>たってからです。</p>
     </details>
     <details>
-      <summary>スマホだけでもできますか？</summary>
-      <p>できます。紹介している方法はすべてスマホだけで完結するように作っています。休憩室や通勤中のスキマ時間でも使えます。</p>
+      <summary>スマホだけでも<wbr>できますか？</summary>
+      <p>できます。<wbr>紹介している<wbr>方法は<wbr>すべて<wbr>スマホだけで<wbr>完結するように<wbr>作っています。<wbr>休憩室や<wbr>通勤中の<wbr>スキマ時間でも<wbr>使えます。</p>
     </details>
     <details>
-      <summary>noteでは何が読めますか？</summary>
-      <p>記録・委員会資料・勉強会資料のAI活用と、夜勤1回分から始めるお金の話を書いています。更新のお知らせはX（@yoake_kango_fp）でも発信しています。</p>
+      <summary>noteでは<wbr>何が<wbr>読めますか？</summary>
+      <p>記録・委員会資料・勉強会資料の<wbr>AI活用と、<wbr>夜勤1回分から<wbr>始める<wbr>お金の<wbr>話を<wbr>書いています。<wbr>更新の<wbr>お知らせは<wbr>X（@yoake_kango_fp）<wbr>でも<wbr>発信しています。</p>
     </details>
   </div>
 </section>
@@ -416,18 +423,18 @@
 <!-- ═══ クロージング（締めのメッセージ＋最後のCTA） ═══ -->
 <div class="closing">
   <div class="col">
-    <h2>記録も、資料も、お金も。<br>ひとりで抱えなくていい。</h2>
-    <p class="lead">AIの使い方を知った人から、定時で帰れる日が増えていきます。<br>いまはXで、すぐ使えるコツを発信中です。</p>
-    <a class="cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">Xをフォローする<small>noteの更新もこちらでお知らせします</small></a>
+    <h2>記録も、<wbr>資料も、<wbr>お金も。<br>ひとりで<wbr>抱えなくていい。</h2>
+    <p class="lead">AIの<wbr>使い方を<wbr>知った<wbr>人から、<wbr>定時で<wbr>帰れる<wbr>日が<wbr>増えていきます。<br>いまは<wbr>Xで、<wbr>すぐ<wbr>使える<wbr>コツを<wbr>発信中です。</p>
+    <a class="cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">Xを<wbr>フォローする<small>noteの<wbr>更新も<wbr>こちらで<wbr>お知らせします</small></a>
   </div>
 </div>
 
 <!-- ═══ フッター（免責表記・著作権） ═══ -->
 <footer>
   <div class="col">
-    <p>※ 資産形成に関する内容は一般的な情報提供であり、特定の金融商品の勧誘ではありません。投資判断はご自身の責任でお願いします。<br>
-    ※ AIの利用にあたっては、所属する学校・病院の規定および個人情報の取り扱いに十分ご注意ください。</p>
-    <p>© 2026 ヨアケ（看護×AI活用室）　<a href="portfolio/">運営者の制作実績（ライティング・Web制作）</a></p>
+    <p>※ 資産形成に<wbr>関する<wbr>内容は<wbr>一般的な<wbr>情報提供であり、<wbr>特定の<wbr>金融商品の<wbr>勧誘ではありません。<wbr>投資判断は<wbr>ご自身の<wbr>責任で<wbr>お願いします。<br>
+    ※ AIの<wbr>利用に<wbr>あたっては、<wbr>所属する<wbr>学校・病院の<wbr>規定および個人情報の<wbr>取り扱いに<wbr>十分ご注意ください。</p>
+    <p>© 2026 ヨアケ<wbr>（看護×AI活用室）　<a href="portfolio/">運営者の<wbr>制作実績<wbr>（ライティング・Web<wbr>制作）</a></p>
   </div>
 </footer>
 

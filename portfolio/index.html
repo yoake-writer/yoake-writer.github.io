@@ -35,8 +35,15 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  /* 日本語の改行対策:文節単位で折り返す(非対応ブラウザでは従来どおり) */
-  html { line-break: strict; word-break: auto-phrase; overflow-wrap: break-word; }
+  /* 日本語の改行対策:文節の境目にだけ改行を許す
+     keep-all で「勝手に折り返さない」状態にし、改行可能位置は
+     tools/wrap-ja.py が埋め込んだ wbr 要素だけに限定する。
+     Chrome の word-break: auto-phrase と違い Safari でも効く。
+     anywhere は、1文節が1行に収まらないときだけ働く保険。
+     break-word ではなく anywhere を使うのは、こちらは要素の最小幅にも
+     反映され、狭い画面でグリッドがはみ出すのを防げるため。 */
+  html { line-break: strict; word-break: keep-all; overflow-wrap: anywhere; }
+  wbr { display: inline; }
   p, li { text-wrap: pretty; }
   .w { display: inline-block; } /* 文節のかたまり。全ブラウザで改行位置を固定する */
   body {
@@ -296,22 +303,22 @@
     <div>
       <p class="kicker mono">PORTFOLIO — WRITER / VIDEO EDITOR</p>
       <h1><span class="w">現場を知る</span><span class="w">人間が、</span><br><em>書く。</em></h1>
-      <p class="sub">医療・金融分野の記事ライティングと、YouTube動画編集。<b>看護師12年の臨床経験とFP3級の知識</b>をもとに、「現場を知っているから書ける」専門性と説得力をお届けします。</p>
+      <p class="sub">医療・金融分野の<wbr>記事ライティングと、<wbr>YouTube動画編集。<b>看護師12年の<wbr>臨床経験と<wbr>FP3級の<wbr>知識</b>を<wbr>もとに、<wbr>「現場を<wbr>知っているから<wbr>書ける」専門性と<wbr>説得力を<wbr>お届けします。</p>
       <div class="cta-row">
-        <a class="btn solid" href="#works">執筆実績を見る</a>
-        <a class="btn" href="#contact">依頼の相談をする</a>
+        <a class="btn solid" href="#works">執筆実績を<wbr>見る</a>
+        <a class="btn" href="#contact">依頼の<wbr>相談を<wbr>する</a>
       </div>
-      <p class="hero-terms">文字単価 <b class="mono">2円</b><span class="sep">/</span>初稿まで <b class="mono">3日</b><span class="sep">/</span>月 <b class="mono">10本</b> まで<br>内容・分量により変動します。<a href="#process">条件の詳細を見る</a></p>
+      <p class="hero-terms">文字単価 <b class="mono">2円</b><span class="sep">/</span>初稿まで <b class="mono">3日</b><span class="sep">/</span>月 <b class="mono">10本</b> まで<br>内容・<wbr>分量に<wbr>より<wbr>変動します。<a href="#process">条件の<wbr>詳細を<wbr>見る</a></p>
       <div class="hero-facts">
-        <div class="fact"><b class="mono">12年</b><span>臨床での現場経験</span></div>
-        <div class="fact"><b class="mono">FP3級</b><span>金融系の専門知識</span></div>
+        <div class="fact"><b class="mono">12年</b><span>臨床での<wbr>現場経験</span></div>
+        <div class="fact"><b class="mono">FP3級</b><span>金融系の<wbr>専門知識</span></div>
         <div class="fact"><b class="mono">10+</b><span>YouTube編集実績</span></div>
       </div>
     </div>
     <blockquote class="hero-quote">
-      12年間、一人ひとりの患者さんの個別性に合わせて仕事をしてきました。<br><br>
-      <b>「伝えたいこと」と「受け取る人」の<span style="white-space:nowrap">両方を考える——</span></b><br><br>
-      書くことも、編集することも、看護の仕事と同じ姿勢でできる仕事だと思っています。
+      12年間、<wbr>一人<wbr>ひとりの<wbr>患者さんの<wbr>個別性に<wbr>合わせて<wbr>仕事を<wbr>してきました。<br><br>
+      <b>「伝えたい<wbr>こと」と<wbr>「受け取る<wbr>人」の<span style="white-space:nowrap">両方を<wbr>考える<wbr>——</span></b><br><br>
+      書く<wbr>ことも、<wbr>編集する<wbr>ことも、<wbr>看護の<wbr>仕事と<wbr>同じ<wbr>姿勢で<wbr>できる<wbr>仕事だと<wbr>思っています。
       <cite>ヨアケ｜看護師12年目・FP3級</cite>
     </blockquote>
   </div>
@@ -322,28 +329,28 @@
   <div class="col">
     <p class="sec-label mono">WRITING</p>
     <h2>執筆記事 — 医療 × AI × お金</h2>
-    <p class="lead">医療とお金は、書き手の経歴がもっとも問われる領域。臨床12年の現役看護師×FP3級という経歴を明示して書けるのが、いちばんの強みです。<br>下の記事はすべて全文を公開しています。文体・構成・専門性の出し方を、そのままご確認ください。</p>
+    <p class="lead">医療とお金は、<wbr>書き手の<wbr>経歴が<wbr>もっとも<wbr>問われる<wbr>領域。<wbr>臨床12年の<wbr>現役看護師×FP3級と<wbr>いう<wbr>経歴を<wbr>明示して<wbr>書けるのが、<wbr>いちばんの<wbr>強みです。<br>下の<wbr>記事は<wbr>すべて<wbr>全文を<wbr>公開しています。<wbr>文体・構成・専門性の<wbr>出し方を、<wbr>そのまま<wbr>ご確認ください。</p>
     <div class="samples">
       <a class="sample" href="https://note.com/yoake_kango_fp/n/n814ba654c8b3" target="_blank" rel="noopener">
         <span class="meta mono">NOTE — 医療 × AI</span>
-        <h3>看護師がAIを使い始めるなら、まずこの3つを聞いてみて</h3>
-        <p>専門知識のない読者に向けて、手順を「聞かれた順」に並べ替えて書いた実例。</p>
-        <span class="go">記事を読む ↗</span>
+        <h3>看護師が<wbr>AIを<wbr>使い<wbr>始めるなら、<wbr>まず<wbr>この<wbr>3つを<wbr>聞いてみて</h3>
+        <p>専門知識の<wbr>ない<wbr>読者に<wbr>向けて、<wbr>手順を<wbr>「聞かれた<wbr>順」に<wbr>並べ替えて<wbr>書いた<wbr>実例。</p>
+        <span class="go">記事を<wbr>読む ↗</span>
       </a>
       <a class="sample" href="https://note.com/yoake_kango_fp/n/ne223c1473fbc" target="_blank" rel="noopener">
         <span class="meta mono">NOTE — 業務効率化</span>
-        <h3>レポートはもう打たない</h3>
-        <p>音声入力での議事録作成を、守るべき線引きとセットで書いた実務記事。</p>
-        <span class="go">記事を読む ↗</span>
+        <h3>レポートは<wbr>もう<wbr>打たない</h3>
+        <p>音声入力での<wbr>議事録作成を、<wbr>守るべき線引きと<wbr>セットで<wbr>書いた<wbr>実務記事。</p>
+        <span class="go">記事を<wbr>読む ↗</span>
       </a>
       <a class="sample" href="https://note.com/yoake_kango_fp/n/nf9aa38ffd17a" target="_blank" rel="noopener">
         <span class="meta mono">NOTE — 自己紹介</span>
-        <h3>はじめまして。「看護 × AI × お金」を書くナースエディターです</h3>
-        <p>経歴と執筆テーマを、読み物として成立させた自己紹介記事。</p>
-        <span class="go">記事を読む ↗</span>
+        <h3>はじめまして。<wbr>「看護 × AI × お金」を<wbr>書く<wbr>ナースエディターです</h3>
+        <p>経歴と<wbr>執筆テーマを、<wbr>読み物と<wbr>して<wbr>成立させた<wbr>自己紹介記事。</p>
+        <span class="go">記事を<wbr>読む ↗</span>
       </a>
     </div>
-    <p class="subnote" style="margin-top:16px">ほかの記事は <a href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener" style="color:var(--red);font-weight:700;text-decoration:none">note（@yoake_kango_fp）↗</a> でご覧いただけます。</p>
+    <p class="subnote" style="margin-top:16px">ほかの<wbr>記事は <a href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener" style="color:var(--red);font-weight:700;text-decoration:none">note（@yoake_kango_fp）↗</a> で<wbr>ご覧いただけます。</p>
   </div>
 </section>
 
@@ -352,18 +359,18 @@
   <div class="col">
     <p class="sec-label mono">VIDEO</p>
     <h2>動画編集</h2>
-    <p class="lead">テンポを意識したカット編集・テロップ・サムネイル制作まで一貫して対応。情報まとめ系・解説系コンテンツを中心に担当してきました。</p>
+    <p class="lead">テンポを<wbr>意識した<wbr>カット編集・テロップ・<wbr>サムネイル<wbr>制作まで<wbr>一貫して<wbr>対応。<wbr>情報まとめ系・解説系コンテンツを<wbr>中心に<wbr>担当してきました。</p>
     <a class="video-card" href="https://youtu.be/SOYdZVNipHw" target="_blank" rel="noopener">
       <span class="vf tl" aria-hidden="true"></span><span class="vf tr" aria-hidden="true"></span><span class="vf bl" aria-hidden="true"></span><span class="vf br" aria-hidden="true"></span>
       <span class="rec mono" aria-hidden="true"><i></i>REC</span>
       <span class="play" aria-hidden="true"></span>
       <h3><span class="w">ポートフォリオリール</span><span class="w">（動画編集サンプル）</span></h3>
-      <p>YouTubeで再生 ↗　カット編集・テロップ・演出の実例をまとめています</p>
+      <p>YouTubeで<wbr>再生 ↗　カット編集・テロップ・<wbr>演出の<wbr>実例を<wbr>まとめています</p>
     </a>
     <div class="works-grid">
-      <div class="cell"><b>YouTube動画編集</b><p>情報まとめ系・解説系を中心に10本以上を担当。<br>視聴者が離脱しにくいテンポ重視のカット編集。</p></div>
-      <div class="cell"><b>院内説明動画の制作</b><p>患者さん向け説明動画の制作を病院の業務として正式に担当。<br>分かりやすさが求められる題材が得意。</p></div>
-      <div class="cell"><b>サムネイル制作</b><p>Photoshopでのサムネイル制作もあわせて対応。<br>クリックされる入口までセットで設計。</p></div>
+      <div class="cell"><b>YouTube動画編集</b><p>情報まとめ系・解説系を<wbr>中心に<wbr>10本以上を<wbr>担当。<br>視聴者が<wbr>離脱しに<wbr>くいテンポ重視の<wbr>カット編集。</p></div>
+      <div class="cell"><b>院内説明動画の<wbr>制作</b><p>患者さん<wbr>向け説<wbr>明動画の<wbr>制作を<wbr>病院の<wbr>業務と<wbr>して<wbr>正式に<wbr>担当。<br>分かりやすさが<wbr>求められる<wbr>題材が<wbr>得意。</p></div>
+      <div class="cell"><b>サムネイル<wbr>制作</b><p>Photoshopでの<wbr>サムネイル<wbr>制作も<wbr>あわせて<wbr>対応。<br>クリックされる<wbr>入口まで<wbr>セットで<wbr>設計。</p></div>
     </div>
   </div>
 </section>
@@ -372,21 +379,21 @@
 <section id="web">
   <div class="col">
     <p class="sec-label mono">WEB</p>
-    <h2>LP・Webサイト制作</h2>
-    <p class="lead">記事だけでなく、読ませて動かすページごとお任せいただけます。ペルソナ設計・構成づくりからコピーライティング・デザイン・実装・公開まで、一人で完結します。</p>
+    <h2>LP・<wbr>Webサイト<wbr>制作</h2>
+    <p class="lead">記事だけでなく、<wbr>読ませて<wbr>動かすページごとお任せいただけます。<wbr>ペルソナ設計・構成づくりから<wbr>コピーライティング・<wbr>デザイン・実装・<wbr>公開まで、<wbr>一人で<wbr>完結します。</p>
     <div class="articles two">
       <article class="article shotcard">
         <a class="shot" href="https://yoake-writer.github.io/" target="_blank" rel="noopener"><img src="../assets/work-lp.png" alt="「看護×AI活用室」LPのファーストビュー" loading="lazy"></a>
-        <span class="cat mono">自主制作</span>
-        <h3>看護×AI活用室（集客LP）</h3>
-        <p>現役看護師向けの集客ページ。ペルソナ設計・媒体リサーチから構成・コピー・実装まで。</p>
-        <p class="alink"><a href="https://yoake-writer.github.io/" target="_blank" rel="noopener">ページを見る ↗</a></p>
+        <span class="cat mono">自主<wbr>制作</span>
+        <h3>看護×AI活用室<wbr>（集客LP）</h3>
+        <p>現役看護師向けの<wbr>集客ページ。<wbr>ペルソナ設計・媒体リサーチから<wbr>構成・コピー・<wbr>実装まで。</p>
+        <p class="alink"><a href="https://yoake-writer.github.io/" target="_blank" rel="noopener">ページを<wbr>見る<wbr> ↗</a></p>
       </article>
       <article class="article shotcard">
         <span class="shot"><img src="../assets/work-portfolio.png" alt="本ポートフォリオサイトのファーストビュー" loading="lazy"></span>
-        <span class="cat mono">自主制作</span>
-        <h3>ポートフォリオサイト（本サイト）</h3>
-        <p>いまご覧いただいているこのサイト自体が制作例です。戦略設計からデザイン・実装・公開まで。</p>
+        <span class="cat mono">自主<wbr>制作</span>
+        <h3>ポートフォリオサイト<wbr>（本サイト）</h3>
+        <p>いまご覧いただいている<wbr>この<wbr>サイト自体が<wbr>制作例です。<wbr>戦略設計から<wbr>デザイン・実装・<wbr>公開まで。</p>
       </article>
     </div>
   </div>
@@ -396,32 +403,32 @@
 <section id="services">
   <div class="col">
     <p class="sec-label mono">SERVICES</p>
-    <h2>対応できること</h2>
-    <p class="lead">医療・金融の専門性が要る記事から、LP・サイト制作、動画編集、AIでの画像素材づくりまで。<br>ひとりに頼める範囲が広いのが強みです。</p>
+    <h2>対応できる<wbr>こと</h2>
+    <p class="lead">医療・金融の<wbr>専門性が<wbr>要る<wbr>記事から、<wbr>LP・サイト<wbr>制作、<wbr>動画編集、<wbr>AIでの<wbr>画像素材づくりまで。<br>ひとりに<wbr>頼める<wbr>範囲が<wbr>広いのが<wbr>強みです。</p>
     <div class="services">
       <div class="service">
         <span class="num mono">01</span>
-        <h3>記事ライティング（医療・金融）</h3>
-        <p>現場を知っているからこそ書ける、専門的で説得力のある内容が強みです。</p>
-        <ul><li>解説記事・SEO記事</li><li>制度まわりの解説（一次情報を確認して執筆）</li><li>専門用語を一般読者向けに翻訳するリライト</li><li>構成案のみのご依頼にも対応</li></ul>
+        <h3>記事ライティング<wbr>（医療・金融）</h3>
+        <p>現場を<wbr>知っているから<wbr>こそ<wbr>書ける、<wbr>専門的で<wbr>説得力の<wbr>ある<wbr>内容が<wbr>強みです。</p>
+        <ul><li>解説記事・SEO記事</li><li>制度まわりの<wbr>解説<wbr>（一次情報を<wbr>確認して<wbr>執筆）</li><li>専門用語を<wbr>一般読者向けに<wbr>翻訳する<wbr>リライト</li><li>構成案のみの<wbr>ご依頼にも<wbr>対応</li></ul>
       </div>
       <div class="service">
         <span class="num mono">02</span>
-        <h3>LP・Webサイト制作</h3>
-        <p>文章とページをセットで設計します。原稿を渡して終わりではなく、載せる場所まで含めてお任せいただけます。</p>
-        <ul><li>販売LP・サービス紹介ページ</li><li>ポートフォリオ・小規模サイト</li><li>公開・その後の修正／運用提案まで対応</li></ul>
+        <h3>LP・<wbr>Webサイト<wbr>制作</h3>
+        <p>文章と<wbr>ページを<wbr>セットで<wbr>設計します。<wbr>原稿を<wbr>渡して<wbr>終わりではなく、<wbr>載せる<wbr>場所まで<wbr>含めて<wbr>お任せいただけます。</p>
+        <ul><li>販売LP・サービス紹介ページ</li><li>ポートフォリオ・<wbr>小規模サイト</li><li>公開・<wbr>その後の<wbr>修正／運用提案まで<wbr>対応</li></ul>
       </div>
       <div class="service">
         <span class="num mono">03</span>
         <h3>YouTube動画編集</h3>
-        <p>ビジネス系・解説系が得意。<br>制作者さんの意図を汲み、YouTubeならではのテンポの良い編集で仕上げます。</p>
-        <ul><li>カット編集・テロップ・BGM/SE</li><li>サムネイル制作</li><li>マネー・金融系コンテンツにも対応</li></ul>
+        <p>ビジネス系・解説系が<wbr>得意。<br>制作者さんの<wbr>意図を<wbr>汲み、<wbr>YouTubeならではの<wbr>テンポの<wbr>良い<wbr>編集で<wbr>仕上げます。</p>
+        <ul><li>カット編集・テロップ・<wbr>BGM/SE</li><li>サムネイル<wbr>制作</li><li>マネー・金融系コンテンツにも<wbr>対応</li></ul>
       </div>
       <div class="service">
         <span class="num mono">04</span>
         <h3>AI画像生成・資料作成</h3>
-        <p>MidjourneyとにじJourneyで200枚以上の生成経験。フリー素材で見つからない画像を、動画・記事の素材として用意できます。</p>
-        <ul><li>動画・記事用のオリジナル画像素材</li><li>業務マニュアル・説明資料の作成（病院業務での実務経験あり）</li></ul>
+        <p>MidjourneyとにじJourneyで<wbr>200枚以上の<wbr>生成経験。<wbr>フリー素材で<wbr>見つからない<wbr>画像を、<wbr>動画・<wbr>記事の<wbr>素材と<wbr>して<wbr>用意できます。</p>
+        <ul><li>動画・<wbr>記事用の<wbr>オリジナル画像素材</li><li>業務マニュアル・<wbr>説明資料の<wbr>作成<wbr>（病院業務での<wbr>実務経験あり）</li></ul>
       </div>
     </div>
   </div>
@@ -432,37 +439,37 @@
 <section id="process">
   <div class="col">
     <p class="sec-label mono">HOW I WORK</p>
-    <h2>仕事の進め方</h2>
-    <p class="lead">外注で不安なのは<br><b class="em-red">「納期」</b>と<b class="em-red">「連絡が取れるか」</b>だと思います。<br>そこを最優先にしています。</p>
+    <h2>仕事の<wbr>進め方</h2>
+    <p class="lead">外注で<wbr>不安なのは<br><b class="em-red">「納期」</b>と<b class="em-red">「連絡が<wbr>取れるか」</b>だと<wbr>思います。<br>そこを<wbr>最優先に<wbr>しています。</p>
     <div class="promises">
-      <div class="promise"><h3><span class="mono">01</span>納期を守ることを最優先に</h3><p>スケジュールから逆算して制作し、間に合わないものは最初から引き受けません。</p></div>
-      <div class="promise"><h3><span class="mono">02</span>進捗をこまめにご連絡</h3><p>発注者さんが不信感や焦りを感じないよう、区切りごとに状況をお伝えします。</p></div>
-      <div class="promise"><h3><span class="mono">03</span>一つ一つ丁寧に、こだわって</h3><p>量産はしません。記事も動画も、一本ごとに時間をかけて仕上げます。だから同時進行の本数は絞っています。</p></div>
-      <div class="promise"><h3><span class="mono">04</span>まずは内容のご相談だけでも</h3><p>内容をお聞かせいただければ、<br>対応可否と進め方をすぐにご返信します。</p></div>
+      <div class="promise"><h3><span class="mono">01</span>納期を<wbr>守る<wbr>ことを<wbr>最優先に</h3><p>スケジュールから<wbr>逆算して<wbr>制作し、<wbr>間に合わない<wbr>ものは<wbr>最初から<wbr>引き受けません。</p></div>
+      <div class="promise"><h3><span class="mono">02</span>進捗を<wbr>こまめに<wbr>ご連絡</h3><p>発注者さんが<wbr>不信感や<wbr>焦りを<wbr>感じないよう、<wbr>区切りごとに<wbr>状況を<wbr>お伝えします。</p></div>
+      <div class="promise"><h3><span class="mono">03</span>一つ一つ<wbr>丁寧に、<wbr>こだわって</h3><p>量産は<wbr>しません。<wbr>記事も<wbr>動画も、<wbr>一本ごとに<wbr>時間を<wbr>かけて<wbr>仕上げます。<wbr>だから<wbr>同時進行の<wbr>本数は<wbr>絞っています。</p></div>
+      <div class="promise"><h3><span class="mono">04</span>まずは<wbr>内容の<wbr>ご相談だけでも</h3><p>内容を<wbr>お聞かせいただければ、<br>対応可否と<wbr>進め方を<wbr>すぐに<wbr>ご返信します。</p></div>
     </div>
-    <p class="subhead mono" style="margin-top:0">ESTIMATE — ご依頼の目安</p>
-    <p class="subnote" style="margin-bottom:18px">記事の内容・分量によって前後します。まずはご相談ください。</p>
+    <p class="subhead mono" style="margin-top:0">ESTIMATE — ご依頼の<wbr>目安</p>
+    <p class="subnote" style="margin-bottom:18px">記事の<wbr>内容・<wbr>分量に<wbr>よって<wbr>前後します。<wbr>まずは<wbr>ご相談ください。</p>
     <div class="terms">
       <div class="term">
         <span class="tl mono">文字単価</span>
         <b class="mono">2<small>円 / 文字</small></b>
-        <span class="tn">構成づくりからお任せいただけます</span>
+        <span class="tn">構成づくりから<wbr>お任せいただけます</span>
       </div>
       <div class="term">
         <span class="tl mono">初稿まで</span>
         <b class="mono">3<small>日</small></b>
-        <span class="tn">ご発注から。分量により前後します</span>
+        <span class="tn">ご発注から。<wbr>分量に<wbr>より<wbr>前後します</span>
       </div>
       <div class="term">
         <span class="tl mono">受注可能数</span>
         <b class="mono">10<small>本 / 月</small></b>
-        <span class="tn">一本ずつ時間をかけるため上限を設けています</span>
+        <span class="tn">一本ずつ<wbr>時間を<wbr>かける<wbr>ため上限を<wbr>設けています</span>
       </div>
     </div>
     <table class="avail">
       <tr><th>稼働時間</th><td>平日 2〜4時間程度</td></tr>
       <tr><th>連絡可能時間</th><td>平日 8:30〜23:00　／　休日 10:00〜23:00</td></tr>
-      <tr><th>執筆の納品形式</th><td>Word／Google ドキュメント／Markdown（ご指定の形式に合わせます）</td></tr>
+      <tr><th>執筆の<wbr>納品形式</th><td>Word／Google ドキュメント／Markdown<wbr>（ご指定の<wbr>形式に<wbr>合わせます）</td></tr>
       <tr><th>使用ソフト</th><td>Adobe Premiere Pro／Adobe Photoshop</td></tr>
     </table>
   </div>
@@ -476,19 +483,19 @@
     <div class="profile-grid">
       <div>
         <ul class="timeline">
-          <li><span class="y mono">2012 –</span><span>看護師として臨床勤務（12年間、現在も現役）<i class="path"><span>小児科病棟 →</span> <span>成人病棟 →</span> <span>手術室 →</span> 現在は訪問看護に従事</i></span></li>
-          <li><span class="y mono">2023.11 –</span><span>フリーランス動画エディターとして活動開始</span></li>
-          <li><span class="y mono">資格</span><span>看護師免許／FP（ファイナンシャルプランナー）3級</span></li>
+          <li><span class="y mono">2012 –</span><span>看護師と<wbr>して<wbr>臨床勤務<wbr>（12年間、<wbr>現在も<wbr>現役）<i class="path"><span>小児科病棟 →</span> <span>成人病棟 →</span> <span>手術室 →</span> 現在は<wbr>訪問看護に<wbr>従事</i></span></li>
+          <li><span class="y mono">2023.11 –</span><span>フリーランス動画エディターと<wbr>して<wbr>活動開始</span></li>
+          <li><span class="y mono">資格</span><span>看護師免許／FP<wbr>（ファイナンシャルプランナー）<wbr>3級</span></li>
         </ul>
         <div class="tools">
           <span>Premiere Pro</span><span>Photoshop</span><span>Claude Code</span><span>Midjourney</span>
         </div>
       </div>
       <div class="policy">
-        <h3><span class="mono">—</span>AIの使い方について</h3>
-        <p>リサーチの下調べや構成の壁打ちにはAIを使います。制作のスピードは、そのぶん上がります。</p>
-        <p><b>ただし、事実確認と本文は人間が書きます。</b>医療と金融は、間違えたときに読者が実際に損をする分野だからです。数字・制度・用語は一次情報にあたって確認しています。</p>
-        <p>「AIに書かせただけの原稿は困る」という前提でご依頼いただいて大丈夫です。原稿を生成物のまま納品することはありません。（画像素材の生成は別途、用途をご相談のうえ対応します）</p>
+        <h3><span class="mono">—</span>AIの<wbr>使い方に<wbr>ついて</h3>
+        <p>リサーチの<wbr>下調べや<wbr>構成の<wbr>壁打ちには<wbr>AIを<wbr>使います。<wbr>制作の<wbr>スピードは、<wbr>その<wbr>ぶん<wbr>上がります。</p>
+        <p><b>ただし、<wbr>事実確認と<wbr>本文は<wbr>人間が<wbr>書きます。</b>医療と<wbr>金融は、<wbr>間違えた<wbr>ときに<wbr>読者が<wbr>実際に<wbr>損を<wbr>する<wbr>分野だからです。<wbr>数字・<wbr>制度・用語は<wbr>一次情報に<wbr>あたって<wbr>確認しています。</p>
+        <p>「AIに<wbr>書かせただけの<wbr>原稿は<wbr>困る」と<wbr>いう<wbr>前提で<wbr>ご依頼いただいて<wbr>大丈夫です。<wbr>原稿を<wbr>生成物の<wbr>まま<wbr>納品する<wbr>ことは<wbr>ありません。<wbr>（画像素材の<wbr>生成は<wbr>別途、<wbr>用途を<wbr>ご相談の<wbr>うえ対応します）</p>
       </div>
     </div>
   </div>
@@ -498,8 +505,8 @@
 <section id="contact" class="contact">
   <div class="col">
     <p class="sec-label mono">CONTACT</p>
-    <h2>ご依頼・ご相談</h2>
-    <p class="lead">ご質問やご依頼など、お気軽にお問い合わせください。まずは内容だけでもお聞かせいただければ、対応可否・進め方をすぐにご返信いたします。<br>下のアドレスをクリックすると、記入項目を入れた状態でメールが開きます。</p>
+    <h2>ご依頼・<wbr>ご相談</h2>
+    <p class="lead">ご質問や<wbr>ご依頼など、<wbr>お気軽に<wbr>お問い合わせ<wbr>ください。<wbr>まずは<wbr>内容だけでも<wbr>お聞かせいただければ、<wbr>対応可否・<wbr>進め方を<wbr>すぐに<wbr>ご返信いたします。<br>下の<wbr>アドレスを<wbr>クリックすると、<wbr>記入項目を<wbr>入れた<wbr>状態で<wbr>メールが<wbr>開きます。</p>
     <a class="big-mail" href="mailto:yoake.kango@gmail.com?subject=%E3%80%90%E3%81%94%E4%BE%9D%E9%A0%BC%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87%E3%80%91&body=%E3%83%A8%E3%82%A2%E3%82%B1%E3%81%95%E3%81%BE%0A%0A%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA%E3%82%92%E6%8B%9D%E8%A6%8B%E3%81%97%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%0A%0A%E2%96%A0%20%E3%81%94%E4%BE%9D%E9%A0%BC%E5%86%85%E5%AE%B9%EF%BC%88%E8%A8%98%E4%BA%8B%EF%BC%8FLP%E3%83%BBWeb%EF%BC%8F%E5%8B%95%E7%94%BB%E7%B7%A8%E9%9B%86%EF%BC%89%EF%BC%9A%0A%E2%96%A0%20%E5%88%86%E9%87%8F%E3%83%BB%E6%9C%AC%E6%95%B0%EF%BC%9A%0A%E2%96%A0%20%E5%B8%8C%E6%9C%9B%E7%B4%8D%E6%9C%9F%EF%BC%9A%0A%E2%96%A0%20%E6%8E%B2%E8%BC%89%E5%AA%92%E4%BD%93%E3%83%BB%20URL%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E4%BA%88%E7%AE%97%EF%BC%9A%0A%0A%E3%82%88%E3%82%8D%E3%81%97%E3%81%8F%E3%81%8A%E9%A1%98%E3%81%84%E3%81%84%E3%81%9F%E3%81%97%E3%81%BE%E3%81%99%E3%80%82%0A">yoake.kango@gmail.com</a>
     <p class="sns">X: <a href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">@yoake_kango_fp</a></p>
   </div>
@@ -507,7 +514,7 @@
 
 <!-- ═══ フッター ═══ -->
 <footer>
-  <div class="col">© 2026 Yoake（ヨアケ）</div>
+  <div class="col">© 2026 Yoake<wbr>（ヨアケ）</div>
 </footer>
 
 <script>
