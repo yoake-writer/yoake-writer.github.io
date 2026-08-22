@@ -231,16 +231,27 @@
   .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
 
   /* ═══ 執筆サンプル（すぐ読める記事へのリンク） ═══ */
-  .samples { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+  .samples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+  @media (max-width: 900px) { .samples { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 720px) { .samples { grid-template-columns: 1fr; } }
-  .sample { display: block; text-decoration: none; color: inherit; background: var(--card); border: 1px solid var(--line); padding: 22px 22px 24px; }
+  .sample { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--card); border: 1px solid var(--line); padding: 22px 22px 24px; }
   .sample:hover, .sample:focus-visible { border-color: var(--red); }
   .sample .meta { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); }
   .sample h3 { font-size: 15.5px; line-height: 1.7; margin: 10px 0 10px; }
   .sample p { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
-  .sample .go { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--red); }
+  .sample .go { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--red); margin-top: auto; }
   .subhead { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: var(--ink); margin: 44px 0 6px; }
   .subnote { font-size: 12.5px; color: var(--muted); margin: 0 0 4px; }
+
+  /* ═══ ご依頼の目安（単価・納期・受注可能数） ═══ */
+  .terms { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin: 0 0 34px; }
+  .terms .term { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 22px 22px 24px; }
+  .terms .term:last-child { border-right: 0; }
+  @media (max-width: 720px) { .terms { grid-template-columns: 1fr; } .terms .term { border-right: 0; } }
+  .terms .tl { display: block; font-size: 11px; letter-spacing: 0.16em; color: var(--red); font-weight: 700; }
+  .terms b { display: block; font-size: 34px; line-height: 1.25; margin: 10px 0 8px; font-variant-numeric: tabular-nums; }
+  .terms b small { font-size: 15px; font-weight: 700; margin-left: 4px; letter-spacing: 0.02em; }
+  .terms .tn { font-size: 12.5px; color: var(--muted); line-height: 1.8; }
 
   /* ═══ AIの使い方ポリシー ═══ */
   .policy { background: var(--card); border: 1px solid var(--ink); padding: 30px 32px 32px; }
@@ -320,6 +331,12 @@
         <p>専門知識のない読者に向けて、手順を「聞かれた順」に並べ替えて書いた実例。</p>
         <span class="go">記事を読む ↗</span>
       </a>
+      <a class="sample" href="https://note.com/yoake_kango_fp/n/ne223c1473fbc" target="_blank" rel="noopener">
+        <span class="meta mono">NOTE — 業務効率化</span>
+        <h3>レポートはもう打たない</h3>
+        <p>音声入力での議事録作成を、守るべき線引きとセットで書いた実務記事。</p>
+        <span class="go">記事を読む ↗</span>
+      </a>
       <a class="sample" href="https://note.com/yoake_kango_fp/n/nf9aa38ffd17a" target="_blank" rel="noopener">
         <span class="meta mono">NOTE — 自己紹介</span>
         <h3>はじめまして。「看護 × AI × お金」を書くナースエディターです</h3>
@@ -327,6 +344,7 @@
         <span class="go">記事を読む ↗</span>
       </a>
     </div>
+    <p class="subnote" style="margin-top:16px">ほかの記事は <a href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener" style="color:var(--red);font-weight:700;text-decoration:none">note（@yoake_kango_fp）↗</a> でご覧いただけます。</p>
   </div>
 </section>
 
@@ -423,6 +441,25 @@
       <div class="promise"><h3><span class="mono">03</span>一つ一つ丁寧に、こだわって</h3><p>量産はしません。記事も動画も、一本ごとに時間をかけて仕上げます。だから同時進行の本数は絞っています。</p></div>
       <div class="promise"><h3><span class="mono">04</span>まずは内容のご相談だけでも</h3><p>内容をお聞かせいただければ、<br>対応可否と進め方をすぐにご返信します。</p></div>
     </div>
+    <p class="subhead mono" style="margin-top:0">ESTIMATE — ご依頼の目安</p>
+    <p class="subnote" style="margin-bottom:18px">記事の内容・分量によって前後します。まずはご相談ください。</p>
+    <div class="terms">
+      <div class="term">
+        <span class="tl mono">文字単価</span>
+        <b class="mono">2<small>円 / 文字</small></b>
+        <span class="tn">構成づくりからお任せいただけます</span>
+      </div>
+      <div class="term">
+        <span class="tl mono">初稿まで</span>
+        <b class="mono">3<small>日</small></b>
+        <span class="tn">ご発注から。分量により前後します</span>
+      </div>
+      <div class="term">
+        <span class="tl mono">受注可能数</span>
+        <b class="mono">10<small>本 / 月</small></b>
+        <span class="tn">一本ずつ時間をかけるため上限を設けています</span>
+      </div>
+    </div>
     <table class="avail">
       <tr><th>稼働時間</th><td>平日 2〜4時間程度</td></tr>
       <tr><th>連絡可能時間</th><td>平日 8:30〜23:00　／　休日 10:00〜23:00</td></tr>
@@ -463,8 +500,8 @@
   <div class="col">
     <p class="sec-label mono">CONTACT</p>
     <h2>ご依頼・ご相談</h2>
-    <p class="lead">ご質問やご依頼など、お気軽にお問い合わせください。まずは内容だけでもお聞かせいただければ、対応可否・進め方をすぐにご返信いたします。</p>
-    <a class="big-mail" href="mailto:yoake.kango@gmail.com">yoake.kango@gmail.com</a>
+    <p class="lead">ご質問やご依頼など、お気軽にお問い合わせください。まずは内容だけでもお聞かせいただければ、対応可否・進め方をすぐにご返信いたします。<br>下のアドレスをクリックすると、記入項目を入れた状態でメールが開きます。</p>
+    <a class="big-mail" href="mailto:yoake.kango@gmail.com?subject=%E3%80%90%E3%81%94%E4%BE%9D%E9%A0%BC%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87%E3%80%91&body=%E3%83%A8%E3%82%A2%E3%82%B1%E3%81%95%E3%81%BE%0A%0A%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA%E3%82%92%E6%8B%9D%E8%A6%8B%E3%81%97%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%0A%0A%E2%96%A0%20%E3%81%94%E4%BE%9D%E9%A0%BC%E5%86%85%E5%AE%B9%EF%BC%88%E8%A8%98%E4%BA%8B%EF%BC%8FLP%E3%83%BBWeb%EF%BC%8F%E5%8B%95%E7%94%BB%E7%B7%A8%E9%9B%86%EF%BC%89%EF%BC%9A%0A%E2%96%A0%20%E5%88%86%E9%87%8F%E3%83%BB%E6%9C%AC%E6%95%B0%EF%BC%9A%0A%E2%96%A0%20%E5%B8%8C%E6%9C%9B%E7%B4%8D%E6%9C%9F%EF%BC%9A%0A%E2%96%A0%20%E6%8E%B2%E8%BC%89%E5%AA%92%E4%BD%93%E3%83%BB%20URL%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E4%BA%88%E7%AE%97%EF%BC%9A%0A%0A%E3%82%88%E3%82%8D%E3%81%97%E3%81%8F%E3%81%8A%E9%A1%98%E3%81%84%E3%81%84%E3%81%9F%E3%81%97%E3%81%BE%E3%81%99%E3%80%82%0A">yoake.kango@gmail.com</a>
     <p class="sns">X: <a href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">@yoake_kango_fp</a></p>
   </div>
 </section>
