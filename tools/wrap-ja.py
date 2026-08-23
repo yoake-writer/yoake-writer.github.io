@@ -58,7 +58,38 @@ def segment(text):
             merged[-1] += c
         else:
             merged.append(c)
+    merged = protect_brackets(merged)
     return '<wbr>'.join(merged) if len(merged) > 1 else text
+
+
+# 括弧・鉤括弧の中身がこの文字数以下なら、内側では改行させない。
+# 「自分の言葉」のような短い引用が途中で割れるのを防ぐ。
+# これより長い注釈は、1行に収まらないので通常どおり折り返す。
+BRACKET_KEEP_MAX = 16
+BRACKET_PAIRS = {'「': '」', '『': '』', '（': '）', '【': '】', '〈': '〉', '《': '》'}
+
+
+def protect_brackets(chunks):
+    """短い括弧の内側にある改行位置を取り除く。"""
+    text = ''.join(chunks)
+    blocked, stack = set(), []
+    for i, ch in enumerate(text):
+        if ch in BRACKET_PAIRS:
+            stack.append((ch, i))
+        elif stack and ch == BRACKET_PAIRS[stack[-1][0]]:
+            _, start = stack.pop()
+            if i - start - 1 <= BRACKET_KEEP_MAX:
+                blocked.update(range(start + 1, i + 1))
+    if not blocked:
+        return chunks
+    out, pos = [], 0
+    for c in chunks:
+        if out and pos in blocked:
+            out[-1] += c
+        else:
+            out.append(c)
+        pos += len(c)
+    return out
 
 
 def process(html):
