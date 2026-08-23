@@ -3,398 +3,514 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>看護師のためのAI活用室｜記録・資料づくり・お金の味方</title>
-<meta name="description" content="看護記録・委員会資料・勉強会資料をAIで時短。夜勤続きでも続く資産形成まで、看護師12年目×FP3級の現場目線で発信しています。">
+<title>ヨアケ｜Writer / Video Editor</title>
+<meta name="description" content="医療・金融分野の記事ライティングとYouTube動画編集。看護師12年の臨床経験×FP3級。現場を知っているから書ける専門性と説得力をお届けします。">
+<link rel="canonical" href="https://yoake-writer.github.io/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F7F6F2">
+
+<!-- OGP / Twitter Card（Xやnoteで共有されたときのカード表示） -->
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="ヨアケ｜Writer / Video Editor">
+<meta property="og:title" content="現場を知る人間が、書く。｜ヨアケ Writer / Video Editor">
+<meta property="og:description" content="医療・金融分野の記事ライティングとYouTube動画編集。看護師12年の臨床経験×FP3級。現場を知っているから書ける専門性と説得力をお届けします。">
+<meta property="og:url" content="https://yoake-writer.github.io/">
+<meta property="og:image" content="https://yoake-writer.github.io/assets/ogp-portfolio.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@yoake_kango_fp">
+<meta name="twitter:creator" content="@yoake_kango_fp">
 <style>
   /* ═══ 配色はここだけで一括変更できます ═══ */
   :root {
-    --bg: #FBFDFC;
-    --ink: #223330;
-    --muted: #5F7370;
-    --mint: #E7F4F0;
-    --mint-deep: #D2EAE3;
-    --teal: #178F7D;
-    --teal-dark: #0F6B5E;
-    --coral: #D94F3D;
+    --paper: #F7F6F2;
+    --ink: #131519;
+    --red: #D93A2B;
+    --muted: #6A6E76;
+    --line: #D8D7CE;
     --card: #FFFFFF;
-    --line: #DCE9E4;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  /* 日本語の改行対策:文節単位で折り返す(非対応ブラウザでは従来どおり) */
-  html { line-break: strict; word-break: auto-phrase; overflow-wrap: break-word; }
+  /* 日本語の改行対策:文節の境目にだけ改行を許す
+     keep-all で「勝手に折り返さない」状態にし、改行可能位置は
+     tools/wrap-ja.py が埋め込んだ wbr 要素だけに限定する。
+     Chrome の word-break: auto-phrase と違い Safari でも効く。
+     anywhere は、1文節が1行に収まらないときだけ働く保険。
+     break-word ではなく anywhere を使うのは、こちらは要素の最小幅にも
+     反映され、狭い画面でグリッドがはみ出すのを防げるため。 */
+  html { line-break: strict; word-break: keep-all; overflow-wrap: anywhere; }
+  wbr { display: inline; }
   p, li { text-wrap: pretty; }
   .w { display: inline-block; } /* 文節のかたまり。全ブラウザで改行位置を固定する */
   body {
     margin: 0;
-    background: var(--bg);
+    background: var(--paper);
     color: var(--ink);
-    font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic Medium", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+    font-family: "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "Yu Gothic", "Noto Sans JP", Meiryo, sans-serif;
     font-size: 16px;
     line-height: 1.9;
     -webkit-font-smoothing: antialiased;
   }
-  img { max-width: 100%; }
-  .col { max-width: 560px; margin: 0 auto; padding: 0 22px; }
+  .col { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 
-  /* header */
+  /* ═══ ヘッダー（固定ナビ） ═══ */
   header {
     position: sticky; top: 0; z-index: 10;
-    background: rgba(251, 253, 252, 0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
+    background: rgba(247, 246, 242, 0.94); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ink);
   }
   .header-in {
-    max-width: 560px; margin: 0 auto; padding: 12px 22px;
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    max-width: 1040px; margin: 0 auto; padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
   }
-  .brand { font-weight: 700; font-size: 15px; letter-spacing: 0.02em; }
-  .brand span { color: var(--teal); }
-  .header-cta {
-    font-size: 13px; font-weight: 700; color: #fff; background: var(--coral);
-    padding: 8px 16px; border-radius: 999px; text-decoration: none; white-space: nowrap;
-  }
+  .brand { font-weight: 700; font-size: 14px; letter-spacing: 0.14em; }
+  nav { display: flex; gap: 22px; font-size: 12px; letter-spacing: 0.12em; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover, nav a:focus-visible { color: var(--red); }
+  @media (max-width: 620px) { .header-in { flex-wrap: wrap; row-gap: 4px; } nav { gap: 14px; font-size: 11px; } }
 
-  /* hero */
-  .hero { background: linear-gradient(180deg, var(--mint) 0%, var(--bg) 100%); padding: 52px 0 44px; }
-  .eyebrow {
-    display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em;
-    color: var(--teal-dark); background: #fff; border: 1px solid var(--mint-deep);
-    padding: 5px 14px; border-radius: 999px; margin: 0 0 18px;
+  /* 固定ヘッダーの下に見出しが潜り込まないようにする */
+  section[id], div[id] { scroll-margin-top: 84px; }
+  @media (max-width: 620px) { section[id], div[id] { scroll-margin-top: 104px; } }
+
+  /* ═══ ヒーロー ═══ */
+  .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--ink); }
+  /* PCではヒーロー右の空白に引用を置き、左右のバランスを取る */
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .hero-quote {
+    border-left: 3px solid var(--red); padding: 6px 0 6px 22px; margin: 8px 0 0;
+    font-size: 14.5px; line-height: 2.1; color: var(--muted);
   }
+  .hero-quote b { color: var(--ink); }
+  .hero-quote cite { display: block; margin-top: 16px; font-style: normal; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); }
+  .kicker { font-size: 12px; letter-spacing: 0.24em; color: var(--red); font-weight: 700; margin: 0 0 22px; }
   h1 {
-    font-size: clamp(26px, 6.6vw, 34px); line-height: 1.5; letter-spacing: 0.01em;
-    margin: 0 0 16px; font-weight: 700; text-wrap: balance;
+    font-size: clamp(38px, 7.5vw, 76px); line-height: 1.15; letter-spacing: 0.01em;
+    font-weight: 700; margin: 0 0 26px; text-wrap: balance;
   }
-  h1 em { font-style: normal; color: var(--teal); }
-  h1 em b { font-weight: 900; font-size: 1.16em; letter-spacing: 0.02em; }
-  .hero p.sub { color: var(--muted); font-size: 15px; margin: 0 0 26px; }
-  .cta {
-    display: block; text-align: center; background: var(--coral); color: #fff;
-    font-size: 16.5px; font-weight: 700; text-decoration: none;
-    padding: 16px 24px; border-radius: 999px;
-    box-shadow: 0 6px 18px rgba(217, 79, 61, 0.28);
+  h1 em { font-style: normal; color: var(--red); }
+  .hero .sub { font-size: 15px; color: var(--muted); max-width: 36em; margin: 0 0 36px; }
+  .hero .sub b { color: var(--ink); }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none; font-size: 13.5px; font-weight: 700;
+    letter-spacing: 0.08em; padding: 13px 28px; border: 1.5px solid var(--ink); color: var(--ink);
+    text-align: center;
   }
-  .cta small { display: block; font-size: 11.5px; font-weight: 500; opacity: 0.92; margin-top: 2px; }
-  .cta-note { margin-top: 22px; }
-  .badges { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 16px; padding: 0; list-style: none; }
-  .badges li {
-    font-size: 11.5px; color: var(--teal-dark); background: #fff;
-    border: 1px solid var(--mint-deep); border-radius: 999px; padding: 4px 12px;
+  /* 狭い画面ではボタン幅を揃える（バラバラだと素人っぽく見えるため） */
+  @media (max-width: 620px) { .cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .btn { padding: 14px 12px; } }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn:hover, .btn:focus-visible { border-color: var(--red); color: var(--red); }
+  .btn.solid:hover, .btn.solid:focus-visible { background: var(--red); color: #fff; border-color: var(--red); }
+  /* 実績で惹きつける方針のため、取引条件はヒーローでは控えめに1行だけ置く */
+  .hero-terms { font-size: 12.5px; color: var(--muted); margin: 20px 0 0; line-height: 1.9; }
+  .hero-terms b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .hero-terms .sep { margin: 0 8px; color: var(--line); }
+  .hero-terms a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .hero-terms a:hover, .hero-terms a:focus-visible { color: var(--red); }
+  .hero-facts { display: flex; gap: 36px; flex-wrap: wrap; margin-top: 48px; }
+  /* 3項目が2+1に折れると据わりが悪いので、狭い画面では3カラムで揃える */
+  @media (max-width: 620px) { .hero-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; } .fact b { font-size: 19px; } .fact span { font-size: 10.5px; } }
+  .fact b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+  .fact span { font-size: 11.5px; color: var(--muted); letter-spacing: 0.08em; }
+
+  /* ═══ セクション共通 ═══ */
+  section { padding: 80px 0; border-bottom: 1px solid var(--line); }
+  .sec-label { font-size: 11.5px; letter-spacing: 0.24em; color: var(--red); font-weight: 700; margin: 0 0 12px; }
+  h2 { font-size: clamp(24px, 4vw, 34px); line-height: 1.4; margin: 0 0 14px; font-weight: 700; text-wrap: balance; }
+  .lead { color: var(--muted); font-size: 15px; max-width: 40em; margin: 0 0 40px; }
+
+  /* ═══ Works（実績グリッド） ═══ */
+  .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+  .works-grid .cell { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 22px 18px 26px; }
+  .works-grid .cell:nth-child(3n) { border-right: 0; }
+  .works-grid .cell b { display: block; font-size: 15px; margin-bottom: 6px; }
+  .works-grid .cell p { margin: 0; font-size: 13px; color: var(--muted); }
+  @media (max-width: 720px) {
+    .works-grid { grid-template-columns: 1fr; }
+    .works-grid .cell { border-right: 0; }
   }
 
-  /* sections */
-  section { padding: 56px 0; }
-  section.tint { background: var(--mint); }
-  .sec-label {
-    display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.16em;
-    color: var(--teal); text-transform: uppercase; margin-bottom: 10px;
-  }
-  h2 {
-    font-size: clamp(21px, 5.4vw, 26px); line-height: 1.55; margin: 0 0 18px;
-    font-weight: 700; text-wrap: balance;
-  }
-  .lead { color: var(--muted); font-size: 15px; margin: 0 0 26px; }
+  /* ═══ Services（できること） ═══ */
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; border-top: 1px solid var(--ink); padding-top: 20px; }
+  .service { border: 1px solid var(--line); background: var(--card); padding: 26px 24px 30px; }
+  .service .num { font-size: 12px; color: var(--red); letter-spacing: 0.16em; }
+  .service h3 { font-size: 18px; margin: 10px 0 12px; }
+  .service p { font-size: 13.5px; color: var(--muted); margin: 0 0 12px; }
+  .service ul { margin: 0; padding-left: 1.1em; font-size: 13px; color: var(--muted); }
+  .service li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .services { grid-template-columns: 1fr; } }
 
-  /* pain checklist */
-  .pains { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .pains li {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 14px 16px 14px 46px; font-size: 14.5px; position: relative; line-height: 1.75;
-  }
-  .pains li::before {
-    content: "✓"; position: absolute; left: 16px;
-    /* 上パディング + (1行目の行高 - アイコン高) / 2 → 1行目の中心に合わせる */
-    top: calc(14px + (14.5px * 1.75 - 20px) / 2);
-    width: 20px; height: 20px; border-radius: 50%;
-    background: var(--teal); color: #fff; font-size: 12px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .empathy {
-    margin: 26px 0 0; padding: 18px 20px; background: var(--card);
-    border-left: 4px solid var(--teal); border-radius: 0 14px 14px 0;
-    font-size: 14.5px; color: var(--muted);
-  }
-  .empathy strong { color: var(--ink); }
+  /* ═══ 仕事の進め方（信頼セクション） ═══ */
+  .promises { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 40px; }
+  .promise { background: var(--card); border: 1px solid var(--line); padding: 26px 28px; }
+  .promise h3 { margin: 0 0 8px; font-size: 16px; }
+  .promise h3 span { color: var(--red); margin-right: 10px; }
+  .promise p { margin: 0; font-size: 13.5px; color: var(--muted); }
+  @media (max-width: 720px) { .promises { grid-template-columns: 1fr; } }
+  .avail { width: 100%; border-collapse: collapse; font-size: 13.5px; max-width: 560px; }
+  .avail th, .avail td { text-align: left; padding: 12px 16px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .avail th { color: var(--muted); font-weight: 500; white-space: nowrap; width: 9em; }
 
-  /* before / after */
-  .ba { display: grid; gap: 12px; }
-  .ba-item {
-    background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;
-  }
-  .ba-item h3 { margin: 0 0 10px; font-size: 15.5px; font-weight: 700; }
-  .ba-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; font-size: 13px; }
-  .ba-row .before { color: var(--muted); }
-  .ba-row .after { color: var(--teal-dark); font-weight: 700; }
-  .ba-row .arrow { color: var(--teal); font-weight: 700; }
-  .note-safety {
-    margin-top: 18px; font-size: 12.5px; color: var(--muted);
-    background: var(--mint); border-radius: 12px; padding: 12px 16px;
-  }
-
-  /* products */
-  .products { display: grid; gap: 16px; }
-  .product {
-    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-    padding: 22px; position: relative;
-  }
-  .product.featured { border: 2px solid var(--teal); }
-  .product .tag {
-    position: absolute; top: -11px; left: 18px; font-size: 11px; font-weight: 700;
-    background: var(--teal); color: #fff; border-radius: 999px; padding: 3px 12px;
-  }
-  .product .tag.soon { background: var(--muted); }
-  .product h3 { margin: 4px 0 8px; font-size: 17px; line-height: 1.6; font-weight: 700; }
-  .product p { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
-  a.product { display: block; text-decoration: none; color: inherit; }
-  .product .read { font-size: 13.5px; font-weight: 700; color: var(--teal-dark); }
-  .product .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .price { font-size: 20px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
-  .price small { font-size: 12px; color: var(--muted); font-weight: 500; }
-  .buy {
-    font-size: 13.5px; font-weight: 700; color: var(--teal-dark); text-decoration: none;
-    border: 1.5px solid var(--teal); border-radius: 999px; padding: 8px 18px; white-space: nowrap;
-  }
-
-  /* profile */
-  .profile {
-    display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: start;
-    background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px;
-  }
-  .avatar {
-    width: 72px; height: 72px; border-radius: 50%;
-    background: var(--mint-deep); display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
-  }
-  .profile h3 { margin: 0 0 6px; font-size: 16px; }
-  .profile p { margin: 0; font-size: 13.5px; color: var(--muted); }
-  .profile .career {
-    margin: 0 0 10px; padding: 8px 12px; border-radius: 10px;
-    background: var(--mint); color: var(--teal-dark);
-    font-size: 12.5px; line-height: 1.8;
-  }
-  .profile .career b { font-weight: 700; }
+  /* ═══ プロフィール ═══ */
+  .profile-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
+  @media (max-width: 800px) { .profile-grid { grid-template-columns: 1fr; } }
+  .timeline { list-style: none; margin: 0 0 28px; padding: 0; }
+  .timeline li { display: grid; grid-template-columns: 8.5em 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .timeline .y { color: var(--red); }
+  .timeline .path { display: block; margin-top: 4px; font-size: 13px; font-style: normal; color: var(--muted); }
   /* 折り返しても「→」が行頭に落ちないように、各ステップと矢印をひとかたまりにする */
-  .profile .career span { white-space: nowrap; }
-  /* 狭い画面でリンク名が長くても はみ出さないよう、折り返しを許可する */
-  .profile > div { min-width: 0; }
-  .sns { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 10px; }
-  .sns a { font-size: 12.5px; color: var(--teal-dark); font-weight: 700; text-decoration: none; white-space: nowrap; }
-
-  /* money section */
-  .money-steps { list-style: none; counter-reset: m; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .money-steps li {
-    counter-increment: m; background: var(--card); border: 1px solid var(--line);
-    border-radius: 14px; padding: 14px 16px 14px 48px; font-size: 14px; position: relative;
+  .timeline .path span { white-space: nowrap; }
+  .tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .tools span { font-size: 12px; border: 1px solid var(--line); background: var(--card); padding: 4px 12px; }
+  .quote {
+    border-left: 3px solid var(--red); padding: 8px 0 8px 22px; margin: 0;
+    font-size: 15.5px; line-height: 2.15; color: var(--muted);
   }
-  .money-steps li::before {
-    content: counter(m); position: absolute; left: 15px;
-    /* 上パディング + (1行目の行高 - アイコン高) / 2 → 1行目の中心に合わせる */
-    top: calc(14px + (14px * 1.9 - 22px) / 2);
-    width: 22px; height: 22px; border-radius: 50%; background: var(--mint-deep);
-    color: var(--teal-dark); font-size: 12.5px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
+  .quote b { color: var(--ink); }
+
+  /* ═══ コンタクト ═══ */
+  .contact { border-bottom: 0; padding-bottom: 100px; }
+  .contact .big-mail {
+    display: inline-block; text-decoration: none; color: var(--ink);
+    font-size: clamp(20px, 4.4vw, 36px); font-weight: 700; letter-spacing: 0.01em;
+    border-bottom: 3px solid var(--red); padding-bottom: 4px; margin: 8px 0 22px;
+    word-break: break-all;
   }
-  .money-steps b { display: block; }
-  .money-steps span { color: var(--muted); font-size: 13px; }
+  .contact .big-mail:hover, .contact .big-mail:focus-visible { color: var(--red); }
+  .contact .sns { font-size: 14px; }
+  .contact .sns a { color: var(--ink); font-weight: 700; }
+  footer { padding: 28px 0 44px; font-size: 12px; color: var(--muted); }
 
-  /* faq */
-  details {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 4px 18px; margin-bottom: 10px;
+  /* ═══ 執筆実績カード ═══ */
+  .articles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; border-top: 1px solid var(--ink); padding-top: 20px; }
+  @media (max-width: 720px) { .articles { grid-template-columns: 1fr; } }
+  .article { background: var(--card); border: 1px solid var(--line); padding: 24px 22px 26px; }
+  .article .cat { display: inline-block; font-size: 11px; letter-spacing: 0.16em; color: var(--red); border: 1px solid var(--red); padding: 2px 10px; margin-bottom: 14px; }
+  .article h3 { font-size: 15.5px; line-height: 1.7; margin: 0 0 10px; }
+  .article p { font-size: 13px; color: var(--muted); margin: 0; }
+  .articles.two { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 720px) { .articles.two { grid-template-columns: 1fr; } }
+  .article .alink { margin-top: 14px; }
+  .article .alink a { color: var(--red); font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-decoration: none; }
+  .article .alink a:hover, .article .alink a:focus-visible { text-decoration: underline; }
+
+  /* 動画サンプルは個別送付である旨の一文 */
+  .onreq {
+    background: var(--card); border: 1px solid var(--line);
+    padding: 20px 22px; margin: 0 0 4px; font-size: 13.5px; color: var(--muted); line-height: 2;
   }
-  summary { font-size: 14.5px; font-weight: 700; padding: 12px 0; cursor: pointer; list-style: none; position: relative; padding-right: 28px; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "＋"; position: absolute; right: 2px; top: 12px; color: var(--teal); font-weight: 700; }
-  details[open] summary::after { content: "−"; }
-  details p { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
 
-  /* closing */
-  .closing { background: var(--teal-dark); color: #fff; padding: 60px 0; }
-  .closing h2 { color: #fff; }
-  .closing .lead { color: rgba(255, 255, 255, 0.85); }
-  .closing .cta { background: #fff; color: var(--teal-dark); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18); }
+  /* ═══ 強調（進め方リード） ═══ */
+  .em-red { color: var(--red); }
 
-  footer { padding: 32px 0 44px; }
-  footer .col { font-size: 11.5px; color: var(--muted); line-height: 1.9; }
-  footer a { color: var(--teal-dark); }
-
-  a.cta:focus-visible, a.buy:focus-visible, a.header-cta:focus-visible, summary:focus-visible {
-    outline: 3px solid var(--teal); outline-offset: 2px;
+  /* ═══ 実績サムネイル（LP・サイト制作の現物を見せる） ═══ */
+  .shotcard { display: flex; flex-direction: column; align-items: flex-start; }
+  .shotcard .shot { align-self: stretch; }
+  .shot {
+    display: block; border: 1px solid var(--line); background: var(--card);
+    margin: 0 0 18px; overflow: hidden; aspect-ratio: 16 / 10;
   }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+  /* ═══ 執筆サンプル（すぐ読める記事へのリンク） ═══ */
+  .samples { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+  @media (max-width: 720px) { .samples { grid-template-columns: 1fr; } }
+  .sample { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--card); border: 1px solid var(--line); padding: 22px 22px 24px; }
+  .sample:hover, .sample:focus-visible { border-color: var(--red); }
+  .sample .meta { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); }
+  .sample h3 { font-size: 15.5px; line-height: 1.7; margin: 10px 0 10px; }
+  .sample p { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+  .sample .go { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--red); margin-top: auto; }
+  .subhead { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: var(--ink); margin: 44px 0 6px; }
+  .subnote { font-size: 12.5px; color: var(--muted); margin: 0 0 4px; }
+
+  /* ═══ ご依頼の目安（単価・納期・受注可能数） ═══ */
+  .terms { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin: 0 0 34px; }
+  .terms .term { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 22px 22px 24px; }
+  .terms .term:last-child { border-right: 0; }
+  @media (max-width: 720px) { .terms { grid-template-columns: 1fr; } .terms .term { border-right: 0; } }
+  .terms .tl { display: block; font-size: 11px; letter-spacing: 0.16em; color: var(--red); font-weight: 700; }
+  .terms b { display: block; font-size: 34px; line-height: 1.25; margin: 10px 0 8px; font-variant-numeric: tabular-nums; }
+  .terms b small { font-size: 15px; font-weight: 700; margin-left: 4px; letter-spacing: 0.02em; }
+  .terms .tn { font-size: 12.5px; color: var(--muted); line-height: 1.8; }
+
+  /* ═══ AIの使い方ポリシー ═══ */
+  .policy { background: var(--card); border: 1px solid var(--ink); padding: 30px 32px 32px; }
+  .policy h3 { margin: 0 0 14px; font-size: 16px; letter-spacing: 0.02em; }
+  .policy h3 span { color: var(--red); margin-right: 10px; }
+  .policy p { margin: 0 0 12px; font-size: 13.5px; color: var(--muted); line-height: 2; }
+  .policy p:last-child { margin-bottom: 0; }
+  .policy b { color: var(--ink); }
+
+  /* ═══ 装飾: スクロールリビール（Works実績・ギャラリーのみ、一度きり） ═══ */
+  .rv { opacity: 0; transform: translateY(12px); transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
+  .rv-in { opacity: 1; transform: none; }
+
+  a:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
 </style>
 </head>
 <body>
 
-<!-- ═══ ヘッダー（画面上部に固定。屋号とミニCTAボタン） ═══ -->
+<!-- ═══ ヘッダー（固定ナビ） ═══ -->
 <header>
   <div class="header-in">
-    <div class="brand">看護<span>×</span>AI 活用室</div>
-    <a class="header-cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">Xを見る</a>
+    <div class="brand">YOAKE</div>
+    <nav>
+      <a href="#works">WRITING</a>
+      <a href="#video">VIDEO</a>
+      <a href="#web">WEB</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
   </div>
 </header>
 
-<!-- ═══ ファーストビュー（名指しキャッチコピー・メインCTA・安心バッジ） ═══ -->
+<!-- ═══ ヒーロー ═══ -->
 <div class="hero">
-  <div class="col">
-    <span class="eyebrow">忙しい現役ナースのための</span>
-    <h1>記録と委員会資料で<br>今日も残業<br>その時間<br><em><b>AI</b>で取り戻そう</em></h1>
-    <p class="sub">記録も資料づくりも、AIで時短できます。<br>取り戻した時間と、夜勤1回分から始めるお金の話を、現場目線で発信中。</p>
-    <a class="cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">Xで発信を見る<small>@yoake_kango_fp｜noteでも発信中</small></a>
-    <ul class="badges">
-      <li>現役ナース12年目の目線</li>
-      <li>スマホだけでOK</li>
-      <li>FP3級</li>
-    </ul>
+  <div class="col hero-grid">
+    <div>
+      <p class="kicker mono">PORTFOLIO — WRITER / VIDEO EDITOR</p>
+      <h1><span class="w">現場を知る</span><span class="w">人間が、</span><br><em>書く。</em></h1>
+      <p class="sub">医療・金融分野の<wbr>記事ライティングと、<wbr>YouTube動画編集。<b>看護師12年の<wbr>臨床経験と<wbr>FP3級の<wbr>知識</b>を<wbr>もとに、<wbr>「現場を知っているから書ける」専門性と<wbr>説得力を<wbr>お届けします。</p>
+      <div class="cta-row">
+        <a class="btn solid" href="#works">執筆実績を<wbr>見る</a>
+        <a class="btn" href="#contact">依頼の<wbr>相談を<wbr>する</a>
+      </div>
+      <p class="hero-terms">文字単価 <b class="mono">2円</b><span class="sep">/</span>初稿まで <b class="mono">3日</b><span class="sep">/</span>月 <b class="mono">10本</b> まで<br>内容・<wbr>分量に<wbr>より<wbr>変動します。<a href="#process">条件の<wbr>詳細を<wbr>見る</a></p>
+      <div class="hero-facts">
+        <div class="fact"><b class="mono">12年</b><span>臨床での<wbr>現場経験</span></div>
+        <div class="fact"><b class="mono">FP3級</b><span>金融系の<wbr>専門知識</span></div>
+        <div class="fact"><b class="mono">10+</b><span>YouTube編集実績</span></div>
+      </div>
+    </div>
+    <blockquote class="hero-quote">
+      12年間、<wbr>一人<wbr>ひとりの<wbr>患者さんの<wbr>個別性に<wbr>合わせて<wbr>仕事を<wbr>してきました。<br><br>
+      <b>「伝えたいこと」と<wbr>「受け取る人」の<span style="white-space:nowrap">両方を<wbr>考える<wbr>——</span></b><br><br>
+      書く<wbr>ことも、<wbr>編集する<wbr>ことも、<wbr>看護の<wbr>仕事と<wbr>同じ<wbr>姿勢で<wbr>できる<wbr>仕事だと<wbr>思っています。
+      <cite>ヨアケ｜看護師12年目・FP3級</cite>
+    </blockquote>
   </div>
 </div>
 
-<!-- ═══ 悩みセクション（あるあるチェックリスト＋共感の一言） ═══ -->
-<section>
+<!-- ═══ 執筆実績（ライティングを最上位に） ═══ -->
+<section id="works">
   <div class="col">
-    <span class="sec-label">Problem</span>
-    <h2>こんな毎日に、心当たりない？</h2>
-    <ul class="pains">
-      <li>記録が終わらず、定時で帰れた日を<span class="w">思い出せない</span></li>
-      <li>委員会・係の資料づくりが、いつも家に持ち帰りになる</li>
-      <li>AIが便利らしいけど、看護業務のどこで使えばいいのかピンとこない</li>
-      <li>夜勤手当もボーナスも、給料に混ざって消えていく。<br>お金を考える体力は、もう残っていない</li>
-    </ul>
-    <p class="empathy"><strong>私も、同じ12年を現場で過ごしてきました。</strong><br>残業して、持ち帰って、疲れて眠るだけの毎日。<br><br>AIで資料を作るようになって、時間の使い方が変わりました。<br>特別なスキルは要りません。現場で本当に使える方法だけを発信しています。</p>
-  </div>
-</section>
-
-<!-- ═══ 解決策セクション（AIでのBefore/After 3つ＋安全な使い方の注意書き） ═══ -->
-<section class="tint">
-  <div class="col">
-    <span class="sec-label">Solution</span>
-    <h2>AIを「正しく」使うと<br>ナースの毎日はこう変わる</h2>
-    <div class="ba">
-      <div class="ba-item">
-        <h3>委員会・係の資料づくり</h3>
-        <div class="ba-row"><span class="before">家に持ち帰って週末が消える</span><span class="arrow">→</span><span class="after"><span class="w">構成と叩き台を</span><span class="w">AIと作って</span><span class="w">1時間</span></span></div>
-      </div>
-      <div class="ba-item">
-        <h3>勉強会・マニュアル作成</h3>
-        <div class="ba-row"><span class="before">白紙とにらめっこで進まない</span><span class="arrow">→</span><span class="after"><span class="w">要点整理から</span><span class="w">資料化まで</span><span class="w">対話で進む</span></span></div>
-      </div>
-      <div class="ba-item">
-        <h3>記録・文章の言い回し</h3>
-        <div class="ba-row"><span class="before">表現に迷って手が止まる</span><span class="arrow">→</span><span class="after"><span class="w">型を持っておけば</span><span class="w">迷わない</span></span></div>
-      </div>
-    </div>
-    <p class="note-safety">⚠️ 患者さんの個人情報は入力しない、院内の規定を確認する。<br>この「安全な使い方」から丁寧にお伝えします。現場で信頼されるAI活用の第一歩です。</p>
-  </div>
-</section>
-
-<!-- ═══ noteセクション（発信テーマのカード＋noteへの導線） ═══ -->
-<section id="products">
-  <div class="col">
-    <span class="sec-label">note</span>
-    <h2>noteで公開中の記事</h2>
-    <p class="lead">現場ですぐ使えることから書いています。<br>気になるほうからのぞいてみてください。</p>
-    <div class="products">
-      <a class="product featured" href="https://note.com/yoake_kango_fp/n/n814ba654c8b3" target="_blank" rel="noopener">
-        <h3>看護師がAIを使い始めるなら、<br>まずこの3つを聞いてみて</h3>
-        <p>特別な知識は要りません。いちばんハードルの低い「3つの入口」を、職場で実際に聞かれたことをまとめる形で紹介します。</p>
-        <span class="read">noteで読む →</span>
+    <p class="sec-label mono">WRITING</p>
+    <h2>執筆記事 — 医療 × AI × お金</h2>
+    <p class="lead">医療とお金は、<wbr>書き手の<wbr>経歴が<wbr>もっとも<wbr>問われる<wbr>領域。<wbr>臨床12年の<wbr>現役看護師×FP3級と<wbr>いう<wbr>経歴を<wbr>明示して<wbr>書けるのが、<wbr>いちばんの<wbr>強みです。<br>下の<wbr>記事は<wbr>すべて<wbr>全文を<wbr>公開しています。<wbr>文体・構成・専門性の<wbr>出し方を、<wbr>そのまま<wbr>ご確認ください。</p>
+    <div class="samples">
+      <a class="sample" href="https://note.com/yoake_kango_fp/n/n814ba654c8b3" target="_blank" rel="noopener">
+        <span class="meta mono">NOTE — 医療 × AI</span>
+        <h3>看護師が<wbr>AIを<wbr>使い<wbr>始めるなら、<wbr>まず<wbr>この<wbr>3つを<wbr>聞いてみて</h3>
+        <p>専門知識の<wbr>ない<wbr>読者に<wbr>向けて、<wbr>手順を<wbr>「聞かれた順」に<wbr>並べ替えて<wbr>書いた<wbr>実例。</p>
+        <span class="go">記事を<wbr>読む ↗</span>
       </a>
-      <a class="product" href="https://note.com/yoake_kango_fp/n/nf9aa38ffd17a" target="_blank" rel="noopener">
-        <h3>はじめまして。「看護 × AI × お金」を書くナースエディターです</h3>
-        <p>看護師12年目、いまは訪問看護の現場で働いています。なぜAIとお金のことを書き始めたのか、自己紹介をかねた最初の記事です。</p>
-        <span class="read">noteで読む →</span>
+      <a class="sample" href="https://note.com/yoake_kango_fp/n/ne223c1473fbc" target="_blank" rel="noopener">
+        <span class="meta mono">NOTE — 業務効率化</span>
+        <h3>レポートは<wbr>もう<wbr>打たない</h3>
+        <p>音声入力での<wbr>議事録作成を、<wbr>守るべき線引きと<wbr>セットで<wbr>書いた<wbr>実務記事。</p>
+        <span class="go">記事を<wbr>読む ↗</span>
+      </a>
+      <a class="sample" href="https://note.com/yoake_kango_fp/n/n19be7af90f4e" target="_blank" rel="noopener">
+        <span class="meta mono">NOTE — お金 / FP3級</span>
+        <h3>現場では<wbr>ほぼ<wbr>使わなかった<wbr>｜看護師が<wbr>FP3級を<wbr>取って、<wbr>本当に<wbr>効いた<wbr>場所</h3>
+        <p>資格を<wbr>勧めるのではなく<wbr>「使わなかった」と<wbr>認める<wbr>ところから<wbr>始めた、<wbr>お金の<wbr>記事。</p>
+        <span class="go">記事を<wbr>読む ↗</span>
+      </a>
+      <a class="sample" href="https://note.com/yoake_kango_fp/n/nf9aa38ffd17a" target="_blank" rel="noopener">
+        <span class="meta mono">NOTE — 自己紹介</span>
+        <h3>はじめまして。<wbr>「看護 × AI × お金」を<wbr>書く<wbr>ナースエディターです</h3>
+        <p>経歴と<wbr>執筆テーマを、<wbr>読み物と<wbr>して<wbr>成立させた<wbr>自己紹介記事。</p>
+        <span class="go">記事を<wbr>読む ↗</span>
       </a>
     </div>
-    <a class="cta cta-note" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">noteを読む<small>note.com/yoake_kango_fp</small></a>
+    <p class="subnote" style="margin-top:16px">最新の<wbr>記事は <a href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener" style="color:var(--red);font-weight:700;text-decoration:none">note（@yoake_kango_fp）↗</a> で<wbr>公開しています。</p>
   </div>
 </section>
 
-<!-- ═══ 資産形成セクション（お金の3ステップ） ═══ -->
-<section class="tint">
+<!-- ═══ 動画編集実績 ═══ -->
+<section id="video">
   <div class="col">
-    <span class="sec-label">Money</span>
-    <h2>お金の習慣は<br>何年目からでも作り直せる</h2>
-    <p class="lead">収入が安定した看護師は、実は資産形成と相性のいい仕事。<br>ただ夜勤手当は給料に混ざるから、意識しないと頑張った分ごと消えます。<br><br>だからこそ「先に分ける仕組み」が要る。最初はこの3つだけです。</p>
-    <ol class="money-steps">
-      <li><b>固定費をひとつ見直す</b><span>スマホ代・サブスク。夜勤1回分が毎月浮きます</span></li>
-      <li><b>先取り貯金を自動にする</b><span>給料日に自動で別口座へ。夜勤明けの意思の力に頼らない</span></li>
-      <li><b>少額から積立に慣れる</b><span>金額より「続く仕組み」を先に作る</span></li>
-    </ol>
+    <p class="sec-label mono">VIDEO</p>
+    <h2>動画編集</h2>
+    <p class="lead">テンポを<wbr>意識した<wbr>カット編集・テロップ・<wbr>サムネイル<wbr>制作まで<wbr>一貫して<wbr>対応。<wbr>情報まとめ系・解説系コンテンツを<wbr>中心に<wbr>担当してきました。</p>
+    <p class="onreq">動画の<wbr>サンプルは、<wbr>ご依頼・<wbr>ご相談の<wbr>際に<wbr>個別に<wbr>お送りします。<wbr>ご希望の<wbr>ジャンルに<wbr>近い<wbr>ものを<wbr>選んで<wbr>お渡しします。</p>
+    <div class="works-grid">
+      <div class="cell"><b>YouTube動画編集</b><p>情報まとめ系・解説系を<wbr>中心に<wbr>10本以上を<wbr>担当。<br>視聴者が<wbr>離脱しにくいテンポ重視の<wbr>カット編集。</p></div>
+      <div class="cell"><b>院内説明動画の<wbr>制作</b><p>患者さん<wbr>向け説明動画の<wbr>制作を<wbr>病院の<wbr>業務と<wbr>して<wbr>正式に<wbr>担当。<br>分かりやすさが<wbr>求められる<wbr>題材が<wbr>得意。</p></div>
+      <div class="cell"><b>サムネイル<wbr>制作</b><p>Photoshopでの<wbr>サムネイル<wbr>制作も<wbr>あわせて<wbr>対応。<br>クリックされる<wbr>入口まで<wbr>セットで<wbr>設計。</p></div>
+    </div>
   </div>
 </section>
 
-<!-- ═══ 看護学生向けセクション（無料コンテンツへの導線＝未来顧客育成） ═══ -->
-<section>
+<!-- ═══ LP・Webサイト制作実績 ═══ -->
+<section id="web">
   <div class="col">
-    <span class="sec-label">For Students</span>
-    <h2>看護学生のあなたへ</h2>
-    <p class="lead">実習記録も国試対策も、AIは使えます。<br>学生向けのコツは、ぜんぶ無料で発信しています。<br><br>お金をかけるのは働き始めてからで十分です。</p>
-    <ul class="pains">
-      <li>実習記録・看護過程の下書きをAIと整理するコツ</li>
-      <li>国試の苦手分野を「自分の言葉」にする勉強法</li>
-    </ul>
+    <p class="sec-label mono">WEB</p>
+    <h2>LP・<wbr>Webサイト<wbr>制作</h2>
+    <p class="lead">記事だけでなく、<wbr>読ませて<wbr>動かすページごとお任せいただけます。<wbr>ペルソナ設計・構成づくりから<wbr>コピーライティング・<wbr>デザイン・実装・<wbr>公開まで、<wbr>一人で<wbr>完結します。</p>
+    <div class="articles two">
+      <article class="article shotcard">
+        <a class="shot" href="kango/" target="_blank" rel="noopener"><img src="assets/work-lp.png" alt="「看護×AI活用室」LPのファーストビュー" loading="lazy"></a>
+        <span class="cat mono">自主<wbr>制作</span>
+        <h3>看護×AI活用室<wbr>（集客LP）</h3>
+        <p>現役看護師向けの<wbr>集客ページ。<wbr>ペルソナ設計・媒体リサーチから<wbr>構成・コピー・<wbr>実装まで。</p>
+        <p class="alink"><a href="kango/" target="_blank" rel="noopener">ページを<wbr>見る<wbr> ↗</a></p>
+      </article>
+      <article class="article shotcard">
+        <span class="shot"><img src="assets/work-portfolio.png" alt="本ポートフォリオサイトのファーストビュー" loading="lazy"></span>
+        <span class="cat mono">自主<wbr>制作</span>
+        <h3>ポートフォリオサイト<wbr>（本サイト）</h3>
+        <p>いまご覧いただいている<wbr>この<wbr>サイト自体が<wbr>制作例です。<wbr>戦略設計から<wbr>デザイン・実装・<wbr>公開まで。</p>
+      </article>
+    </div>
   </div>
 </section>
 
-<!-- ═══ プロフィールセクション（経歴・SNSリンク） ═══ -->
-<section>
+<!-- ═══ Services（できること） ═══ -->
+<section id="services">
   <div class="col">
-    <span class="sec-label">About</span>
-    <h2>書いている人</h2>
-    <div class="profile">
-      <div class="avatar" aria-hidden="true">🩺</div>
+    <p class="sec-label mono">SERVICES</p>
+    <h2>対応できる<wbr>こと</h2>
+    <p class="lead">医療・金融の<wbr>専門性が<wbr>要る<wbr>記事から、<wbr>LP・サイト<wbr>制作、<wbr>動画編集、<wbr>AIでの<wbr>画像素材づくりまで。<br>ひとりに<wbr>頼める<wbr>範囲が<wbr>広いのが<wbr>強みです。</p>
+    <div class="services">
+      <div class="service">
+        <span class="num mono">01</span>
+        <h3>記事ライティング<wbr>（医療・金融）</h3>
+        <p>現場を<wbr>知っているから<wbr>こそ<wbr>書ける、<wbr>専門的で<wbr>説得力の<wbr>ある<wbr>内容が<wbr>強みです。</p>
+        <ul><li>解説記事・SEO記事</li><li>制度まわりの<wbr>解説<wbr>（一次情報を確認して執筆）</li><li>専門用語を<wbr>一般読者向けに<wbr>翻訳する<wbr>リライト</li><li>構成案のみの<wbr>ご依頼にも<wbr>対応</li></ul>
+      </div>
+      <div class="service">
+        <span class="num mono">02</span>
+        <h3>LP・<wbr>Webサイト<wbr>制作</h3>
+        <p>文章と<wbr>ページを<wbr>セットで<wbr>設計します。<wbr>原稿を<wbr>渡して<wbr>終わりではなく、<wbr>載せる<wbr>場所まで<wbr>含めて<wbr>お任せいただけます。</p>
+        <ul><li>販売LP・サービス紹介ページ</li><li>ポートフォリオ・<wbr>小規模サイト</li><li>公開・<wbr>その後の<wbr>修正／運用提案まで<wbr>対応</li></ul>
+      </div>
+      <div class="service">
+        <span class="num mono">03</span>
+        <h3>YouTube動画編集</h3>
+        <p>ビジネス系・解説系が<wbr>得意。<br>制作者さんの<wbr>意図を<wbr>汲み、<wbr>YouTubeならではの<wbr>テンポの<wbr>良い<wbr>編集で<wbr>仕上げます。</p>
+        <ul><li>カット編集・テロップ・<wbr>BGM/SE</li><li>サムネイル<wbr>制作</li><li>マネー・金融系コンテンツにも<wbr>対応</li></ul>
+      </div>
+      <div class="service">
+        <span class="num mono">04</span>
+        <h3>AI画像生成・資料作成</h3>
+        <p>MidjourneyとにじJourneyで<wbr>200枚以上の<wbr>生成経験。<wbr>フリー素材で<wbr>見つからない<wbr>画像を、<wbr>動画・<wbr>記事の<wbr>素材と<wbr>して<wbr>用意できます。</p>
+        <ul><li>動画・<wbr>記事用の<wbr>オリジナル画像素材</li><li>業務マニュアル・<wbr>説明資料の<wbr>作成<wbr>（病院業務での実務経験あり）</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 仕事の進め方（発注者の不安を潰す信頼セクション） ═══ -->
+<section id="process">
+  <div class="col">
+    <p class="sec-label mono">HOW I WORK</p>
+    <h2>仕事の<wbr>進め方</h2>
+    <p class="lead">外注で<wbr>不安なのは<br><b class="em-red">「納期」</b>と<b class="em-red">「連絡が取れるか」</b>だと<wbr>思います。<br>そこを<wbr>最優先に<wbr>しています。</p>
+    <div class="promises">
+      <div class="promise"><h3><span class="mono">01</span>納期を<wbr>守る<wbr>ことを<wbr>最優先に</h3><p>スケジュールから<wbr>逆算して<wbr>制作し、<wbr>間に合わない<wbr>ものは<wbr>最初から<wbr>引き受けません。</p></div>
+      <div class="promise"><h3><span class="mono">02</span>進捗を<wbr>こまめに<wbr>ご連絡</h3><p>発注者さんが<wbr>不信感や<wbr>焦りを<wbr>感じないよう、<wbr>区切りごとに<wbr>状況を<wbr>お伝えします。</p></div>
+      <div class="promise"><h3><span class="mono">03</span>一つ一つ<wbr>丁寧に、<wbr>こだわって</h3><p>量産は<wbr>しません。<wbr>記事も<wbr>動画も、<wbr>一本ごとに<wbr>時間を<wbr>かけて<wbr>仕上げます。<wbr>だから<wbr>同時進行の<wbr>本数は<wbr>絞っています。</p></div>
+      <div class="promise"><h3><span class="mono">04</span>まずは<wbr>内容の<wbr>ご相談だけでも</h3><p>内容を<wbr>お聞かせいただければ、<wbr>対応可否と<wbr>進め方を<wbr>すぐに<wbr>ご返信します。</p></div>
+    </div>
+    <p class="subhead mono" style="margin-top:0">ESTIMATE — ご依頼の<wbr>目安</p>
+    <p class="subnote" style="margin-bottom:18px">記事の<wbr>内容・<wbr>分量に<wbr>よって<wbr>前後します。<wbr>まずは<wbr>ご相談ください。</p>
+    <div class="terms">
+      <div class="term">
+        <span class="tl mono">文字単価</span>
+        <b class="mono">2<small>円 / 文字</small></b>
+        <span class="tn">構成づくりから<wbr>お任せいただけます</span>
+      </div>
+      <div class="term">
+        <span class="tl mono">初稿まで</span>
+        <b class="mono">3<small>日</small></b>
+        <span class="tn">ご発注から。<wbr>分量に<wbr>より<wbr>前後します</span>
+      </div>
+      <div class="term">
+        <span class="tl mono">受注可能数</span>
+        <b class="mono">10<small>本 / 月</small></b>
+        <span class="tn">一本ずつ<wbr>時間を<wbr>かける<wbr>ため上限を<wbr>設けています</span>
+      </div>
+    </div>
+    <table class="avail">
+      <tr><th>稼働時間</th><td>平日 2〜4時間程度</td></tr>
+      <tr><th>連絡可能時間</th><td>平日 8:30〜23:00　／　休日 10:00〜23:00</td></tr>
+      <tr><th>執筆の<wbr>納品形式</th><td>Word／Google ドキュメント／Markdown<wbr>（ご指定の形式に合わせます）</td></tr>
+      <tr><th>使用ソフト</th><td>Adobe Premiere Pro／Adobe Photoshop</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ プロフィール ═══ -->
+<section id="about">
+  <div class="col">
+    <p class="sec-label mono">ABOUT</p>
+    <h2>ヨアケ <span class="mono" style="font-size: 14px; color: var(--muted);">— 看護×マネーライター</span></h2>
+    <div class="profile-grid">
       <div>
-        <h3>ヨアケ｜現役看護師12年目・FP3級</h3>
-        <p class="career"><b>経歴：</b><span>小児科病棟 →</span> <span>成人病棟 →</span> <span>手術室 →</span> 現在は訪問看護に従事</p>
-        <p>臨床で12年働きながら、副業で動画編集とライティングをしています。ChatGPTでの業務マニュアル作成や、患者さん向け院内説明動画の制作など、AIとデジタルを現場業務に取り入れてきました。執筆テーマは「新NISAの始め方」「ベースアップ評価料」「看護DX」など、看護とお金とAIの交差点。同じ遠回りをしてほしくなくて発信しています。</p>
-        <div class="sns">
-          <a href="https://x.com/yoake_kango_fp">X @yoake_kango_fp</a>
-          <a href="mailto:yoake.kango@gmail.com">Mail</a>
-          <a href="https://note.com/yoake_kango_fp">note</a>
+        <ul class="timeline">
+          <li><span class="y mono">2012 –</span><span>看護師と<wbr>して<wbr>臨床勤務<wbr>（12年間、現在も現役）<i class="path"><span>小児科病棟 →</span> <span>成人病棟 →</span> <span>手術室 →</span> 現在は<wbr>訪問看護に<wbr>従事</i></span></li>
+          <li><span class="y mono">2023.11 –</span><span>フリーランスと<wbr>して<wbr>動画編集の<wbr>受注を<wbr>開始</span></li>
+          <li><span class="y mono">2026.8 –</span><span>医療・金融分野の<wbr>ライティングを<wbr>本格的に<wbr>開始</span></li>
+          <li><span class="y mono">資格</span><span>看護師免許／FP<wbr>（ファイナンシャルプランナー）<wbr>3級</span></li>
+        </ul>
+        <div class="tools">
+          <span>Premiere Pro</span><span>Photoshop</span><span>Claude Code</span><span>Midjourney</span>
         </div>
       </div>
+      <div class="policy">
+        <h3><span class="mono">—</span>AIの<wbr>使い方に<wbr>ついて</h3>
+        <p>リサーチの<wbr>下調べや<wbr>構成の<wbr>壁打ちには<wbr>AIを<wbr>使います。<wbr>制作の<wbr>スピードは、<wbr>その<wbr>ぶん<wbr>上がります。</p>
+        <p><b>ただし、<wbr>事実確認と<wbr>本文は<wbr>人間が<wbr>書きます。</b>医療と<wbr>金融は、<wbr>間違えた<wbr>ときに<wbr>読者が<wbr>実際に<wbr>損を<wbr>する<wbr>分野だからです。<wbr>数字・<wbr>制度・用語は<wbr>一次情報に<wbr>あたって<wbr>確認しています。</p>
+        <p>「AIに書かせただけの原稿は困る」と<wbr>いう<wbr>前提で<wbr>ご依頼いただいて<wbr>大丈夫です。<wbr>原稿を<wbr>生成物の<wbr>まま<wbr>納品する<wbr>ことは<wbr>ありません。<wbr>（画像素材の<wbr>生成は<wbr>別途、<wbr>用途を<wbr>ご相談の<wbr>うえ対応します）</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ よくある質問 ═══ -->
-<section class="tint">
+<!-- ═══ コンタクト ═══ -->
+<section id="contact" class="contact">
   <div class="col">
-    <span class="sec-label">FAQ</span>
-    <h2>よくある質問</h2>
-    <details>
-      <summary>AIを使ったことがなくても大丈夫？</summary>
-      <p>大丈夫です。アプリを入れるところから、スクショ付きで順番に解説しています。noteの読者の多くがAI初心者からのスタートです。</p>
-    </details>
-    <details>
-      <summary>スマホだけでもできますか？</summary>
-      <p>できます。紹介している方法はすべてスマホだけで完結するように作っています。休憩室や通勤中のスキマ時間でも使えます。</p>
-    </details>
-    <details>
-      <summary>noteでは何が読めますか？</summary>
-      <p>記録・委員会資料・勉強会資料のAI活用と、夜勤1回分から始めるお金の話を書いています。更新のお知らせはX（@yoake_kango_fp）でも発信しています。</p>
-    </details>
+    <p class="sec-label mono">CONTACT</p>
+    <h2>ご依頼・<wbr>ご相談</h2>
+    <p class="lead">ご質問や<wbr>ご依頼など、<wbr>お気軽に<wbr>お問い合わせ<wbr>ください。<wbr>まずは<wbr>内容だけでも<wbr>お聞かせいただければ、<wbr>対応可否・<wbr>進め方を<wbr>すぐに<wbr>ご返信いたします。<br>下の<wbr>アドレスを<wbr>クリックすると、<wbr>記入項目を<wbr>入れた<wbr>状態で<wbr>メールが<wbr>開きます。</p>
+    <a class="big-mail" href="mailto:yoake.kango@gmail.com?subject=%E3%80%90%E3%81%94%E4%BE%9D%E9%A0%BC%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87%E3%80%91&body=%E3%83%A8%E3%82%A2%E3%82%B1%E3%81%95%E3%81%BE%0A%0A%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA%E3%82%92%E6%8B%9D%E8%A6%8B%E3%81%97%E3%81%94%E9%80%A3%E7%B5%A1%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%0A%0A%E2%96%A0%20%E3%81%94%E4%BE%9D%E9%A0%BC%E5%86%85%E5%AE%B9%EF%BC%88%E8%A8%98%E4%BA%8B%EF%BC%8FLP%E3%83%BBWeb%EF%BC%8F%E5%8B%95%E7%94%BB%E7%B7%A8%E9%9B%86%EF%BC%89%EF%BC%9A%0A%E2%96%A0%20%E5%88%86%E9%87%8F%E3%83%BB%E6%9C%AC%E6%95%B0%EF%BC%9A%0A%E2%96%A0%20%E5%B8%8C%E6%9C%9B%E7%B4%8D%E6%9C%9F%EF%BC%9A%0A%E2%96%A0%20%E6%8E%B2%E8%BC%89%E5%AA%92%E4%BD%93%E3%83%BB%20URL%EF%BC%9A%0A%E2%96%A0%20%E3%81%94%E4%BA%88%E7%AE%97%EF%BC%9A%0A%0A%E3%82%88%E3%82%8D%E3%81%97%E3%81%8F%E3%81%8A%E9%A1%98%E3%81%84%E3%81%84%E3%81%9F%E3%81%97%E3%81%BE%E3%81%99%E3%80%82%0A">yoake.kango@gmail.com</a>
+    <p class="sns">X: <a href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">@yoake_kango_fp</a></p>
   </div>
 </section>
 
-<!-- ═══ クロージング（締めのメッセージ＋最後のCTA） ═══ -->
-<div class="closing">
-  <div class="col">
-    <h2>記録も、資料も、お金も。<br>ひとりで抱えなくていい。</h2>
-    <p class="lead">AIの使い方を知った人から、定時で帰れる日が増えていきます。<br>いまはXで、すぐ使えるコツを発信中です。</p>
-    <a class="cta" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">Xをフォローする<small>noteの更新もこちらでお知らせします</small></a>
-  </div>
-</div>
-
-<!-- ═══ フッター（免責表記・著作権） ═══ -->
+<!-- ═══ フッター ═══ -->
 <footer>
-  <div class="col">
-    <p>※ 資産形成に関する内容は一般的な情報提供であり、特定の金融商品の勧誘ではありません。投資判断はご自身の責任でお願いします。<br>
-    ※ AIの利用にあたっては、所属する学校・病院の規定および個人情報の取り扱いに十分ご注意ください。</p>
-    <p>© 2026 ヨアケ（看護×AI活用室）　<a href="#">プライバシーポリシー</a>　<a href="#">特定商取引法に基づく表記</a></p>
-  </div>
+  <div class="col">© 2026 Yoake<wbr>（ヨアケ）</div>
 </footer>
 
+<script>
+(function () {
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+  var groups = ['.articles .article', '.works-grid .cell', '.samples .sample'];
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('rv-in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+  groups.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el, i) {
+      el.classList.add('rv');
+      el.style.transitionDelay = (i * 60) + 'ms';
+      io.observe(el);
+    });
+  });
+})();
+</script>
 </body>
 </html>
