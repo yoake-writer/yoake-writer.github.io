@@ -1,0 +1,174 @@
+@charset "UTF-8";
+/* 月待ちの宿(架空) 一棟貸しLP
+   6件の中の「高級ライン」。余白を最大に取り、明朝体で組む。
+   色3つ: 生成り #F7F4EE / 墨 #1A1A1A / 金茶 #8C6E3F */
+
+:root {
+  --ink: #1A1A1A;
+  --ink-weak: #6E6459;
+  --accent: #8C6E3F;
+  --accent-weak: #B9AA92;
+  --paper: #F7F4EE;
+  --paper-deep: #EFE9DE;
+  --line: #DED5C6;
+  --maxw: 600px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { line-break: strict; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 15px;
+  line-height: 2.1;               /* 6件で最も行間を広く取る */
+  letter-spacing: 0.06em;
+  text-wrap: pretty;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3 { font-weight: 500; line-height: 1.75; text-wrap: balance; }
+.w { display: inline-block; }     /* 文節の折り返し固定用 */
+
+.page { overflow-x: hidden; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 26px; }
+section { padding: 84px 0; }      /* 余白は6件で最大 */
+.tone { background: var(--paper-deep); }
+
+/* 見出し */
+.sec-title { text-align: center; margin-bottom: 44px; }
+.sec-title .en {
+  display: block; font-size: 0.68rem; letter-spacing: 0.34em;
+  color: var(--accent); margin-bottom: 14px;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+.sec-title .w { font-size: 1.18rem; }
+.sub-h { font-size: 1rem; margin: 44px 0 16px; color: var(--accent); }
+.body { font-size: 0.95rem; }
+.note {
+  font-size: 0.76rem; color: var(--ink-weak); margin-top: 16px; line-height: 1.9;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+
+/* ファーストビュー(写真は画面いっぱい) */
+.hero { position: relative; }
+.hero-photo { width: 100%; height: 74vh; min-height: 380px; object-fit: cover; }
+.hero-text {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 90px 26px 40px;
+  background: linear-gradient(to bottom, rgba(20,16,10,0) 0%, rgba(20,16,10,0.72) 46%, rgba(20,16,10,0.86) 100%);
+  color: #fff; text-align: center;
+}
+.hero-text .eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.3em; color: #E4D6B8; margin-bottom: 18px;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+.hero-text h1 { font-size: clamp(1.2rem, 6.2vw, 1.9rem); }
+.hero-text .lead { font-size: 0.86rem; color: #E6DECF; margin: 18px 0 26px; }
+
+/* ボタン */
+.btn {
+  display: block; width: 100%; max-width: 340px; margin: 0 auto;
+  padding: 17px 18px; text-align: center; text-decoration: none;
+  font-size: 0.92rem; letter-spacing: 0.1em; border-radius: 2px;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+.btn-main { background: var(--accent); color: #fff; }
+.btn-sub { border: 1px solid var(--accent); color: var(--accent); }
+.btn-row { margin-top: 30px; }
+.btn-note {
+  font-size: 0.74rem; color: var(--ink-weak); text-align: center; margin-top: 14px;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+
+/* 一日の流れ(写真を1枚ずつ大きく) */
+.day { margin-top: 64px; }
+.day:first-of-type { margin-top: 0; }
+.day img { width: 100%; }
+.day-text { max-width: var(--maxw); margin: 0 auto; padding: 26px 26px 0; }
+.day .time {
+  font-size: 0.74rem; letter-spacing: 0.26em; color: var(--accent); margin-bottom: 12px;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+.day h3 { font-size: 1.08rem; margin-bottom: 14px; }
+.day p:last-child { font-size: 0.92rem; color: var(--ink-weak); }
+
+/* 写真がゆっくり出る。JSが無い/切ってある環境では最初から見えている */
+html.js .reveal { opacity: 0; transform: translateY(12px); }
+html.js .reveal.in { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; }
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal { opacity: 1; transform: none; }
+}
+
+/* 敷地の図 */
+.land {
+  width: 100%; height: auto; margin-top: 30px;
+  border: 1px solid var(--line); background: #fff;
+}
+
+/* 箇条書き */
+.checks { list-style: none; margin-top: 8px; }
+.checks li {
+  position: relative; padding: 11px 0 11px 26px;
+  border-bottom: 1px solid var(--line); font-size: 0.92rem;
+}
+.checks li::before {
+  content: ""; position: absolute; left: 4px; top: 26px;
+  width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
+}
+.checks.minus li::before {
+  border-radius: 0; height: 1px; top: 30px; width: 12px; left: 2px;
+  background: var(--accent-weak);
+}
+
+/* 料金 */
+.price-main { text-align: center; margin-bottom: 18px; }
+.price-main .num {
+  font-size: 2.5rem; letter-spacing: 0.02em; margin-right: 6px;
+  font-family: "Noto Sans JP", system-ui, sans-serif; font-weight: 300;
+}
+
+/* アクセスなどの表 */
+.spec { font-size: 0.92rem; }
+.spec dt {
+  color: var(--accent); font-size: 0.82rem; padding-top: 16px;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+.spec dd { padding: 4px 0 16px; border-bottom: 1px solid var(--line); }
+
+/* 予約 */
+.cta { padding: 0 0 84px; text-align: center; }
+.cta-photo { width: 100%; margin-bottom: 46px; }
+.cta h2 { font-size: 1.2rem; margin-bottom: 14px; }
+.cta > .wrap > p { font-size: 0.9rem; color: var(--ink-weak); margin-bottom: 30px; }
+
+/* よくある質問 */
+.faq { list-style: none; }
+.faq li { border-bottom: 1px solid var(--line); padding: 22px 0; }
+.faq .q { font-size: 0.96rem; margin-bottom: 10px; }
+.faq .q::before { content: "Q. "; color: var(--accent); }
+.faq .a { font-size: 0.9rem; color: var(--ink-weak); }
+
+/* 宿のこと */
+.info { list-style: none; font-size: 0.9rem; }
+.info li { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; gap: 18px; }
+.info li span:first-child { flex: 0 0 6.5em; color: var(--ink-weak); font-size: 0.82rem; }
+
+/* フッター */
+.site-footer {
+  background: var(--ink); color: #CFC6B6; text-align: center;
+  padding: 52px 26px; font-size: 0.82rem; line-height: 2.1;
+}
+.portfolio-note {
+  margin-top: 22px; font-size: 0.72rem; color: #8E877C; line-height: 2;
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+
+@media (min-width: 700px) {
+  :root { --maxw: 660px; }
+  body { font-size: 16px; }
+  section { padding: 110px 0; }
+  .hero-photo { height: 80vh; }
+}

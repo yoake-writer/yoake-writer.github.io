@@ -1,0 +1,221 @@
+/* ============================================================
+   そらまど工務店(架空) — 共通スタイル
+   色は3つ: 地色=白 / 文字=チャコール #333 / アクセント=木の色 #A9805B
+   書体は2つ: 見出し=游ゴシック太字 / 本文=Noto Sans JP系スタック
+   ============================================================ */
+
+:root {
+  --ink: #333333;        /* 文字色 */
+  --ink-weak: #6b6b6b;   /* 補足の文字 */
+  --wood: #A9805B;       /* アクセント(木の色) */
+  --wood-deep: #8a6544;  /* アクセントの濃いほう(ホバー・線) */
+  --paper: #ffffff;      /* 地色 */
+  --paper-warm: #faf7f3; /* セクションの下地(白の仲間) */
+  --line: #e5ddd3;       /* 罫線 */
+  --maxw: 1080px;
+}
+
+/* --- 土台 --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  line-break: strict;
+  word-break: auto-phrase;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic Medium", "游ゴシック Medium", YuGothic, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+h1, h2, h3 {
+  font-family: "Yu Gothic", "游ゴシック体", YuGothic, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+p, li, dd, dt { text-wrap: pretty; }
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--wood-deep); }
+
+:focus-visible { outline: 3px solid var(--wood); outline-offset: 2px; }
+
+.w { display: inline-block; } /* 文節の折り返し固定用 */
+
+/* --- 骨格 --- */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+section { padding: 72px 0; }
+section.alt { background: var(--paper-warm); }
+
+.sec-title { font-size: 1.6rem; margin-bottom: 8px; }
+.sec-title::after {
+  content: ""; display: block; width: 48px; height: 3px;
+  background: var(--wood); margin-top: 12px;
+}
+.sec-lead { color: var(--ink-weak); margin-bottom: 40px; }
+
+/* --- ヘッダー・ナビ --- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  position: sticky; top: 0; z-index: 10;
+}
+.site-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .logo { width: 34px; height: 34px; flex: none; }
+.brand .name { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.04em; }
+.brand .tag { font-size: 0.72rem; color: var(--ink-weak); display: block; line-height: 1.3; }
+
+.site-nav ul { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; }
+.site-nav li { flex: 0 0 auto; }   /* 縮んで文字が縦に崩れるのを防ぐ */
+.site-nav a {
+  display: block; padding: 8px 12px; text-decoration: none;
+  color: var(--ink); font-size: 0.92rem; border-radius: 4px;
+  white-space: nowrap;             /* メニューの語を途中で折らない */
+}
+.site-nav a:hover { background: var(--paper-warm); }
+.site-nav a[aria-current="page"] {
+  border-bottom: 3px solid var(--wood); border-radius: 4px 4px 0 0;
+}
+.site-nav a.nav-cta {
+  background: var(--wood); color: #fff; font-weight: 700;
+}
+.site-nav a.nav-cta:hover { background: var(--wood-deep); }
+
+/* --- ページ見出し(下層) --- */
+.page-head { background: var(--paper-warm); padding: 48px 0 40px; border-bottom: 1px solid var(--line); }
+.page-head h1 { font-size: 1.8rem; }
+.page-head .crumb { font-size: 0.8rem; color: var(--ink-weak); margin-bottom: 8px; }
+.page-head .crumb a { color: var(--ink-weak); }
+
+/* --- ヒーロー(トップ) --- */
+.hero { padding: 72px 0; border-bottom: 1px solid var(--line); }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+/* 見出しの各行が途中で割れないよう、画面幅に合わせて字の大きさを変える */
+.hero h1 { font-size: clamp(1.15rem, 6.6vw, 2.1rem); margin-bottom: 20px; }
+.hero .lead { margin-bottom: 28px; }
+.hero .note { font-size: 0.88rem; color: var(--ink-weak); margin-top: 16px; }
+
+/* --- ボタン --- */
+.btn {
+  display: inline-block; padding: 14px 32px; border-radius: 6px;
+  text-decoration: none; font-weight: 700; text-align: center;
+}
+.btn-main { background: var(--wood); color: #fff; }
+.btn-main:hover { background: var(--wood-deep); }
+.btn-sub { border: 2px solid var(--wood); color: var(--wood-deep); background: var(--paper); }
+.btn-sub:hover { background: var(--paper-warm); }
+.btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* --- カード(施工事例) --- */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.card .fig { background: var(--paper-warm); border-bottom: 1px solid var(--line); }
+.card .fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.hero-photo { width: 100%; border-radius: 8px; object-fit: cover; }
+.photo-frame img { width: 100%; object-fit: cover; border-radius: 8px; }
+.card .body { padding: 18px 20px 20px; flex: 1; }
+.card h3 { font-size: 1.02rem; margin-bottom: 8px; }
+.card .meta { list-style: none; font-size: 0.9rem; color: var(--ink-weak); }
+.card .meta strong { color: var(--ink); font-weight: 700; }
+.card .price { color: var(--wood-deep); font-weight: 700; font-size: 1.05rem; margin-top: 6px; }
+
+.fig-note { font-size: 0.82rem; color: var(--ink-weak); margin-top: 18px; }
+
+/* --- 表 --- */
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; background: var(--paper); }
+th, td { border: 1px solid var(--line); padding: 12px 16px; text-align: left; vertical-align: top; }
+thead th { background: var(--paper-warm); font-size: 0.92rem; }
+td .yen { font-weight: 700; color: var(--wood-deep); }
+.table-note { font-size: 0.82rem; color: var(--ink-weak); margin-top: 12px; }
+
+/* --- 流れ(ステップ) --- */
+.steps { list-style: none; counter-reset: step; display: grid; gap: 16px; }
+.steps li {
+  counter-increment: step; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 8px; padding: 16px 20px 16px 64px; position: relative;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute; left: 18px; top: 16px;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--wood); color: #fff; font-weight: 700;
+  display: grid; place-items: center; font-size: 0.95rem;
+}
+.steps h3 { font-size: 1rem; margin-bottom: 2px; }
+.steps p { font-size: 0.92rem; color: var(--ink-weak); }
+
+/* --- 定義リスト(会社概要) --- */
+.spec { display: grid; grid-template-columns: 160px 1fr; border-top: 1px solid var(--line); }
+.spec dt, .spec dd { padding: 14px 8px; border-bottom: 1px solid var(--line); }
+.spec dt { font-weight: 700; font-size: 0.92rem; }
+
+/* --- 安心の一言ボックス --- */
+.assure {
+  border-left: 4px solid var(--wood); background: var(--paper-warm);
+  padding: 18px 22px; border-radius: 0 8px 8px 0; margin-top: 32px;
+}
+.assure strong { display: block; margin-bottom: 4px; }
+
+/* --- ページ末尾の共通導線(すべて問い合わせへ収束) --- */
+.next-step { background: var(--paper-warm); border-top: 1px solid var(--line); text-align: center; }
+.next-step h2 { font-size: 1.3rem; margin-bottom: 8px; }
+.next-step p { color: var(--ink-weak); margin-bottom: 24px; }
+.next-step .btn-row { justify-content: center; }
+
+/* --- フォーム --- */
+.form-grid { display: grid; gap: 20px; max-width: 640px; }
+.form-grid label { font-weight: 700; font-size: 0.95rem; display: block; margin-bottom: 6px; }
+.form-grid .req { color: var(--wood-deep); font-size: 0.78rem; margin-left: 6px; }
+.form-grid input, .form-grid select, .form-grid textarea {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 6px;
+  font: inherit; background: var(--paper);
+}
+.form-grid textarea { min-height: 140px; }
+
+/* --- フッター --- */
+.site-footer { background: var(--ink); color: #ddd; padding: 40px 0 32px; font-size: 0.88rem; }
+.site-footer a { color: #fff; }
+.site-footer .cols { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.site-footer nav ul { list-style: none; display: flex; gap: 18px; flex-wrap: wrap; }
+.portfolio-note {
+  margin-top: 24px; padding-top: 16px; border-top: 1px solid #555;
+  color: #bbb; font-size: 0.8rem;
+}
+
+/* タブレット幅では見出しが窮屈になるので、ヒーローを1列にする */
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* --- スマホ --- */
+@media (max-width: 720px) {
+  section { padding: 52px 0; }
+  .hero { padding: 48px 0; }
+  .hero .wrap { grid-template-columns: 1fr; gap: 28px; }
+  .cards { grid-template-columns: 1fr; }
+  .spec { grid-template-columns: 110px 1fr; }
+}
+@media (min-width: 721px) and (max-width: 980px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
