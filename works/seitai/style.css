@@ -168,7 +168,9 @@ section.card-bg { background: var(--card); }
 
 /* --- 表・定義リスト --- */
 .spec { display: grid; grid-template-columns: 150px 1fr; border-top: 1px solid var(--line); }
-.spec dt, .spec dd { padding: 13px 8px; border-bottom: 1px solid var(--line); }
+/* グリッドの子は min-width:auto のままだと min-content より縮まないので、
+   狭い画面で長い行(住所・営業時間)が列からはみ出す。0 を入れて折り返させる */
+.spec dt, .spec dd { padding: 13px 8px; border-bottom: 1px solid var(--line); min-width: 0; }
 .spec dt { font-weight: 700; font-size: .92rem; }
 
 /* --- ページ末尾の共通導線(すべて予約へ) --- */
@@ -196,5 +198,11 @@ section.card-bg { background: var(--card); }
 @media (max-width: 720px) {
   section { padding: 48px 0; }
   .spec { grid-template-columns: 104px 1fr; }
+}
+/* 狭い画面では2列だと本文が1行5〜6文字になるので、項目名を上に置いて1列にする */
+@media (max-width: 360px) {
+  .spec { grid-template-columns: 1fr; }
+  .spec dt { padding: 14px 8px 0; border-bottom: 0; }
+  .spec dd { padding: 2px 8px 14px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
