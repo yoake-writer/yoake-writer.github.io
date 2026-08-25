@@ -134,6 +134,17 @@ section.alt { background: var(--paper-warm); }
 .card .meta strong { color: var(--ink); font-weight: 700; }
 .card .price { color: var(--wood-deep); font-weight: 700; font-size: 1.05rem; margin-top: 6px; }
 
+/* 代表事例だけに載せる内訳(内訳を出す約束の実物) */
+.breakdown { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.breakdown-h { font-size: 0.8rem; color: var(--ink-weak); margin-bottom: 6px; }
+.breakdown ul { list-style: none; font-size: 0.86rem; }
+.breakdown li {
+  display: flex; justify-content: space-between; gap: 10px;
+  padding: 5px 0; border-top: 1px dotted var(--line);
+}
+.breakdown li:first-child { border-top: 0; }
+.breakdown .yen { color: var(--ink); font-weight: 700; white-space: nowrap; }
+
 .fig-note { font-size: 0.82rem; color: var(--ink-weak); margin-top: 18px; }
 
 /* --- 表 --- */
