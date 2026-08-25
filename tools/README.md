@@ -30,7 +30,7 @@ CSS 側は `word-break: keep-all` にしてあるので、**`<wbr>` のある場
 
 ```sh
 pip install budoux          # 初回のみ
-python3 tools/wrap-ja.py    # index.html と portfolio/index.html を更新
+python3 tools/wrap-ja.py    # index.html と kango/index.html を更新
 ```
 
 **本文を書き換えたら、必ず再実行してください。** 何度実行しても結果は
