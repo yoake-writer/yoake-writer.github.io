@@ -148,6 +148,7 @@ section { padding: 52px 0; }
 .foot-nav { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 20px 0; }
 .foot-nav a { color: #A9DACF; text-decoration: none; }
 .portfolio-note { font-size: 0.76rem; color: #8B9793; line-height: 1.9; border-top: 1px solid #4A5450; padding-top: 18px; }
+.portfolio-note a { color: #A9DACF; }
 
 @media (min-width: 480px) {
   .logo { flex: 0 0 auto; }

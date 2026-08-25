@@ -1,15 +1,18 @@
 /* ============================================================
    tsuki hair(架空) — 美容室の新規集客LP
    色は3つ: 地色=白 / 文字=墨グレー #2B2B2B / アクセント=くすみピンクベージュ #C9A492
+   淡いピンクベージュは罫線・下地の装飾専用。文字と塗りボタンには濃いほう(#8A6553)を使う
+   (白文字を載せて 5.16:1。#C9A492 に白文字だと 2.28:1 でコントラスト不足になる)
    書体は2つ: 見出し=游ゴシック(細め) / 本文=Noto Sans JP系
    工務店(太字・どっしり)との対比を作るため、細字・広い字間・広い余白でまとめる
    ============================================================ */
 
 :root {
   --ink: #2B2B2B;
-  --ink-weak: #7A7A7A;
-  --accent: #C9A492;        /* くすみピンクベージュ */
-  --accent-deep: #A8806C;
+  --ink-weak: #6B6B6B;   /* 白地 5.33:1 / #FAF7F5 上 5.00:1 */
+  --accent: #C9A492;        /* くすみピンクベージュ。罫線・下地の装飾だけに使う */
+  --accent-deep: #8A6553;   /* 文字・塗りボタン用。白文字で 5.16:1 */
+  --accent-darker: #6F5041; /* ホバー。白文字で 7.24:1 */
   --paper: #FFFFFF;
   --paper-soft: #FAF7F5;
   --line: #E8E1DC;
@@ -91,9 +94,9 @@ section.soft { background: var(--paper-soft); }
   text-decoration: none; text-align: center; font-weight: 700;
   letter-spacing: 0.08em; font-size: 0.98rem;
 }
-.btn-main { background: var(--accent); color: #fff; }
-.btn-main:hover { background: var(--accent-deep); }
-.btn-sub { border: 1px solid var(--accent); color: var(--accent-deep); }
+.btn-main { background: var(--accent-deep); color: #fff; }
+.btn-main:hover { background: var(--accent-darker); }
+.btn-sub { border: 1px solid var(--accent-deep); color: var(--accent-deep); }
 .btn-note { font-size: 0.78rem; color: var(--ink-weak); text-align: center; margin-top: 10px; }
 
 /* --- チェックリスト(問題) --- */
@@ -104,8 +107,8 @@ section.soft { background: var(--paper-soft); }
 }
 .checks li::before {
   content: ""; position: absolute; left: 4px; top: 24px;
-  width: 12px; height: 6px; border-left: 1.5px solid var(--accent);
-  border-bottom: 1.5px solid var(--accent); transform: rotate(-45deg);
+  width: 12px; height: 6px; border-left: 1.5px solid var(--accent-deep);
+  border-bottom: 1.5px solid var(--accent-deep); transform: rotate(-45deg);
 }
 
 /* --- 引用(担当者のことば) --- */
@@ -156,7 +159,7 @@ section.soft { background: var(--paper-soft); }
 .cta p { font-size: 0.9rem; color: var(--ink-weak); margin-bottom: 28px; }
 .limit {
   display: inline-block; font-size: 0.8rem; letter-spacing: 0.1em;
-  border: 1px solid var(--accent); color: var(--accent-deep);
+  border: 1px solid var(--accent-deep); color: var(--accent-deep);
   padding: 6px 16px; margin-bottom: 20px;
 }
 
@@ -177,7 +180,7 @@ section.soft { background: var(--paper-soft); }
 .steps li::before {
   content: counter(st); position: absolute; left: -13px; top: 0;
   width: 26px; height: 26px; border-radius: 50%;
-  background: var(--accent); color: #fff;
+  background: var(--accent-deep); color: #fff;
   font-size: 0.8rem; display: flex; align-items: center; justify-content: center;
 }
 .steps h4 { font-size: 0.95rem; margin-bottom: 6px; }

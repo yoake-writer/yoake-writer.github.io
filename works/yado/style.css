@@ -165,6 +165,7 @@ html.js .reveal.in { opacity: 1; transform: none; transition: opacity .5s ease, 
   margin-top: 22px; font-size: 0.72rem; color: #8E877C; line-height: 2;
   font-family: "Noto Sans JP", system-ui, sans-serif;
 }
+.portfolio-note a { color: #CFC6B6; }
 
 @media (min-width: 700px) {
   :root { --maxw: 660px; }
