@@ -131,6 +131,7 @@ section { padding: 56px 0; }
 .site-footer { background: var(--paper-soft); padding: 44px 0; border-top: 1px solid var(--line); }
 .foot-name { font-weight: 700; margin-bottom: 4px; }
 .portfolio-note { margin-top: 26px; font-size: 0.76rem; color: var(--ink-weak); line-height: 1.95; }
+.portfolio-note a { color: var(--ink); font-weight: 700; }
 
 @media (min-width: 700px) {
   :root { --maxw: 680px; }

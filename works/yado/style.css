@@ -93,7 +93,16 @@ section { padding: 84px 0; }      /* 余白は6件で最大 */
   font-family: "Noto Sans JP", system-ui, sans-serif;
 }
 .day h3 { font-size: 1.08rem; margin-bottom: 14px; }
-.day p:last-child { font-size: 0.92rem; color: var(--ink-weak); }
+.day p:last-of-type { font-size: 0.92rem; color: var(--ink-weak); }
+
+/* 夕食の献立例。78,000円の唯一の比較材料なので、料理名まで出す */
+.menu-sample {
+  list-style: none; margin-top: 18px; padding-top: 16px;
+  border-top: 1px solid var(--line); font-size: 0.9rem;
+}
+.menu-sample li { padding: 5px 0; }
+.menu-sample li::before { content: "・"; color: var(--accent); margin-right: 2px; }
+.day-text p.menu-note { font-size: 0.74rem; color: var(--ink-weak); margin-top: 10px; }
 
 /* 写真がゆっくり出る。JSが無い/切ってある環境では最初から見えている */
 html.js .reveal { opacity: 0; transform: translateY(12px); }
@@ -165,6 +174,7 @@ html.js .reveal.in { opacity: 1; transform: none; transition: opacity .5s ease, 
   margin-top: 22px; font-size: 0.72rem; color: #8E877C; line-height: 2;
   font-family: "Noto Sans JP", system-ui, sans-serif;
 }
+.portfolio-note a { color: #CFC6B6; }
 
 @media (min-width: 700px) {
   :root { --maxw: 660px; }
