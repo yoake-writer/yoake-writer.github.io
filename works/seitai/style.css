@@ -72,12 +72,6 @@ section.card-bg { background: var(--card); }
 .site-nav a[aria-current="page"] { border-bottom: 3px solid var(--green); border-radius: 6px 6px 0 0; }
 .site-nav a.nav-cta { background: var(--green); color: #fff; font-weight: 700; }
 .site-nav a.nav-cta:hover { background: var(--green-deep); }
-/* 予約はLINEだけでなく電話でもできることを、全ページのヘッダーで見せる */
-.site-nav a.nav-tel {
-  border: 2px solid var(--green); color: var(--green-deep);
-  font-weight: 700; padding: 6px 12px;
-}
-.site-nav a.nav-tel:hover { background: rgba(46,94,78,0.06); }
 
 /* --- ヒーロー(トップ) --- */
 .hero { background: var(--card); padding: 56px 0; }
