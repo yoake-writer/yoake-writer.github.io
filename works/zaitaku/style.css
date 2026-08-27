@@ -1,0 +1,164 @@
+/* あさひ在宅クリニック(架空) LP
+   色は3つ: 地色 / 文字 / アクセント(深い緑)。書体は2つ: 見出し=明朝、本文=ゴシック。
+   スマホファースト(病院の廊下・帰りの電車で見る想定)。 */
+:root {
+  --bg: #FAF9F6;
+  --surface: #FFFFFF;
+  --ink: #1B2320;
+  --muted: #5C6A65;
+  --accent: #10635E;
+  --accent-soft: #E7F1EF;
+  --line: #E3E1DA;
+  --dark: #14312F;
+}
+* { box-sizing: border-box; }
+html { line-break: strict; word-break: auto-phrase; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+  font-size: 16px; line-height: 1.95; text-wrap: pretty;
+}
+.w { display: inline-block; }
+h1, h2, h3 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-weight: 600; line-height: 1.6; text-wrap: balance; margin: 0;
+}
+img { max-width: 100%; height: auto; display: block; }
+
+.samplebar {
+  margin: 0; padding: 9px 16px; background: var(--dark); color: #CFE3E0;
+  font-size: 11.5px; line-height: 1.6; text-align: center;
+}
+
+/* ── ファーストビュー ───────────────────── */
+.hero { position: relative; }
+.heroimg {
+  height: 46vw; min-height: 210px; max-height: 340px;
+  background: url("images/hero_zaitaku.jpg") center 40% / cover no-repeat;
+}
+.herotext { padding: 22px 20px 26px; background: var(--surface); }
+.eyebrow { margin: 0 0 8px; font-size: 12px; letter-spacing: .12em; color: var(--accent); font-weight: 700; }
+.hero h1 { font-size: 27px; line-height: 1.5; }
+.hero .sub { margin: 12px 0 0; font-size: 16px; font-weight: 700; }
+.hero .lead { margin: 12px 0 0; font-size: 14.5px; color: var(--muted); }
+
+/* ── ボタン ───────────────────────────── */
+.ctabox { margin-top: 20px; }
+.cta {
+  display: block; text-align: center; text-decoration: none;
+  background: var(--accent); color: #fff; font-weight: 700;
+  padding: 16px 18px; border-radius: 10px; font-size: 16.5px;
+  box-shadow: 0 6px 18px rgba(16, 99, 94, .18);
+}
+.cta.big { font-size: 17.5px; padding: 18px; }
+.cta:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 3px;
+}
+.ctanote { margin: 10px 0 0; font-size: 12.5px; color: var(--muted); text-align: center; }
+
+/* ── 節 ───────────────────────────────── */
+.sec { padding: 40px 20px; border-top: 1px solid var(--line); }
+.sec h2 { font-size: 21px; margin-bottom: 16px; }
+.sec p { margin: 0 0 14px; font-size: 15px; }
+.sec .close { color: var(--accent); font-weight: 700; margin-top: 18px; }
+.sec .note { font-size: 12.5px; color: var(--muted); }
+.tint { background: var(--accent-soft); border-top-color: #D3E5E2; }
+
+.checks { list-style: none; margin: 18px 0; padding: 0; }
+.checks li {
+  position: relative; padding: 11px 0 11px 30px; font-size: 14.5px;
+  border-bottom: 1px dashed var(--line);
+}
+.checks li::before {
+  content: ""; position: absolute; left: 4px; top: 20px;
+  width: 12px; height: 7px; border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent); transform: rotate(-45deg);
+}
+
+.steps { list-style: none; margin: 20px 0 0; padding: 0; counter-reset: s; }
+.step {
+  counter-increment: s; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 18px 18px 16px; margin-bottom: 14px;
+}
+.step .when {
+  display: inline-block; background: var(--accent); color: #fff;
+  font-size: 12px; font-weight: 700; padding: 3px 11px; border-radius: 999px;
+}
+.step h3 { font-size: 17px; margin: 12px 0 8px; }
+.step h3::before { content: counter(s) ". "; color: var(--accent); font-weight: 700; }
+.step p { margin: 0; font-size: 14px; color: var(--muted); }
+
+.photo { border-radius: 12px; margin: 18px 0; }
+
+.roles { list-style: none; margin: 18px 0 0; padding: 0; }
+.role { background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px 16px 14px; margin-bottom: 12px; }
+.rolehead { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+.rolename { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 18px; font-weight: 600; color: var(--accent); }
+.who { font-size: 12.5px; color: var(--muted); }
+.does { margin: 9px 0 0 !important; font-size: 14px; }
+.hoken { margin: 8px 0 0 !important; font-size: 12.5px; color: var(--muted); font-weight: 700; }
+
+.dark { background: var(--dark); color: #EAF2F0; border-top-color: #0C2523; }
+.dark h2 { color: #fff; }
+.dark p { color: #D5E5E2; }
+.dark .pull {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 19px; line-height: 1.75; color: #fff; font-weight: 600;
+  padding: 16px 18px; background: #1B4442; border-radius: 12px;
+}
+.dots { list-style: none; margin: 4px 0 0; padding: 0; }
+.dots li { position: relative; padding: 8px 0 8px 20px; font-size: 14px; color: #D5E5E2; }
+.dots li::before { content: ""; position: absolute; left: 2px; top: 18px; width: 7px; height: 7px;
+  border-radius: 50%; background: #6FB3AC; }
+
+.costs { list-style: none; margin: 16px 0; padding: 0; }
+.costs li {
+  display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
+  padding: 12px 0; border-bottom: 1px dashed var(--line); font-size: 14.5px;
+}
+.costs .val { color: var(--accent); font-weight: 700; text-align: right; }
+
+.qa { background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 10px; }
+.qa > summary { cursor: pointer; font-weight: 700; font-size: 15px; }
+.qa > summary::marker { color: var(--accent); }
+.qa p { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+
+.soudan { background: var(--accent-soft); text-align: left; }
+.soudan h2 { font-size: 22px; }
+
+footer { background: var(--dark); color: #A9C6C2; padding: 30px 20px 96px; font-size: 12.5px; line-height: 1.8; }
+footer p { margin: 0 0 8px; }
+.fname { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 16px; color: #fff; }
+.pf a { color: #8FC9C3; }
+
+/* ── 下に固定するボタン(スマホ) ────────────── */
+.stickycta {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(250, 249, 246, .94); border-top: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+}
+.stickycta a {
+  display: block; text-align: center; text-decoration: none;
+  background: var(--accent); color: #fff; font-weight: 700;
+  padding: 14px; border-radius: 10px; font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ── パソコン(おまけ) ───────────────────── */
+@media (min-width: 720px) {
+  .samplebar { font-size: 12px; }
+  .heroimg { height: 380px; max-height: none; }
+  .herotext, .sec, footer { max-width: 620px; margin: 0 auto; }
+  .herotext { padding: 30px 0 34px; }
+  .sec { padding: 56px 0; border-top: none; }
+  .sec + .sec { border-top: 1px solid var(--line); }
+  .tint, .dark, .soudan { max-width: none; padding: 56px 20px; }
+  .tint > *, .dark > *, .soudan > * { max-width: 620px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 32px; }
+  .stickycta { display: none; }
+  footer { padding-bottom: 40px; }
+}
