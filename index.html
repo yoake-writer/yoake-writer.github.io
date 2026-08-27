@@ -196,6 +196,8 @@
   .article h3 { font-size: 15.5px; line-height: 1.7; margin: 0 0 10px; }
   .article p { font-size: 13px; color: var(--muted); margin: 0; }
   .articles.two { grid-template-columns: repeat(2, 1fr); }
+  /* カードが1枚だけのときは2列にしない。右半分が空いて、その節だけスカスカに見える */
+  .articles.two:has(> .article:only-child) { grid-template-columns: minmax(0, 520px); }
   @media (max-width: 720px) { .articles.two { grid-template-columns: 1fr; } }
   .article .alink { margin-top: 14px; }
   .article .alink a { color: var(--red); font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-decoration: none; }
