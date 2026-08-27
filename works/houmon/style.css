@@ -54,7 +54,7 @@ section { padding: 52px 0; }
 .logo { font-weight: 700; text-decoration: none; color: var(--ink); font-size: 1.05rem; }
 .logo span { display: block; font-size: 0.74rem; color: var(--ink-weak); font-weight: 400; }
 .head-tel { font-size: 0.82rem; color: var(--ink-weak); }
-.head-tel a { font-weight: 700; font-size: 1rem; text-decoration: none; }
+.head-tel .num { font-weight: 700; font-size: 1rem; text-decoration: none; }
 
 /* メニュー(横に並べる。縮んで縦にならないよう flex:0 0 auto) */
 .site-nav { background: var(--paper-soft); border-top: 1px solid var(--line); }
