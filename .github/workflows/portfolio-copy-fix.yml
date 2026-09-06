@@ -1,0 +1,60 @@
+name: Portfolio copy fix
+
+on:
+  push:
+    paths:
+      - '.github/workflows/portfolio-copy-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Update portfolio copy
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          replacements = {
+            '<p class="hero-terms">文字単価 <b class="mono">2円</b><span class="sep">/</span>初稿まで <b class="mono">3日</b><span class="sep">/</span>月 <b class="mono">10本</b> まで<br>内容・<wbr>分量に<wbr>より<wbr>変動します。<a href="#process">条件の<wbr>詳細を<wbr>見る</a></p>': '<p class="hero-terms">文字単価 <b class="mono">2円</b><span class="sep">/</span>初稿まで <b class="mono">3日</b><span class="sep">/</span>稼働 <b class="mono">週10〜15時間</b><br>内容・分量・納期により変動します。<a href="#process">条件の詳細を見る</a></p>',
+            '本業の<wbr>訪問看護12年の<wbr>解像度で<wbr>書いています。': '看護師としての臨床経験と、現在の訪問看護の実務経験をもとに書いています。',
+            '<span class="tl mono">受注可能数</span>': '<span class="tl mono">受注目安</span>',
+            '<b class="mono">10<small>本 / 月</small></b>': '<b class="mono">応相談</b>',
+            '<span class="tn">一本ずつ<wbr>時間を<wbr>かける<wbr>ため上限を<wbr>設けています</span>': '<span class="tn">内容・分量・納期に応じて調整します</span>',
+            '<tr><th>稼働時間</th><td>平日 2〜4時間程度</td></tr>': '<tr><th>稼働時間</th><td>週10〜15時間程度</td></tr>',
+            '<p>リサーチの<wbr>下調べや<wbr>構成の<wbr>壁打ちには<wbr>AIを<wbr>使います。<wbr>制作の<wbr>スピードは、<wbr>その<wbr>ぶん<wbr>上がります。</p>': '<p>調査補助・構成・下書き整理にはAIを使います。制作のスピードを上げつつ、人が確認すべき工程は残しています。</p>',
+            '<p><b>ただし、<wbr>事実確認と<wbr>本文は<wbr>人間が<wbr>書きます。</b>医療と<wbr>金融は、<wbr>間違えた<wbr>ときに<wbr>読者が<wbr>実際に<wbr>損を<wbr>する<wbr>分野だからです。<wbr>数字・<wbr>制度・用語は<wbr>一次情報に<wbr>あたって<wbr>確認しています。</p>': '<p><b>一次情報の確認と最終原稿は、私が責任を持って仕上げます。</b>医療と金融は、間違えたときに読者が実際に損をする分野だからです。数字・制度・用語は一次情報にあたって確認しています。</p>',
+          }
+          for old, new in replacements.items():
+              if old not in s:
+                  raise SystemExit(f'expected text not found: {old[:80]}')
+              s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          python -m pip install --quiet budoux
+          python3 tools/wrap-ja.py
+      - name: Verify copy
+        run: |
+          ! grep -q '訪問看護12年' index.html
+          ! grep -q '平日 2〜4時間程度' index.html
+          ! grep -q '<b class="mono">10<small>本 / 月</small></b>' index.html
+          grep -q '週10〜15時間程度' index.html
+          grep -q '一次情報の' index.html
+          git diff --check
+      - name: Commit published copy
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix: align portfolio copy with current availability and AI workflow'
+          git push
