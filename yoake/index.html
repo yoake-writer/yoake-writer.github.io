@@ -95,36 +95,39 @@ h3{font-size:19px;margin-bottom:10px}
 
 .section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:34px}
 .section-head .lead{max-width:38rem}
-.works{
-  display:grid;grid-template-columns:1.35fr .85fr .85fr;gap:16px;
-  align-items:stretch
+.case-list{border-top:1px solid var(--ink)}
+.case{
+  display:grid;grid-template-columns:76px minmax(300px,.9fr) minmax(0,1.1fr);
+  gap:34px;padding:48px 0;border-bottom:1px solid var(--line);align-items:start
 }
-.work{
-  background:var(--card);border:1px solid var(--line);min-width:0;display:flex;flex-direction:column
+.case-num{font-size:12px;letter-spacing:.12em;color:var(--orange);font-weight:800;padding-top:8px}
+.case-media{
+  background:var(--card);border:1px solid var(--line);min-height:300px;
+  overflow:hidden;display:flex;align-items:center;justify-content:center
 }
-.work.featured{grid-row:span 2}
-.work-media{aspect-ratio:16/10;background:#E8E8E2;overflow:hidden}
-.work.featured .work-media{aspect-ratio:4/3}
-.work-media img{width:100%;height:100%;object-fit:cover}
-.work-body{padding:22px;display:flex;flex-direction:column;flex:1}
-.meta{font-size:11px;letter-spacing:.12em;color:var(--orange);font-weight:800;margin-bottom:8px}
-.work p,.thought p,.about p{color:var(--muted);font-size:14px;margin:0 0 16px}
-.link{
-  margin-top:auto;display:inline-flex;min-height:44px;align-items:center;gap:8px;
-  font-weight:700;font-size:13px;text-underline-offset:4px
+.case-media img{width:100%;height:100%;min-height:300px;object-fit:cover}
+.case-copy h3{font-size:clamp(25px,3vw,36px);margin:0 0 24px;line-height:1.45}
+.case-facts{display:grid;border-top:1px solid var(--line)}
+.case-fact{
+  display:grid;grid-template-columns:92px 1fr;gap:18px;
+  padding:14px 0;border-bottom:1px solid var(--line)
 }
-.work.text-only{
-  background:var(--ink);color:#fff;grid-column:2/4;
-  min-height:220px
+.case-label{font-size:11px;letter-spacing:.12em;color:var(--orange);font-weight:800;padding-top:3px}
+.case-fact p{margin:0;color:var(--muted);font-size:14px}
+.case-copy .link{margin-top:20px}
+.case-flow{
+  width:100%;min-height:300px;padding:28px;background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;justify-content:center
 }
-.work.text-only .work-body{
-  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
-  column-gap:28px;align-items:start
+.case-flow-title{font-size:12px;letter-spacing:.12em;color:#F4A27F;font-weight:800;margin-bottom:20px}
+.flow-steps{display:grid;gap:10px}
+.flow-step{
+  display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:center;
+  padding:12px 0;border-bottom:1px solid rgba(255,255,255,.2)
 }
-.work.text-only .meta{grid-column:1/3}
-.work.text-only h3{font-size:clamp(22px,2.4vw,30px)}
-.work.text-only p{color:#DCE2E6;margin:0}
-.work.text-only .link{color:#fff;grid-column:2;grid-row:2;align-self:end;justify-self:start}
+.flow-step:last-child{border-bottom:0}
+.flow-step b{font-size:11px;color:#F4A27F}
+.flow-step span{font-size:15px;font-weight:700}
 .thoughts{border-top:1px solid var(--ink)}
 .thought{
   display:grid;grid-template-columns:70px minmax(0,1.1fr) minmax(260px,.9fr) 120px;
@@ -160,9 +163,7 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .hero-collage{min-height:330px}
-  .works{grid-template-columns:1fr 1fr}
-  .work.featured{grid-row:auto;grid-column:1/3}
-  .work.text-only{grid-column:1/3}
+  .case{grid-template-columns:60px minmax(0,.85fr) minmax(0,1.15fr);gap:22px}
   .help-item{grid-template-columns:70px 1fr}
   .help-answer{grid-column:2}
   .thought{grid-template-columns:52px 1fr}
@@ -187,11 +188,11 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
   .hero-collage .piece.big{grid-row:auto;grid-column:1/3}
   .hero-collage .piece{min-height:120px}
   .hero-collage .piece.big{min-height:210px}
-  .works{grid-template-columns:1fr}
-  .work.featured{grid-column:auto}
-  .work.text-only{grid-column:auto;min-height:0}
-  .work.text-only .work-body{display:flex}
-  .work.featured .work-media,.work-media{aspect-ratio:16/10}
+  .case{grid-template-columns:1fr;gap:12px;padding:36px 0}
+  .case-num{padding-top:0}
+  .case-media,.case-media img,.case-flow{min-height:220px}
+  .case-fact{grid-template-columns:1fr;gap:4px}
+  .case-copy h3{font-size:26px;margin-bottom:18px}
   .section-head{display:block}
   .section-head .lead{margin-top:8px}
   .help-item{grid-template-columns:1fr;gap:8px;padding:26px 0}
@@ -295,52 +296,94 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Selected works</p>
-          <h2 id="works-title">つくったもの</h2>
+          <p class="eyebrow">Case studies</p>
+          <h2 id="works-title">困りごとから、形にしたもの</h2>
         </div>
-        <p class="lead">仕事でも、自主制作でも、<wbr>実際に手を動かして作ったものを置いています。</p>
+        <p class="lead">完成物だけでなく、何に困って、どう考えて、何を作ったかまで置いています。</p>
       </div>
 
-      <div class="works">
-        <article class="work featured">
-          <div class="work-media">
+      <div class="case-list">
+        <article class="case">
+          <span class="case-num">CASE 01</span>
+          <div class="case-media">
             <img src="../assets/work-shiryo.jpg" alt="患者向け説明資料「手術のあとの痛みと、痛み止めの使い方」">
           </div>
-          <div class="work-body">
-            <span class="meta">DOCUMENT / 自主制作</span>
-            <h3>専門知識を、<wbr>患者さんが使える言葉へ。</h3>
-            <p>手術室で実際に聞かれた質問を出発点に、「手術のあとの痛みと、痛み止めの使い方」をA4一枚にしました。患者さんが我慢せず、自分から伝えられることを目標にした自主制作です。</p>
-            <a class="link" href="../works/shiryo/" target="_blank" rel="noopener">資料を見る ↗</a>
+          <div class="case-copy">
+            <h3>術後の痛みを、<wbr>患者さんが自分から伝えられる資料へ。</h3>
+            <div class="case-facts">
+              <div class="case-fact">
+                <span class="case-label">困りごと</span>
+                <p>「手術後はどのくらい痛いですか？」と聞かれたとき、痛みの程度は約束できない。けれど、不安だけを残したくない。</p>
+              </div>
+              <div class="case-fact">
+                <span class="case-label">どう考えた</span>
+                <p>知識を増やすより、患者さんが次にできる行動を渡す。痛み止めを我慢せず、痛くなりそうなときや動く前にも相談できることを中心にしました。</p>
+              </div>
+              <div class="case-fact">
+                <span class="case-label">作ったもの</span>
+                <p>A4一枚の患者向け説明資料。薬の名前・用量は書かず、病院ごとの指示を確認する線も残した自主制作です。</p>
+              </div>
+            </div>
+            <a class="link" href="../works/shiryo/" target="_blank" rel="noopener">実物を見る ↗</a>
           </div>
         </article>
 
-        <article class="work">
-          <div class="work-body">
-            <span class="meta">NOTE / 自主運営</span>
-            <h3>経験と一次情報を、<wbr>読める形にする。</h3>
-            <p>看護・AI・お金について、現場で気づいたこと、失敗したこと、制度やAIを調べて分かったことを書いている自主運営noteです。</p>
-            <a class="link" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">noteを見る ↗</a>
-          </div>
-        </article>
-
-        <article class="work">
-          <div class="work-media">
+        <article class="case">
+          <span class="case-num">CASE 02</span>
+          <div class="case-media">
             <img src="../assets/work-houmon.jpg" alt="架空の「つきよみ訪問看護ステーション」Webサイト">
           </div>
-          <div class="work-body">
-            <span class="meta">WEB / 架空自主制作</span>
-            <h3>読む人によって、<wbr>必要な入口は違う。</h3>
-            <p>利用するご家族と、働く看護師で入口を分けた「つきよみ訪問看護ステーション」。それぞれが自分の状況から情報へたどれるようにした架空の自主制作Webです。</p>
-            <a class="link" href="../works/houmon/" target="_blank" rel="noopener">サイトを見る ↗</a>
+          <div class="case-copy">
+            <h3>同じ訪問看護でも、<wbr>読む人によって必要な入口は違う。</h3>
+            <div class="case-facts">
+              <div class="case-fact">
+                <span class="case-label">困りごと</span>
+                <p>訪問看護を探すご家族と、働く場所を探す看護師では、最初に知りたいことが違います。一つの説明から始めると、自分に必要な情報へたどり着きにくい。</p>
+              </div>
+              <div class="case-fact">
+                <span class="case-label">どう考えた</span>
+                <p>最初から「ご家族・ケアマネジャー」と「看護師」で入口を分けました。サービス説明より先に、退院や夜間対応など、実際に気になる場面から入れる構成にしています。</p>
+              </div>
+              <div class="case-fact">
+                <span class="case-label">作ったもの</span>
+                <p>架空の訪問看護ステーションを想定した6ページの自主制作Web。実在する事業所ではありません。</p>
+              </div>
+            </div>
+            <a class="link" href="../works/houmon/" target="_blank" rel="noopener">実物を見る ↗</a>
           </div>
         </article>
 
-        <article class="work text-only">
-          <div class="work-body">
-            <span class="meta">AI / 自分の業務運用</span>
-            <h3>AIを増やす前に、<wbr>仕事が止まる場所を見る。</h3>
-            <p>案件探し、記事制作、レビュー、振り返りを自分の業務で試しながら、AIに任せる場所と人が判断する場所を分けています。他社へのAI導入実績ではなく、自分自身の仕事を実験台にした運用です。</p>
-            <a class="link" href="https://note.com/yoake_kango_fp/n/n8dc8dcf21da3" target="_blank" rel="noopener">関連する記事を読む ↗</a>
+        <article class="case">
+          <span class="case-num">CASE 03</span>
+          <div class="case-media">
+            <div class="case-flow" aria-label="AI活用を考えるときの仕事の流れ">
+              <span class="case-flow-title">WORK FLOW</span>
+              <div class="flow-steps">
+                <div class="flow-step"><b>01</b><span>仕事を一つ選ぶ</span></div>
+                <div class="flow-step"><b>02</b><span>始まりから終わりまで分ける</span></div>
+                <div class="flow-step"><b>03</b><span>一番止まる場所を見る</span></div>
+                <div class="flow-step"><b>04</b><span>AIと人の役割を分ける</span></div>
+                <div class="flow-step"><b>05</b><span>小さく試して、また直す</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-copy">
+            <h3>「AIで何ができる？」ではなく、<wbr>仕事が止まる場所から考える。</h3>
+            <div class="case-facts">
+              <div class="case-fact">
+                <span class="case-label">困りごと</span>
+                <p>AI活用の動画を見れば機能は分かる。でも、自分の仕事のどこに入れればいいのかは分からない。</p>
+              </div>
+              <div class="case-fact">
+                <span class="case-label">どう考えた</span>
+                <p>仕事を細かく分け、「毎回ここが面倒」「ここで待つ」という場所を先に探します。そのあとで、AIに任せるところと人が判断するところを分けます。</p>
+              </div>
+              <div class="case-fact">
+                <span class="case-label">実際にしていること</span>
+                <p>案件探し、記事制作、レビュー、振り返りを自分の業務で試しています。他社へのAI導入実績ではなく、自分自身の仕事での実践です。</p>
+              </div>
+            </div>
+            <a class="link" href="https://note.com/yoake_kango_fp/n/n8dc8dcf21da3" target="_blank" rel="noopener">考え方を読む ↗</a>
           </div>
         </article>
       </div>
