@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YOAKE｜つくったものと、考えてきたこと</title>
-<meta name="description" content="看護師として働きながら、文章・Web・資料をつくり、AIを仕事や制作の中で試しているYOAKEの個人サイト。">
+<meta name="description" content="医療や専門的な内容を伝わる文章・資料・Webへ。教育や業務整理、AI活用も、自分の実務をもとに小さく試すYOAKEの個人サイト。">
 <link rel="canonical" href="https://yoake-writer.github.io/yoake/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#F5F3EC">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="YOAKE">
 <meta property="og:title" content="YOAKE｜つくったものと、考えてきたこと">
-<meta property="og:description" content="これまで作ったものと、考えてきたことを置いています。">
+<meta property="og:description" content="何を作ってきたか、どう考えるか、そしてどんな相談に力になれるか。">
 <meta property="og:url" content="https://yoake-writer.github.io/yoake/">
 <meta name="twitter:card" content="summary">
 <style>
@@ -46,6 +46,7 @@ header{
 .brand{font-weight:800;letter-spacing:.12em;text-decoration:none}
 nav{display:flex;gap:22px;align-items:center;font-size:13px}
 nav a{text-decoration:none;color:var(--muted);min-height:44px;display:inline-flex;align-items:center}
+nav a.work-link{color:var(--ink);font-weight:800;border-bottom:2px solid var(--orange)}
 main{overflow:hidden}
 section{padding:88px 0;border-bottom:1px solid var(--line);scroll-margin-top:80px}
 .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);font-weight:800;margin:0 0 12px}
@@ -72,6 +73,26 @@ h3{font-size:19px;margin-bottom:10px}
 .hero-collage img{width:100%;height:100%;object-fit:cover}
 .hero-note{padding:26px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--orange-soft)!important}
 .hero-note b{font-size:18px}.hero-note span{font-size:13px;color:var(--muted)}
+.hero-work-link{display:inline-flex;margin-top:18px;min-height:44px;align-items:center;font-size:13px;font-weight:800;color:var(--orange);text-underline-offset:4px}
+
+.help{background:var(--ink);color:#fff}
+.help .eyebrow{color:#F4A27F}
+.help .lead{color:#D7E0E5;max-width:48rem}
+.help-list{margin-top:42px;border-top:1px solid rgba(255,255,255,.28)}
+.help-item{
+  display:grid;grid-template-columns:90px minmax(0,1.15fr) minmax(0,.85fr);
+  gap:28px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,.22);align-items:start
+}
+.help-num{font-size:12px;letter-spacing:.12em;color:#F4A27F;font-weight:800;padding-top:6px}
+.help-item h3{font-size:clamp(23px,3vw,34px);margin:0;line-height:1.45}
+.help-answer p{color:#D7E0E5;margin:0 0 12px;font-size:14px}
+.help-proof{display:inline-flex;min-height:44px;align-items:center;color:#fff;font-weight:800;font-size:13px;text-underline-offset:4px}
+.help-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.help-actions .btn{border-color:#fff;color:#fff}
+.help-actions .btn.primary{background:#fff;color:var(--ink)}
+.help-actions .btn:hover{border-color:#F4A27F;color:#F4A27F}
+.help-actions .btn.primary:hover{background:#F4A27F;border-color:#F4A27F;color:var(--ink)}
+
 .section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:34px}
 .section-head .lead{max-width:38rem}
 .works{
@@ -94,11 +115,15 @@ h3{font-size:19px;margin-bottom:10px}
 }
 .work.text-only{background:var(--ink);color:#fff}
 .work.text-only p{color:#DCE2E6}.work.text-only .meta{color:#F4A27F}.work.text-only .link{color:#fff}
-.thoughts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.thoughts{border-top:1px solid var(--ink)}
 .thought{
-  background:var(--card);border-top:3px solid var(--ink);padding:26px;min-height:270px;display:flex;flex-direction:column
+  display:grid;grid-template-columns:70px minmax(0,1.1fr) minmax(260px,.9fr) 120px;
+  gap:22px;align-items:start;padding:28px 0;border-bottom:1px solid var(--line)
 }
-.thought .num{font-size:12px;color:var(--orange);font-weight:800;margin-bottom:18px}
+.thought h3{font-size:clamp(21px,2.5vw,30px);margin:0}
+.thought p{margin:2px 0 0}
+.thought .link{margin-top:0;justify-self:end}
+.thought .num{font-size:12px;color:var(--orange);font-weight:800;padding-top:7px}
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px}
 .about-box,.values{background:var(--card);border:1px solid var(--line);padding:30px}
 .about-box .role{font-size:28px;font-weight:800;margin-bottom:16px}
@@ -109,30 +134,38 @@ h3{font-size:19px;margin-bottom:10px}
 }
 .values li:last-child{border-bottom:0}
 .values li:before{content:counter(values,decimal-leading-zero);color:var(--orange);font-size:12px;padding-top:4px}
-.next-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.next-groups{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;margin-top:30px}
+.next-group{border-top:2px solid var(--ink);padding-top:18px}
+.next-group.work{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--orange);padding:24px}
+.next-label{font-size:12px;letter-spacing:.14em;color:var(--orange);font-weight:800;margin:0 0 10px}
+.next-list{display:grid;gap:0}
 .next{
-  background:var(--card);border:1px solid var(--line);padding:22px;text-decoration:none;
-  min-height:150px;display:flex;flex-direction:column
+  border-bottom:1px solid var(--line);padding:16px 0;text-decoration:none;
+  min-height:88px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center
 }
-.next b{font-size:17px;margin-bottom:8px}.next span{color:var(--muted);font-size:13px}
-.next i{font-style:normal;margin-top:auto;color:var(--orange);font-weight:800}
+.next:last-child{border-bottom:0}
+.next b{display:block;font-size:17px;margin-bottom:4px}.next span{display:block;color:var(--muted);font-size:13px}
+.next i{font-style:normal;color:var(--orange);font-weight:800}
 footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .hero-collage{min-height:330px}
   .works{grid-template-columns:1fr 1fr}
   .work.featured{grid-row:auto;grid-column:1/3}
-  .thoughts{grid-template-columns:1fr}
-  .thought{min-height:0}
+  .help-item{grid-template-columns:70px 1fr}
+  .help-answer{grid-column:2}
+  .thought{grid-template-columns:52px 1fr}
+  .thought p,.thought .link{grid-column:2}
+  .thought .link{justify-self:start}
   .about-grid{grid-template-columns:1fr}
-  .next-grid{grid-template-columns:1fr 1fr}
+  .next-groups{grid-template-columns:1fr}
 }
 @media(max-width:620px){
   .wrap{width:min(100% - 28px,var(--max))}
   header{position:static}
   .head{min-height:58px}
   nav{gap:10px}
-  nav a:nth-child(2),nav a:nth-child(3){display:none}
+  nav a:not(.work-link):not(.contact-link){display:none}
   section{padding:64px 0}
   .hero{padding:48px 0 64px}
   h1{font-size:44px}
@@ -148,8 +181,12 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
   .work.featured .work-media,.work-media{aspect-ratio:16/10}
   .section-head{display:block}
   .section-head .lead{margin-top:8px}
-  .next-grid{grid-template-columns:1fr}
-  .next{min-height:118px}
+  .help-item{grid-template-columns:1fr;gap:8px;padding:26px 0}
+  .help-answer{grid-column:auto}
+  .thought{grid-template-columns:1fr;gap:8px}
+  .thought p,.thought .link{grid-column:auto}
+  .thought .num{padding-top:0}
+  .next{min-height:84px}
 }
 </style>
 </head>
@@ -158,10 +195,10 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
   <div class="wrap head">
     <a class="brand" href="#top">YOAKE</a>
     <nav aria-label="ページ内ナビゲーション">
+      <a class="work-link" href="#help">相談できること</a>
       <a href="#works">つくったもの</a>
       <a href="#thoughts">考えてきたこと</a>
-      <a href="#about">自分について</a>
-      <a href="#next">もう少し見る</a>
+      <a class="contact-link" href="#next">つながる</a>
     </nav>
   </div>
 </header>
@@ -181,6 +218,7 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
           <a class="btn primary" href="#works">つくったものを見る</a>
           <a class="btn" href="#thoughts">考えてきたことを読む</a>
         </div>
+        <a class="hero-work-link" href="#help">仕事で相談できることを見る →</a>
       </div>
       <div class="hero-collage" aria-label="制作物の一部">
         <div class="piece big">
@@ -193,6 +231,49 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
           <b>書く・つくる・試す</b>
           <span>作品と、考え方の入口。</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="help" class="help" aria-labelledby="help-title">
+    <div class="wrap">
+      <p class="eyebrow">What I can help with</p>
+      <h2 id="help-title">こんな相談なら、力になれます</h2>
+      <p class="lead">「何を頼めばいいか」まで決まっていなくても、今困っている場面から一緒に整理します。</p>
+
+      <div class="help-list">
+        <div class="help-item">
+          <span class="help-num">01</span>
+          <h3>専門的な内容を、<wbr>相手に伝わる形にしたい</h3>
+          <div class="help-answer">
+            <p>医療や制度の内容を、患者さん・利用者さん・読者に届く文章、資料、Webへ。専門用語をそのまま置かず、読む人が使える形まで考えます。</p>
+            <a class="help-proof" href="#works">患者向け資料・Webの実例を見る ↓</a>
+          </div>
+        </div>
+
+        <div class="help-item">
+          <span class="help-num">02</span>
+          <h3>新人教育や手順が、<wbr>人によってバラバラになっている</h3>
+          <div class="help-answer">
+            <p>新人教育やマニュアル・チェックリストづくりに関わってきた経験から、頭の中にある判断や手順を、他の人が使える形へ整理します。</p>
+            <a class="help-proof" href="#about">これまでの経験を見る ↓</a>
+          </div>
+        </div>
+
+        <div class="help-item">
+          <span class="help-num">03</span>
+          <h3>AIを使いたい。<wbr>でも、自分の仕事のどこに入れればいいか分からない</h3>
+          <div class="help-answer">
+            <p>AIの機能からではなく、まず仕事の流れを見ます。どこで止まるのか、人が判断すべき場所はどこかを分けて、小さく試します。これは自分自身の業務で続けている実践が土台です。</p>
+            <a class="help-proof" href="https://note.com/yoake_kango_fp/n/n8dc8dcf21da3" target="_blank" rel="noopener">考え方を記事で読む ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-actions">
+        <a class="btn primary" href="../">医療・介護・制度の記事制作を見る</a>
+        <a class="btn" href="mailto:yoake.kango@gmail.com">まだ内容が決まっていなくても相談する</a>
       </div>
     </div>
   </section>
@@ -214,8 +295,8 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
           </div>
           <div class="work-body">
             <span class="meta">DOCUMENT / 自主制作</span>
-            <h3>手術のあとの痛みと、<wbr>痛み止めの使い方</h3>
-            <p>手術室で実際に聞かれた質問を出発点に、<wbr>患者さんが痛みを我慢せず、<wbr>自分から伝えられるように作ったA4一枚の資料です。<wbr>実在の病院・患者情報は使っていません。</p>
+            <h3>専門知識を、<wbr>患者さんが使える言葉へ。</h3>
+            <p>手術室で実際に聞かれた質問を出発点に、「手術のあとの痛みと、痛み止めの使い方」をA4一枚にしました。患者さんが我慢せず、自分から伝えられることを目標にした自主制作です。</p>
             <a class="link" href="../works/shiryo/" target="_blank" rel="noopener">資料を見る ↗</a>
           </div>
         </article>
@@ -223,8 +304,8 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
         <article class="work">
           <div class="work-body">
             <span class="meta">NOTE / 自主運営</span>
-            <h3>看護・AI・お金について書くnote</h3>
-            <p>現場で気づいたこと、<wbr>失敗したこと、<wbr>制度やAIを調べて分かったことを書いています。</p>
+            <h3>経験と一次情報を、<wbr>読める形にする。</h3>
+            <p>看護・AI・お金について、現場で気づいたこと、失敗したこと、制度やAIを調べて分かったことを書いている自主運営noteです。</p>
             <a class="link" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">noteを見る ↗</a>
           </div>
         </article>
@@ -235,8 +316,8 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
           </div>
           <div class="work-body">
             <span class="meta">WEB / 架空自主制作</span>
-            <h3>つきよみ訪問看護ステーション</h3>
-            <p>利用するご家族と、<wbr>働く看護師で入口を分け、<wbr>それぞれが自分の状況から情報へたどれるように作った6ページのサイトです。<wbr>実案件ではありません。</p>
+            <h3>読む人によって、<wbr>必要な入口は違う。</h3>
+            <p>利用するご家族と、働く看護師で入口を分けた「つきよみ訪問看護ステーション」。それぞれが自分の状況から情報へたどれるようにした架空の自主制作Webです。</p>
             <a class="link" href="../works/houmon/" target="_blank" rel="noopener">サイトを見る ↗</a>
           </div>
         </article>
@@ -244,8 +325,8 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
         <article class="work text-only">
           <div class="work-body">
             <span class="meta">AI / 自分の業務運用</span>
-            <h3>AIとGitHubで、<wbr>自分の仕事の回し方を作る</h3>
-            <p>案件探し、<wbr>記事制作、<wbr>レビュー、<wbr>振り返りを、<wbr>ChatGPT・Claude Code・GitHubなどに役割を分けながら自分の仕事の中で使っています。<wbr>他社へのAI導入実績ではありません。</p>
+            <h3>AIを増やす前に、<wbr>仕事が止まる場所を見る。</h3>
+            <p>案件探し、記事制作、レビュー、振り返りを自分の業務で試しながら、AIに任せる場所と人が判断する場所を分けています。他社へのAI導入実績ではなく、自分自身の仕事を実験台にした運用です。</p>
             <a class="link" href="https://note.com/yoake_kango_fp/n/n8dc8dcf21da3" target="_blank" rel="noopener">関連する記事を読む ↗</a>
           </div>
         </article>
@@ -325,27 +406,33 @@ footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
       <h2 id="next-title">もう少し見てみる</h2>
       <p class="lead">気になった入口からどうぞ。</p>
 
-      <div class="next-grid">
-        <a class="next" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">
-          <b>note</b>
-          <span>長く考えたことを読む</span>
-          <i>見る ↗</i>
-        </a>
-        <a class="next" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">
-          <b>X</b>
-          <span>日々の気づきや制作を見る</span>
-          <i>見る ↗</i>
-        </a>
-        <a class="next" href="../">
-          <b>専門ポートフォリオ</b>
-          <span>医療・介護・制度の記事制作について見る</span>
-          <i>見る →</i>
-        </a>
-        <a class="next" href="mailto:yoake.kango@gmail.com">
-          <b>Contact</b>
-          <span>それ以外でも、何か一緒にできそうなら</span>
-          <i>メールする →</i>
-        </a>
+      <div class="next-groups">
+        <div class="next-group">
+          <p class="next-label">もっと知る</p>
+          <div class="next-list">
+            <a class="next" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">
+              <span><b>note</b><span>長く考えたことを読む</span></span>
+              <i>見る ↗</i>
+            </a>
+            <a class="next" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">
+              <span><b>X</b><span>日々の気づきや制作を見る</span></span>
+              <i>見る ↗</i>
+            </a>
+          </div>
+        </div>
+        <div class="next-group work">
+          <p class="next-label">仕事について</p>
+          <div class="next-list">
+            <a class="next" href="../">
+              <span><b>医療・介護・制度の記事制作</b><span>専門ポートフォリオで、記事制作の実績と依頼の流れを見る</span></span>
+              <i>見る →</i>
+            </a>
+            <a class="next" href="mailto:yoake.kango@gmail.com">
+              <span><b>まだ依頼内容が決まっていない相談</b><span>「こういうことで困っている」からでも大丈夫です</span></span>
+              <i>メールする →</i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
