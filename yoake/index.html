@@ -70,26 +70,27 @@ p{margin-top:0}
 .link.down:after{content:"↓"}
 
 .hero{padding:82px 0 78px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(460px,1.1fr);gap:64px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.78fr) minmax(520px,1.22fr);gap:54px;align-items:center}
 .hero-copy{font-size:clamp(16px,1.6vw,19px);max-width:36rem}
 .hero-copy p{margin-bottom:8px}
 .hero-actions{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px}
 
-.contact-sheet{display:grid;grid-template-columns:1fr .82fr;gap:18px;align-items:start}
+.contact-sheet{display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:auto auto;gap:12px;align-items:start}
 .contact-item{margin:0}
 .contact-frame{
   background:var(--paper);
   border:1px solid rgba(23,48,67,.10);
   padding:10px
 }
-.contact-main .contact-frame{padding:12px}
-.contact-main img{width:100%;aspect-ratio:210/297;object-fit:contain;background:#fff}
-.contact-sub{margin-top:118px}
-.contact-sub img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.contact-main{grid-row:1/3}
+.contact-main .contact-frame{padding:10px}
+.contact-main img{width:100%;aspect-ratio:210/297;object-fit:contain;background:#fff;max-height:560px}
+.contact-sub{margin-top:0}
+.contact-sub img,.contact-slide img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
 .contact-cap{margin-top:8px;font-size:11px;line-height:1.6;color:var(--muted)}
 .contact-cap b{display:block;color:var(--ink)}
 
-.workline{padding:0 0 78px}
+.workline{padding:0 0 52px}
 .workline-in{
   border-block:1px solid var(--line);padding:22px 0;
   display:grid;grid-template-columns:155px 1fr auto;gap:28px;align-items:center
@@ -97,8 +98,8 @@ p{margin-top:0}
 .workline b{font-size:12px;letter-spacing:.12em}
 .workline p{margin:0;color:var(--muted);font-size:15px;max-width:49rem}
 
-.patient{padding:86px 0;border-top:1px solid var(--line)}
-.patient-grid{display:grid;grid-template-columns:minmax(420px,1.05fr) minmax(0,.95fr);gap:62px;align-items:start}
+.patient{padding:64px 0;border-top:1px solid var(--line)}
+.patient-grid{display:grid;grid-template-columns:minmax(430px,1.02fr) minmax(0,.98fr);gap:48px;align-items:center}
 .paper-view{
   margin:0;background:#fff;border:1px solid rgba(23,48,67,.10);
   padding:14px
@@ -112,7 +113,7 @@ p{margin-top:0}
 .proofline{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);display:flex;gap:20px;justify-content:space-between;align-items:center}
 .proofline span{font-size:12px;color:var(--muted)}
 
-.note-insert{padding:46px 0}
+.note-insert{padding:28px 0}
 .note-insert a{
   display:grid;grid-template-columns:140px 1fr auto;gap:24px;align-items:center;
   padding:22px 0;border-block:1px solid var(--line);text-decoration:none
@@ -121,18 +122,18 @@ p{margin-top:0}
 .note-insert strong{font-size:clamp(21px,2.4vw,29px);line-height:1.5}
 .note-insert .arrow{color:var(--accent);font-weight:850}
 
-.web{padding:88px 0;border-top:1px solid var(--line)}
+.web{padding:64px 0;border-top:1px solid var(--line)}
 .webshot{
   margin:0 0 34px;
   background:var(--paper);border:1px solid rgba(23,48,67,.10);padding:10px
 }
 .webshot img{width:100%;aspect-ratio:16/7;object-fit:cover;object-position:top}
-.webcopy{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:60px}
+.webcopy{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px}
 .webcopy .question{font-size:clamp(28px,3.3vw,43px)}
 
-.note-side{padding:52px 0}
+.note-side{padding:34px 0}
 .note-side .inner{
-  width:min(680px,calc(100% - 48px));
+  width:min(640px,calc(100% - 48px));
   margin-left:auto;margin-right:max(24px,calc((100% - var(--max))/2));
   border-left:2px solid var(--accent);padding-left:26px
 }
@@ -140,8 +141,8 @@ p{margin-top:0}
 .note-side h3{margin:8px 0 8px}
 .note-side p{color:var(--muted);font-size:14px;margin-bottom:8px}
 
-.ai{padding:88px 0;border-top:1px solid var(--line)}
-.ai-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.8fr);gap:62px;align-items:start}
+.ai{padding:64px 0;border-top:1px solid var(--line)}
+.ai-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(360px,1.1fr);gap:48px;align-items:start}
 .workflow-sheet{
   background:var(--paper);border:1px solid rgba(23,48,67,.10);
   padding:24px
@@ -152,19 +153,19 @@ p{margin-top:0}
 .flow-row b{font-size:11px;color:var(--accent)}
 .flow-row span{font-weight:750}
 
-.note-quote{padding:64px 0;background:var(--soft)}
+.note-quote{padding:40px 0;background:var(--soft)}
 .note-quote a{display:block;text-decoration:none}
 .note-quote .type{font-size:11px;letter-spacing:.15em;color:var(--accent);font-weight:800}
-.note-quote h3{font-size:clamp(28px,3.5vw,43px);margin:10px 0 12px;max-width:54rem}
+.note-quote h3{font-size:clamp(24px,3vw,36px);margin:10px 0 12px;max-width:54rem}
 .note-quote p{max-width:42rem;color:var(--muted);margin-bottom:0}
 
-.about{padding:92px 0 82px}
+.about{padding:64px 0}
 .about-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:70px}
 .about p{color:var(--muted);font-size:15px}
 .values{border-top:1px solid var(--ink)}
 .value{padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;font-weight:650}
 
-.closing{padding:68px 0;background:var(--soft)}
+.closing{padding:52px 0;background:var(--soft)}
 .closing-grid{display:grid;grid-template-columns:1fr 1fr;gap:68px}
 .closing h3{font-size:clamp(25px,3vw,35px);margin-bottom:8px}
 .closing p{color:var(--muted);font-size:14px;margin-bottom:20px}
@@ -195,9 +196,9 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:12px}
   .hero{padding:48px 0 62px}
   h1{font-size:46px}
   .hero-copy{font-size:16px}
-  .contact-sheet{grid-template-columns:1fr;gap:14px}
-  .contact-main{grid-column:auto}
-  .contact-sub{margin-top:0}
+  .contact-sheet{grid-template-columns:1fr 1fr;gap:9px}
+  .contact-main{grid-column:1/3;grid-row:auto}
+  .contact-sub,.contact-slide{margin-top:0}
   .contact-frame,.contact-main .contact-frame{padding:7px}
   .workline{padding-bottom:56px}
   .workline-in{grid-template-columns:1fr;gap:8px;padding:20px 0}
@@ -273,6 +274,15 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:12px}
             読む人ごとに入口を変えた
           </figcaption>
         </figure>
+        <figure class="contact-item contact-slide">
+          <div class="contact-frame">
+            <img src="../assets/work-shiryo.jpg" alt="患者向け資料の別プレビュー">
+          </div>
+          <figcaption class="contact-cap">
+            <b>資料制作</b>
+            専門知識を使える言葉へ
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -295,9 +305,9 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:12px}
         <p class="label">手術室で聞かれたこと</p>
         <p class="question">「手術後は、<wbr>どのくらい痛いですか？」</p>
         <div class="body-copy">
-          <p>手術室で実際に聞かれた質問です。<wbr>痛みの程度を約束することはできない。<wbr>でも、「分かりません」で不安だけを残したくない。</p>
-          <p class="decision">だから、知識を増やす資料ではなく、<wbr>患者さんが次にできる行動を渡す資料にしました。</p>
-          <p>痛み止めを我慢しなくていいこと。<wbr>痛くなりそうなときや、動く前にも相談できること。<wbr>薬の名前や用量は決めつけず、病院ごとの指示を確認する線も残しています。</p>
+          <p>痛みの程度は約束できない。<wbr>でも、「分かりません」で不安だけを残したくない。</p>
+          <p class="decision">だから、患者さんが次にできる行動を渡す資料にしました。</p>
+          <p>我慢しなくていいこと。<wbr>動く前にも相談できること。<wbr>病院ごとの指示を確認する線も残しています。</p>
           <div class="proofline">
             <span>実際の問い → 行動できる資料へ</span>
             <a class="link" href="../works/shiryo/" target="_blank" rel="noopener">実物を見る</a>
@@ -352,9 +362,9 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:12px}
         <p class="label">自分の仕事で試していること</p>
         <p class="question">「AIで何ができる？」ではなく、<wbr>仕事のどこで止まっているか。</p>
         <div class="body-copy">
-          <p>AI活用の動画を見れば、機能は分かる。<wbr>でも、自分の仕事のどこに入れるのかまでは分からない。自分も長くそこに引っかかっていました。</p>
-          <p class="decision">だから先に、仕事を始まりから終わりまで分けて、<wbr>一番止まる場所を見るようにしています。</p>
-          <p>案件探し、記事制作、レビュー、振り返りを自分の業務で試しながら、AIに任せるところと、人が判断するところを分けています。<wbr>他社へのAI導入実績ではなく、自分自身の仕事での実践です。</p>
+          <p>機能は分かっても、自分の仕事のどこに入れるかは分からない。<wbr>自分もそこに引っかかっていました。</p>
+          <p class="decision">だから先に、仕事を分けて、一番止まる場所を見るようにしています。</p>
+          <p>AIに任せるところと、人が判断するところを分けて、自分の案件・記事制作・レビューで試しています。</p>
           <a class="link" href="https://note.com/yoake_kango_fp/n/n8dc8dcf21da3" target="_blank" rel="noopener">考え方を読む</a>
         </div>
       </div>
