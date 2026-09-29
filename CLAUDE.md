@@ -9,6 +9,7 @@
 |---|---|---|
 | `index.html` | 本体。プロフィール兼ポートフォリオ | 公開 |
 | `kango/index.html` | LP「看護師のためのAI活用室」 | 公開 |
+| `yoake/index.html` | 個人サイト。作品・考え方・人柄への入口 | 公開 |
 | `portfolio/index.html` | `/` へのリダイレクトのみ。**中身を足さない** | `noindex` |
 | `works/*/` | 架空クライアント想定の自主制作サンプル6件 | `noindex, nofollow` |
 | `tools/wrap-ja.py` | 日本語の改行位置を固定するスクリプト（下記） | — |
@@ -50,7 +51,7 @@
 
 **改行ルールが2系統ある。混ぜない。**
 
-### 本体2ページ（`index.html`, `kango/index.html`）
+### 本体3ページ（`index.html`, `kango/index.html`, `yoake/index.html`）
 
 CSS が `word-break: keep-all` なので、**`<wbr>` が入っている位置でしか折り返さない**。
 その `<wbr>` は `tools/wrap-ja.py` が BudouX（Chrome の `auto-phrase` と同じ
@@ -105,7 +106,7 @@ python3 tools/wrap-ja.py        # 初回のみ pip install budoux
 ## 触るときの注意
 
 - **配色は各ファイル冒頭の `:root` 変数だけで変える。** 個別セレクタに色を直書きしない。
-- 本体2ページの CSS は HTML 内の `<style>` に内包、`works/*` は `style.css` に分離。
+- 本体3ページの CSS は HTML 内の `<style>` に内包、`works/*` は `style.css` に分離。
   この構成は変えない。
 - OGP の `og:image` / `og:url` と `canonical` は絶対URL
   （`https://yoake-writer.github.io/...`）。相対パスにするとカードが出ない。
