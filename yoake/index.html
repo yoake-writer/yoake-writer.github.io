@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YOAKE｜つくったものと、考えてきたこと</title>
+<meta name="description" content="看護師として働きながら、文章・Web・資料をつくり、AIを仕事や制作の中で試しているYOAKEの個人サイト。">
+<link rel="canonical" href="https://yoake-writer.github.io/yoake/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F5F3EC">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="YOAKE">
+<meta property="og:title" content="YOAKE｜つくったものと、考えてきたこと">
+<meta property="og:description" content="これまで作ったものと、考えてきたことを置いています。">
+<meta property="og:url" content="https://yoake-writer.github.io/yoake/">
+<meta name="twitter:card" content="summary">
+<style>
+:root{
+  --paper:#F5F3EC;
+  --card:#FFFFFF;
+  --ink:#13283A;
+  --muted:#5E6A73;
+  --line:#D8D8D0;
+  --orange:#B94B23;
+  --orange-soft:#F3E2D6;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;line-break:strict;overflow-wrap:anywhere}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+  line-height:1.85;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+img{display:block;max-width:100%;height:auto}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+header{
+  position:sticky;top:0;z-index:10;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)
+}
+.head{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:800;letter-spacing:.12em;text-decoration:none}
+nav{display:flex;gap:22px;align-items:center;font-size:13px}
+nav a{text-decoration:none;color:var(--muted);min-height:44px;display:inline-flex;align-items:center}
+main{overflow:hidden}
+section{padding:88px 0;border-bottom:1px solid var(--line);scroll-margin-top:80px}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);font-weight:800;margin:0 0 12px}
+h1,h2,h3{margin-top:0;line-height:1.3;text-wrap:balance}
+h1{font-size:clamp(42px,7vw,80px);letter-spacing:.04em;margin-bottom:22px}
+h2{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
+h3{font-size:19px;margin-bottom:10px}
+.lead{color:var(--muted);max-width:46rem;margin:0}
+.hero{padding:78px 0 86px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:56px;align-items:center}
+.hero-copy{font-size:clamp(16px,2vw,20px);max-width:36rem;margin:0 0 28px}
+.hero-copy p{margin:0 0 8px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{
+  min-height:46px;display:inline-flex;align-items:center;justify-content:center;
+  padding:11px 20px;border:1.5px solid var(--ink);text-decoration:none;font-weight:700;font-size:14px
+}
+.btn.primary{background:var(--ink);color:#fff}
+.btn:hover{border-color:var(--orange);color:var(--orange)}
+.btn.primary:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.hero-collage{display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:1fr 1fr;gap:12px;min-height:390px}
+.hero-collage .piece{border:1px solid var(--line);background:var(--card);overflow:hidden}
+.hero-collage .piece.big{grid-row:1/3}
+.hero-collage img{width:100%;height:100%;object-fit:cover}
+.hero-note{padding:26px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--orange-soft)!important}
+.hero-note b{font-size:18px}.hero-note span{font-size:13px;color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:34px}
+.section-head .lead{max-width:38rem}
+.works{
+  display:grid;grid-template-columns:1.35fr .85fr .85fr;gap:16px;
+  align-items:stretch
+}
+.work{
+  background:var(--card);border:1px solid var(--line);min-width:0;display:flex;flex-direction:column
+}
+.work.featured{grid-row:span 2}
+.work-media{aspect-ratio:16/10;background:#E8E8E2;overflow:hidden}
+.work.featured .work-media{aspect-ratio:4/3}
+.work-media img{width:100%;height:100%;object-fit:cover}
+.work-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.meta{font-size:11px;letter-spacing:.12em;color:var(--orange);font-weight:800;margin-bottom:8px}
+.work p,.thought p,.about p{color:var(--muted);font-size:14px;margin:0 0 16px}
+.link{
+  margin-top:auto;display:inline-flex;min-height:44px;align-items:center;gap:8px;
+  font-weight:700;font-size:13px;text-underline-offset:4px
+}
+.work.text-only{background:var(--ink);color:#fff}
+.work.text-only p{color:#DCE2E6}.work.text-only .meta{color:#F4A27F}.work.text-only .link{color:#fff}
+.thoughts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.thought{
+  background:var(--card);border-top:3px solid var(--ink);padding:26px;min-height:270px;display:flex;flex-direction:column
+}
+.thought .num{font-size:12px;color:var(--orange);font-weight:800;margin-bottom:18px}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px}
+.about-box,.values{background:var(--card);border:1px solid var(--line);padding:30px}
+.about-box .role{font-size:28px;font-weight:800;margin-bottom:16px}
+.values ol{list-style:none;margin:0;padding:0;counter-reset:values}
+.values li{
+  counter-increment:values;display:grid;grid-template-columns:34px 1fr;gap:12px;
+  padding:13px 0;border-bottom:1px solid var(--line);font-weight:600
+}
+.values li:last-child{border-bottom:0}
+.values li:before{content:counter(values,decimal-leading-zero);color:var(--orange);font-size:12px;padding-top:4px}
+.next-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.next{
+  background:var(--card);border:1px solid var(--line);padding:22px;text-decoration:none;
+  min-height:150px;display:flex;flex-direction:column
+}
+.next b{font-size:17px;margin-bottom:8px}.next span{color:var(--muted);font-size:13px}
+.next i{font-style:normal;margin-top:auto;color:var(--orange);font-weight:800}
+footer{padding:34px 0 48px;color:var(--muted);font-size:12px}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-collage{min-height:330px}
+  .works{grid-template-columns:1fr 1fr}
+  .work.featured{grid-row:auto;grid-column:1/3}
+  .thoughts{grid-template-columns:1fr}
+  .thought{min-height:0}
+  .about-grid{grid-template-columns:1fr}
+  .next-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .wrap{width:min(100% - 28px,var(--max))}
+  header{position:static}
+  .head{min-height:58px}
+  nav{gap:10px}
+  nav a:nth-child(2),nav a:nth-child(3){display:none}
+  section{padding:64px 0}
+  .hero{padding:48px 0 64px}
+  h1{font-size:44px}
+  .hero-copy{font-size:16px}
+  .ctas{display:grid;grid-template-columns:1fr}
+  .btn{width:100%}
+  .hero-collage{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;min-height:0}
+  .hero-collage .piece.big{grid-row:auto;grid-column:1/3}
+  .hero-collage .piece{min-height:120px}
+  .hero-collage .piece.big{min-height:210px}
+  .works{grid-template-columns:1fr}
+  .work.featured{grid-column:auto}
+  .work.featured .work-media,.work-media{aspect-ratio:16/10}
+  .section-head{display:block}
+  .section-head .lead{margin-top:8px}
+  .next-grid{grid-template-columns:1fr}
+  .next{min-height:118px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap head">
+    <a class="brand" href="#top">YOAKE</a>
+    <nav aria-label="ページ内ナビゲーション">
+      <a href="#works">つくったもの</a>
+      <a href="#thoughts">考えてきたこと</a>
+      <a href="#about">自分について</a>
+      <a href="#next">もう少し見る</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Personal site</p>
+        <h1 id="hero-title">YOAKE</h1>
+        <div class="hero-copy">
+          <p>看護師として働きながら、<wbr>文章を書いたり、<wbr>Webや資料を作ったりしています。</p>
+          <p>最近は、<wbr>AIを仕事や制作の中でどう使うかも、<wbr>自分で試しています。</p>
+          <p>ここには、<wbr>これまで作ったものと、<wbr>考えてきたことを置いています。</p>
+        </div>
+        <div class="ctas">
+          <a class="btn primary" href="#works">つくったものを見る</a>
+          <a class="btn" href="#thoughts">考えてきたことを読む</a>
+        </div>
+      </div>
+      <div class="hero-collage" aria-label="制作物の一部">
+        <div class="piece big">
+          <img src="../assets/work-shiryo.jpg" alt="自主制作した患者向け説明資料のプレビュー">
+        </div>
+        <div class="piece">
+          <img src="../assets/work-houmon.jpg" alt="架空の訪問看護ステーションWebサイトのプレビュー">
+        </div>
+        <div class="piece hero-note">
+          <b>書く・つくる・試す</b>
+          <span>作品と、考え方の入口。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="works" aria-labelledby="works-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Selected works</p>
+          <h2 id="works-title">つくったもの</h2>
+        </div>
+        <p class="lead">仕事でも、自主制作でも、<wbr>実際に手を動かして作ったものを置いています。</p>
+      </div>
+
+      <div class="works">
+        <article class="work featured">
+          <div class="work-media">
+            <img src="../assets/work-shiryo.jpg" alt="患者向け説明資料「手術のあとの痛みと、痛み止めの使い方」">
+          </div>
+          <div class="work-body">
+            <span class="meta">DOCUMENT / 自主制作</span>
+            <h3>手術のあとの痛みと、<wbr>痛み止めの使い方</h3>
+            <p>手術室で実際に聞かれた質問を出発点に、<wbr>患者さんが痛みを我慢せず、<wbr>自分から伝えられるように作ったA4一枚の資料です。<wbr>実在の病院・患者情報は使っていません。</p>
+            <a class="link" href="../works/shiryo/" target="_blank" rel="noopener">資料を見る ↗</a>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="work-body">
+            <span class="meta">NOTE / 自主運営</span>
+            <h3>看護・AI・お金について書くnote</h3>
+            <p>現場で気づいたこと、<wbr>失敗したこと、<wbr>制度やAIを調べて分かったことを書いています。</p>
+            <a class="link" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">noteを見る ↗</a>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="work-media">
+            <img src="../assets/work-houmon.jpg" alt="架空の「つきよみ訪問看護ステーション」Webサイト">
+          </div>
+          <div class="work-body">
+            <span class="meta">WEB / 架空自主制作</span>
+            <h3>つきよみ訪問看護ステーション</h3>
+            <p>利用するご家族と、<wbr>働く看護師で入口を分け、<wbr>それぞれが自分の状況から情報へたどれるように作った6ページのサイトです。<wbr>実案件ではありません。</p>
+            <a class="link" href="../works/houmon/" target="_blank" rel="noopener">サイトを見る ↗</a>
+          </div>
+        </article>
+
+        <article class="work text-only">
+          <div class="work-body">
+            <span class="meta">AI / 自分の業務運用</span>
+            <h3>AIとGitHubで、<wbr>自分の仕事の回し方を作る</h3>
+            <p>案件探し、<wbr>記事制作、<wbr>レビュー、<wbr>振り返りを、<wbr>ChatGPT・Claude Code・GitHubなどに役割を分けながら自分の仕事の中で使っています。<wbr>他社へのAI導入実績ではありません。</p>
+            <a class="link" href="https://note.com/yoake_kango_fp/n/n8dc8dcf21da3" target="_blank" rel="noopener">関連する記事を読む ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="thoughts" aria-labelledby="thoughts-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Selected thoughts</p>
+          <h2 id="thoughts-title">考えてきたこと</h2>
+        </div>
+        <p class="lead">作ったものだけでは分からない、<wbr>自分がどこで引っかかって、<wbr>何を考えたかを書いています。</p>
+      </div>
+
+      <div class="thoughts">
+        <article class="thought">
+          <span class="num">01</span>
+          <h3>カレンダーは見えていた。<wbr>でも生活は見えていなかった</h3>
+          <p>同じ部屋にいたのに、<wbr>先輩はカレンダーからその人の生活を見て、<wbr>自分は「カレンダーがある」で終わっていました。<wbr>その小さな悔しさから考えた話です。</p>
+          <a class="link" href="https://note.com/yoake_kango_fp/n/n1ea30cc3907a" target="_blank" rel="noopener">記事を読む ↗</a>
+        </article>
+
+        <article class="thought">
+          <span class="num">02</span>
+          <h3>「頭の回転が遅い」と思っていた自分が、<wbr>記録とAIで仕事を補うようになるまで</h3>
+          <p>速く考えられる人になるより、<wbr>記録して外に出し、<wbr>あとから使えるようにする方を選んできた話です。</p>
+          <a class="link" href="https://note.com/yoake_kango_fp/n/n658b2aa51485" target="_blank" rel="noopener">記事を読む ↗</a>
+        </article>
+
+        <article class="thought">
+          <span class="num">03</span>
+          <h3>AIに「それ本当？」と聞き返すようになって、<wbr>答えより疑問が増えた</h3>
+          <p>AIの答えを正解として受け取らず、<wbr>「それ本当？」「根拠ある？」「反対の見方は？」と聞き返すようになった話です。</p>
+          <a class="link" href="https://note.com/yoake_kango_fp/n/neee66a8f5658" target="_blank" rel="noopener">記事を読む ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">About / Values</p>
+          <h2 id="about-title">自分について</h2>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-box">
+          <div class="role">看護師として12年。</div>
+          <p>小児科病棟、<wbr>成人病棟、<wbr>手術室を経て、<wbr>現在は訪問看護で働いています。</p>
+          <p>仕事の中では、<wbr>患者さんへの説明、<wbr>新人教育、<wbr>マニュアルやチェックリストづくりにも関わってきました。</p>
+          <p>仕事の外では、<wbr>記事を書いたり、<wbr>Webや動画を作ったり、<wbr>AIを自分の仕事にどう使えるか試したりしています。</p>
+        </div>
+
+        <div class="values">
+          <p class="eyebrow">大切にしていること</p>
+          <ol>
+            <li>分からないことを、分かったふりをしない。</li>
+            <li>うまくいかなかったことも隠さない。</li>
+            <li>専門家の言葉を、その人に通じる言葉へ直す。</li>
+            <li>AIの答えをそのまま出さない。最後は自分で確かめて決める。</li>
+            <li>相手の時間を使っていることを忘れない。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="next" aria-labelledby="next-title">
+    <div class="wrap">
+      <p class="eyebrow">Next</p>
+      <h2 id="next-title">もう少し見てみる</h2>
+      <p class="lead">気になった入口からどうぞ。</p>
+
+      <div class="next-grid">
+        <a class="next" href="https://note.com/yoake_kango_fp" target="_blank" rel="noopener">
+          <b>note</b>
+          <span>長く考えたことを読む</span>
+          <i>見る ↗</i>
+        </a>
+        <a class="next" href="https://x.com/yoake_kango_fp" target="_blank" rel="noopener">
+          <b>X</b>
+          <span>日々の気づきや制作を見る</span>
+          <i>見る ↗</i>
+        </a>
+        <a class="next" href="../">
+          <b>専門ポートフォリオ</b>
+          <span>医療・介護・制度の記事制作について見る</span>
+          <i>見る →</i>
+        </a>
+        <a class="next" href="mailto:yoake.kango@gmail.com">
+          <b>Contact</b>
+          <span>それ以外でも、何か一緒にできそうなら</span>
+          <i>メールする →</i>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 YOAKE</div>
+</footer>
+</body>
+</html>
