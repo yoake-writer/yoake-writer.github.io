@@ -7,9 +7,9 @@
 
 | パス | 中身 | 検索エンジン |
 |---|---|---|
-| `index.html` | 本体。プロフィール兼ポートフォリオ | 公開 |
+| `index.html` | root HOME（#1063）。個人HOME。案件用は `/portfolio/` へ明示リンクで渡す | 公開 |
 | `kango/index.html` | LP「看護師のためのAI活用室」 | 公開 |
-| `portfolio/index.html` | `/` へのリダイレクトのみ。**中身を足さない** | `noindex` |
+| `portfolio/index.html` | 案件獲得用の独立Portfolio（yoake#962）。`/` へ転送しない。HOMEと相互リンク | `noindex`（現状） |
 | `works/*/` | 架空クライアント想定の自主制作サンプル6件 | `noindex, nofollow` |
 | `tools/wrap-ja.py` | 日本語の改行位置を固定するスクリプト（下記） | — |
 | `.claude/notes/lp-qa-checklist.md` | 納品前チェックリスト | — |
